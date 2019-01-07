@@ -33,10 +33,16 @@ namespace Escapa.Managers
     public class Language
     {
         public string[] Difficulties;
+        public string GameCredit;
+        public string GameCopyright;
+        public string GameLink;
         public string Logo;
         public string NewRecord;
         public string NewHighScore;
         public string Play;
+        public string SoundCredit;
+        public string SoundCopyright;
+        public string SoundLink;
         public string Time;
     }
 }

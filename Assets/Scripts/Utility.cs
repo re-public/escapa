@@ -31,8 +31,14 @@
         public static string Player = "Player";
 
         public static string DifficultyText = "DifficultyText";
+        public static string GameCreditText = "GameCreditText";
+        public static string GameCopyrightText = "GameCopyrightText";
+        public static string GameLinkText = "GameLinkText";
         public static string HighScoreText = "HighScoreText";
         public static string LogoText = "LogoText";
+        public static string SoundCreditText = "SoundCreditText";
+        public static string SoundCopyrightText = "SoundCopyrightText";
+        public static string SoundLinkText = "SoundLinkText";
         public static string TimeText = "TimeText";
 
         public static string BackButton = "BackButton";

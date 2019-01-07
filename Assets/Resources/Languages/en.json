@@ -5,9 +5,15 @@
         "Hard",
         "I N S A N E"
     ],
+    "GameCredit": "E S C A P A",
+    "GameCopyright": "by re::public",
+    "GameLink": "http://republicgames.org",
     "Logo": "E S C A P A",
     "NewRecord": "New record",
     "NewHighScore": "New High score",
     "Play": "Play",
+    "SoundCredit": "Background music:",
+    "SoundCopyright": "Sky Loop by FoolBoyMedia",
+    "SoundLink": "http://www.foolboymedia.co.uk",
     "Time": "Time: "
 }

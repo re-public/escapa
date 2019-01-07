@@ -17,6 +17,12 @@ TagManager:
   - HighScoreText
   - BackButton
   - RestartButton
+  - GameCreditText
+  - GameCopyrightText
+  - GameLinkText
+  - SoundCreditText
+  - SoundCopyrightText
+  - SoundLinkText
   layers:
   - Default
   - TransparentFX

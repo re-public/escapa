@@ -5,9 +5,15 @@
         "Сложно",
         "Б Е З У М И Е"
     ],
+    "GameCredit": "E S C A P A",
+    "GameCopyright": "сделано в re::public",
+    "GameLink": "http://republicgames.org",
     "Logo": "Э С К А П А",
     "NewRecord": "Новый рекорд",
     "NewHighScore": "Лучшее время",
     "Play": "Играть",
+    "SoundCredit": "Фоновая музыка:",
+    "SoundCopyright": "Sky Loop от FoolBoyMedia",
+    "SoundLink": "http://www.foolboymedia.co.uk",
     "Time": "Время: "
 }
