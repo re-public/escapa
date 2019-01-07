@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 470556161}
   m_Layer: 0
   m_Name: RestartButton
-  m_TagString: Untagged
+  m_TagString: RestartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 874307130}
   m_Layer: 0
   m_Name: BackButton
-  m_TagString: Untagged
+  m_TagString: BackButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

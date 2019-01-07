@@ -35,8 +35,10 @@
         public static string LogoText = "LogoText";
         public static string TimeText = "TimeText";
 
+        public static string BackButton = "BackButton";
         public static string InfoButton = "InfoButton";
         public static string PlayButton = "PlayButton";
+        public static string RestartButton = "RestartButton";
         public static string SocialButton = "SocialButton";
         public static string SoundButton = "SoundButton";
 
