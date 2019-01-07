@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 namespace Escapa.Buttons
 {
-    [RequireComponent(typeof(Button), typeof(Image))]
-    public sealed class BackButton : MonoBehaviour, IButton
+    [RequireComponent(typeof(Button))]
+    public sealed class LoadSceneButton : MonoBehaviour, IButton
     {
-        public void Action() => _systemController.GoToScene(GameScenes.Menu);
+        public GameScenes Scene;
+
+        public void Action() => _systemController.GoToScene(Scene);
 
         private ISystemController _systemController;
 
