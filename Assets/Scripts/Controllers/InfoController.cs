@@ -41,6 +41,10 @@ namespace Escapa.Controllers
 
         private void Awake() => _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
 
-        private void FixedUpdate() => _systemController.GoToScene(GameScenes.Menu);
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                _systemController.GoToScene(GameScenes.Menu);
+        }
     }
 }

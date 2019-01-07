@@ -23,5 +23,11 @@ namespace Escapa.Controllers
             GameObject.FindWithTag(Tags.SocialButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
             GameObject.FindWithTag(Tags.SoundButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
         }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                Application.Quit();
+        }
     }
 }

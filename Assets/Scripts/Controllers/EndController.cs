@@ -22,5 +22,15 @@ namespace Escapa.Controllers
             GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
             GameObject.FindWithTag(Tags.RestartButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
         }
+
+        private ISystemController _systemController;
+
+        private void Awake() => _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                _systemController.GoToScene(GameScenes.Menu);
+        }
     }
 }

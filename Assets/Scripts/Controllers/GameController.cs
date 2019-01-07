@@ -63,6 +63,12 @@ namespace Escapa.Controllers
             _player.GetComponent<IPlayer>().MousePressed += OnPlayerPressed;
         }
 
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                _systemController.GoToScene(GameScenes.Menu);
+        }
+
         private void OnPlayerDie()
         {
             ScoreManager.isCountStarted = false;
