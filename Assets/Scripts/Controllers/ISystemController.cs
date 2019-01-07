@@ -8,6 +8,8 @@ namespace Escapa.Controllers
         event SystemEvent SceneLoaded;
         event SystemEvent SceneUnloaded;
 
+        bool IsSoundEnabled { get; set; }
+
         void GoToScene(GameScenes scene);
     }
 }

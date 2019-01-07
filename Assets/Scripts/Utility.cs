@@ -12,6 +12,7 @@
 
     public static class PlayerPrefKeys
     {
+        public static string IsSoundEnabled = "SoundEnabled";
         public static string Level = "Level";
         public static string Record = "Record";
     }
