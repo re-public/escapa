@@ -1,0 +1,24 @@
+{
+    "Levels": [
+        {
+            "Count": 2,
+            "MinSpeed": 2.0,
+            "MaxSpeed": 3.0
+        },
+        {
+            "Count": 3,
+            "MinSpeed": 2.0,
+            "MaxSpeed": 3.0
+        },
+        {
+            "Count": 3,
+            "MinSpeed": 3.0,
+            "MaxSpeed": 4.0
+        },
+        {
+            "Count": 4,
+            "MinSpeed": 3.0,
+            "MaxSpeed": 5.0
+        }
+    ]
+}
