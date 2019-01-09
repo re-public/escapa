@@ -37,6 +37,7 @@ namespace Escapa.Managers
         public string GameCopyright;
         public string GameLink;
         public string Logo;
+        public string Leaderboard;
         public string NewRecord;
         public string NewHighScore;
         public string Play;

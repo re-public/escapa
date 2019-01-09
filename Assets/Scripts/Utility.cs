@@ -26,6 +26,7 @@
 
     public static class Tags
     {
+        public static string Canvas = "Canvas";
         public static string Edges = "Edges";
         public static string Enemies = "Enemies";
         public static string Player = "Player";

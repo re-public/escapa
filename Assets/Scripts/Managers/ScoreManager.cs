@@ -40,7 +40,7 @@ namespace Escapa.Managers
                 {
                     _records = new List<float>(RecordsCount);
 
-                    for (var i = RecordsCount - 1; i >= 0; i--)
+                    for (var i = 0; i < RecordsCount; i++)
                         _records.Add(PlayerPrefs.GetFloat($"{PlayerPrefKeys.Record}{i}", 0f));
                 }
 
