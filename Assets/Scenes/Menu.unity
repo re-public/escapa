@@ -1035,6 +1035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73e4535b9aa1e4469cb2159bad48aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpriteOn: {fileID: 21300000, guid: 74e4b9715bfc1af4cb6bf5f0bb64305a, type: 3}
+  SpriteOff: {fileID: 21300000, guid: 75e744b21f3d9374d81961a0813e228e, type: 3}
 --- !u!1 &1932380016
 GameObject:
   m_ObjectHideFlags: 0
