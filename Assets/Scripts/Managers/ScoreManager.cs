@@ -50,7 +50,7 @@ namespace Escapa.Managers
         public static void SaveRecords()
         {
             for (var i = 0; i < RecordsCount; i++)
-                PlayerPrefs.SetFloat($"{PlayerPrefKeys.Record}{i}", _records[i]);
+                PlayerPrefs.SetFloat($"{PlayerPrefKeys.Record}{i}", Records[i]);
         }
 
         private static void AddRecord(float record)
