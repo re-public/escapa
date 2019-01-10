@@ -36,9 +36,8 @@ namespace Escapa.Managers
         public string GameCredit;
         public string GameCopyright;
         public string GameLink;
+        public string HighScoreTitle;
         public string Logo;
-        public string Leaderboard;
-        public string NewRecord;
         public string NewHighScore;
         public string Play;
         public string SoundCredit;

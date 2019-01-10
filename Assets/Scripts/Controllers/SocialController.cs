@@ -9,16 +9,13 @@ namespace Escapa.Controllers
     {
         public void PrepareScene()
         {
-            var rows = GameObject.FindWithTag(Tags.Canvas).GetComponentsInChildren<TextMeshProUGUI>();
+            var highScoreTitle = GameObject.FindWithTag(Tags.HighScoreTitleText).GetComponent<TextMeshProUGUI>();
+            highScoreTitle.color = StyleManager.CurrentTheme.Text;
+            highScoreTitle.text = LanguageManager.Language.HighScoreTitle;
 
-            rows[0].text = LanguageManager.Language.Leaderboard;
-            rows[0].color = StyleManager.CurrentTheme.Text;
-
-            for (var i = 1; i < 6;  i++)
-            {
-                rows[i].text = string.Format("{0}: {1}", i, ScoreManager.Records[i - 1].ToString("0.00"));
-                rows[i].color = StyleManager.CurrentTheme.Text;
-            }
+            var highScoreText = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();
+            highScoreText.color = StyleManager.CurrentTheme.Text;
+            highScoreText.text = ScoreManager.CurrentTop.ToString();
         }
 
         private ISystemController _systemController;

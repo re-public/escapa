@@ -10,10 +10,10 @@ namespace Escapa.Controllers
     {
         public void PrepareScene()
         {
-            var highScore = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();
-            highScore.gameObject.SetActive(ScoreManager.IsNewScore);
-            highScore.text = ScoreManager.IsHighScore ? LanguageManager.Language.NewHighScore : LanguageManager.Language.NewRecord;
+            var highScore = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();            
+            highScore.text = LanguageManager.Language.NewHighScore;
             highScore.color = StyleManager.CurrentTheme.Text;
+            highScore.gameObject.SetActive(ScoreManager.IsHighScore);
 
             var timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshProUGUI>();
             timeText.text = LanguageManager.Language.Time + ScoreManager.CurrentRecord.ToString("0.000");

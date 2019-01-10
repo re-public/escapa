@@ -23,7 +23,7 @@ TagManager:
   - SoundCreditText
   - SoundCopyrightText
   - SoundLinkText
-  - Canvas
+  - HighScoreTitleText
   layers:
   - Default
   - TransparentFX

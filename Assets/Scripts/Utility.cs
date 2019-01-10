@@ -26,7 +26,6 @@
 
     public static class Tags
     {
-        public static string Canvas = "Canvas";
         public static string Edges = "Edges";
         public static string Enemies = "Enemies";
         public static string Player = "Player";
@@ -36,6 +35,7 @@
         public static string GameCopyrightText = "GameCopyrightText";
         public static string GameLinkText = "GameLinkText";
         public static string HighScoreText = "HighScoreText";
+        public static string HighScoreTitleText = "HighScoreTitleText";
         public static string LogoText = "LogoText";
         public static string SoundCreditText = "SoundCreditText";
         public static string SoundCopyrightText = "SoundCopyrightText";
