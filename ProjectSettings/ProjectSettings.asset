@@ -654,6 +654,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -674,7 +678,7 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 1858ac81-60ba-45f1-94dd-dde07975c039
+  cloudProjectId: 461ebbf0-10dd-4b96-afc6-63138d8fa27f
   framebufferDepthMemorylessMode: 0
   projectName: escapa
   organizationId: mukhinid-art
