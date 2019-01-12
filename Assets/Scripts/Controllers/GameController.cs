@@ -69,9 +69,15 @@ namespace Escapa.Controllers
                 _systemController.GoToScene(GameScenes.Menu);
         }
 
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus)
+                OnPlayerDie();
+        }
+
         private void OnPlayerDie()
         {
-            ScoreManager.isCountStarted = false;
+            ScoreManager.Finish();
             AnalyticsManager.SendGameOverEvent();
 
             _systemController.GoToScene(GameScenes.End);
@@ -84,7 +90,7 @@ namespace Escapa.Controllers
             foreach (var enemy in _enemies)
                 enemy.GetComponent<IEnemy>().AddForce();
 
-            StartCoroutine(ScoreManager.Count());
+            ScoreManager.Start();
             AnalyticsManager.SendGameStartEvent();
         }
     }

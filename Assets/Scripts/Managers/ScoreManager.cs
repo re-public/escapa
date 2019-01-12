@@ -1,5 +1,4 @@
 ﻿using Escapa.Utility;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,32 +6,39 @@ namespace Escapa.Managers
 {
     public static class ScoreManager
     {
-        public const float CounterInterval = 0.02f;
-        public const int RecordsCount = 5;
+        /// <summary>
+        /// Current game time.
+        /// </summary>
+        public static float CurrentRecord => (_finishTime.HasValue && _startTime.HasValue) ? _finishTime.Value - _startTime.Value : 0f;
 
-        public static bool isCountStarted = false;
+        /// <summary>
+        /// Is current time is new high score.
+        /// </summary>
         public static bool IsHighScore { get; private set; }
 
-        public static float CurrentRecord { get; private set; }
-        public static IEnumerator Count()
+        private const int _recordsCount = 4;
+
+        private static float? _startTime;
+        private static float? _finishTime;
+
+        public static void Start()
         {
-            CurrentRecord = 0f;
             IsHighScore = false;
-            isCountStarted = true;
+            _finishTime = null;
 
-            while (isCountStarted)
-            {
-                CurrentRecord += CounterInterval;
-                yield return new WaitForSeconds(CounterInterval);
-            }
-
-            if (CurrentRecord > CurrentTop)
-            {
-                CurrentTop = CurrentRecord;
-                IsHighScore = true;
-            }
+            _startTime = Time.realtimeSinceStartup;
         }
 
+        public static void Finish()
+        {
+            _finishTime = Time.realtimeSinceStartup;
+
+            IsHighScore = CurrentRecord > CurrentTop;
+        }
+
+        /// <summary>
+        /// Current high score.
+        /// </summary>
         public static float CurrentTop
         {
             get => Records[DifficultyManager.Level];
@@ -46,9 +52,9 @@ namespace Escapa.Managers
             {
                 if (_records == null)
                 {
-                    _records = new List<float>(RecordsCount);
+                    _records = new List<float>(_recordsCount);
 
-                    for (var i = 0; i < RecordsCount; i++)
+                    for (var i = 0; i < _recordsCount; i++)
                         _records.Add(PlayerPrefs.GetFloat($"{PlayerPrefKeys.Record}{i}", 0f));
                 }
 
@@ -56,9 +62,12 @@ namespace Escapa.Managers
             }
         }
 
+        /// <summary>
+        /// Save all records in memory.
+        /// </summary>
         public static void SaveRecords()
         {
-            for (var i = 0; i < RecordsCount; i++)
+            for (var i = 0; i < _recordsCount; i++)
                 PlayerPrefs.SetFloat($"{PlayerPrefKeys.Record}{i}", Records[i]);
         }
     }
