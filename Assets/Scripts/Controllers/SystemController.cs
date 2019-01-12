@@ -1,5 +1,4 @@
-﻿using Escapa.Events;
-using Escapa.Managers;
+﻿using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,9 +8,6 @@ namespace Escapa.Controllers
     [RequireComponent(typeof(AudioSource))]
     public sealed class SystemController : MonoBehaviour, ISystemController
     {
-        public event SystemEvent SceneLoaded;
-        public event SystemEvent SceneUnloaded;
-
         public bool IsSoundEnabled
         {
             get => !_audioSource.mute;
@@ -30,7 +26,6 @@ namespace Escapa.Controllers
             _audioSource = GetComponent<AudioSource>();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
             Application.quitting += OnApplicationQuit;
         }
 
@@ -46,15 +41,6 @@ namespace Escapa.Controllers
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
-        {
-            GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>().PrepareScene();
-            SceneLoaded?.Invoke(gameObject, new SystemEventArgs(scene.buildIndex));
-        }
-
-        private void OnSceneUnloaded(Scene scene)
-        {
-            SceneUnloaded?.Invoke(gameObject, new SystemEventArgs(scene.buildIndex));
-        }
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode) => GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>().PrepareScene();
     }
 }
