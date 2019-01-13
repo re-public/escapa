@@ -3,5 +3,6 @@
     public interface ISceneController
     {
         void PrepareScene();
+        void StyleScene();
     }
 }

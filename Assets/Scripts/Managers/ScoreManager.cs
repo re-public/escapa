@@ -9,7 +9,7 @@ namespace Escapa.Managers
         /// <summary>
         /// Current game time.
         /// </summary>
-        public static float CurrentRecord => (_finishTime.HasValue && _startTime.HasValue) ? _finishTime.Value - _startTime.Value : 0f;
+        public static float CurrentRecord => _finishTime - _startTime;
 
         /// <summary>
         /// Is current time is new high score.
@@ -18,13 +18,13 @@ namespace Escapa.Managers
 
         private const int _recordsCount = 4;
 
-        private static float? _startTime;
-        private static float? _finishTime;
+        private static float _startTime;
+        private static float _finishTime;
 
         public static void Start()
         {
             IsHighScore = false;
-            _finishTime = null;
+            _finishTime = 0f;
 
             _startTime = Time.realtimeSinceStartup;
         }
@@ -33,17 +33,17 @@ namespace Escapa.Managers
         {
             _finishTime = Time.realtimeSinceStartup;
 
-            IsHighScore = CurrentRecord > CurrentTop;
+            if (CurrentRecord > CurrentTop)
+            {
+                IsHighScore = true;
+                Records[DifficultyManager.Level] = CurrentRecord;
+            }
         }
 
         /// <summary>
         /// Current high score.
         /// </summary>
-        public static float CurrentTop
-        {
-            get => Records[DifficultyManager.Level];
-            private set => Records[DifficultyManager.Level] = value;
-        }
+        public static float CurrentTop => Records[DifficultyManager.Level];
 
         private static List<float> _records = null;
         private static List<float> Records

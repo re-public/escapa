@@ -10,36 +10,48 @@ namespace Escapa.Controllers
     {
         public void PrepareScene()
         {
-            var gameCreditText = GameObject.FindWithTag(Tags.GameCreditText).GetComponent<TextMeshProUGUI>();
-            gameCreditText.color = StyleManager.CurrentTheme.Text;
-            gameCreditText.text = LanguageManager.Language.GameCredit;
+            _gameCreditText.text = LanguageManager.Language.GameCredit;
+            _gameCopyrightText.text = LanguageManager.Language.GameCopyright;
+            _gameLinkText.text = LanguageManager.Language.GameLink;
+            _soundCreditText.text = LanguageManager.Language.SoundCredit;
+            _soundCopyrightText.text = LanguageManager.Language.SoundCopyright;
+            _soundLinkText.text = LanguageManager.Language.SoundLink;
+        }
 
-            var gameCopyrightText = GameObject.FindWithTag(Tags.GameCopyrightText).GetComponent<TextMeshProUGUI>();
-            gameCopyrightText.color = StyleManager.CurrentTheme.Text;
-            gameCopyrightText.text = LanguageManager.Language.GameCopyright;
-
-            var gameLinkText = GameObject.FindWithTag(Tags.GameLinkText).GetComponent<TextMeshProUGUI>();
-            gameLinkText.color = StyleManager.CurrentTheme.Text;
-            gameLinkText.text = LanguageManager.Language.GameLink;
-
-            var soundCreditText = GameObject.FindWithTag(Tags.SoundCreditText).GetComponent<TextMeshProUGUI>();
-            soundCreditText.color = StyleManager.CurrentTheme.Text;
-            soundCreditText.text = LanguageManager.Language.SoundCredit;
-
-            var soundCopyrightText = GameObject.FindWithTag(Tags.SoundCopyrightText).GetComponent<TextMeshProUGUI>();
-            soundCopyrightText.color = StyleManager.CurrentTheme.Text;
-            soundCopyrightText.text = LanguageManager.Language.SoundCopyright;
-
-            var soundLinkText = GameObject.FindWithTag(Tags.SoundLinkText).GetComponent<TextMeshProUGUI>();
-            soundLinkText.color = StyleManager.CurrentTheme.Text;
-            soundLinkText.text = LanguageManager.Language.SoundLink;
-
-            GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
+        public void StyleScene()
+        {
+            _gameCreditText.color = StyleManager.CurrentTheme.Text;
+            _gameCopyrightText.color = StyleManager.CurrentTheme.Text;
+            _gameLinkText.color = StyleManager.CurrentTheme.Text;
+            _soundCreditText.color = StyleManager.CurrentTheme.Text;
+            _soundCopyrightText.color = StyleManager.CurrentTheme.Text;
+            _soundLinkText.color = StyleManager.CurrentTheme.Text;
+            _backButton.color = StyleManager.CurrentTheme.Text;
         }
 
         private ISystemController _systemController;
+        #region UI elements
+        private TextMeshProUGUI _gameCreditText;
+        private TextMeshProUGUI _gameCopyrightText;
+        private TextMeshProUGUI _gameLinkText;
+        private TextMeshProUGUI _soundCreditText;
+        private TextMeshProUGUI _soundCopyrightText;
+        private TextMeshProUGUI _soundLinkText;
+        private Image _backButton;
+        #endregion
 
-        private void Awake() => _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+        private void Awake()
+        {
+            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+
+            _gameCreditText = GameObject.FindWithTag(Tags.GameCreditText).GetComponent<TextMeshProUGUI>();
+            _gameCopyrightText = GameObject.FindWithTag(Tags.GameCopyrightText).GetComponent<TextMeshProUGUI>();
+            _gameLinkText = GameObject.FindWithTag(Tags.GameLinkText).GetComponent<TextMeshProUGUI>();
+            _soundCreditText = GameObject.FindWithTag(Tags.SoundCreditText).GetComponent<TextMeshProUGUI>();
+            _soundCopyrightText = GameObject.FindWithTag(Tags.SoundCopyrightText).GetComponent<TextMeshProUGUI>();
+            _soundLinkText = GameObject.FindWithTag(Tags.SoundLinkText).GetComponent<TextMeshProUGUI>();
+            _backButton = GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>();
+        }
 
         private void FixedUpdate()
         {

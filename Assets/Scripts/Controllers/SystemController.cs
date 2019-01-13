@@ -17,6 +17,7 @@ namespace Escapa.Controllers
         public void GoToScene(GameScenes scene) => SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Single);
 
         private AudioSource _audioSource;
+        private ISceneController _sceneController;
 
         private void Awake()
         {
@@ -29,10 +30,7 @@ namespace Escapa.Controllers
             Application.quitting += OnApplicationQuit;
         }
 
-        private void Start()
-        {
-            IsSoundEnabled = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundEnabled, 1) == 1 ? true : false;
-        }
+        private void Start() => IsSoundEnabled = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundEnabled, 1) == 1 ? true : false;
 
         private void OnApplicationQuit()
         {
@@ -41,6 +39,11 @@ namespace Escapa.Controllers
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode) => GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>().PrepareScene();
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
+        {
+            _sceneController = GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>();
+            _sceneController.PrepareScene();
+            _sceneController.StyleScene();
+        }
     }
 }

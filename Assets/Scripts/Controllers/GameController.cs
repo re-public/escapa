@@ -42,9 +42,16 @@ namespace Escapa.Controllers
                     position = new Vector2(-1.5f, -2.5f);
 
                 _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
-                _enemies[i].GetComponent<IColoredUnit>().Color = StyleManager.CurrentTheme.Enemy;
             }
+            
+        }
+
+        public void StyleScene()
+        {
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _player.GetComponent<IColoredUnit>().Color = StyleManager.CurrentTheme.Player;
+            for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
+                _enemies[i].GetComponent<IColoredUnit>().Color = StyleManager.CurrentTheme.Enemy;
         }
 
         private Transform _edges;

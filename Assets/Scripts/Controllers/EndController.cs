@@ -10,22 +10,39 @@ namespace Escapa.Controllers
     {
         public void PrepareScene()
         {
-            var highScore = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();            
-            highScore.text = LanguageManager.Language.NewHighScore;
-            highScore.color = StyleManager.CurrentTheme.Text;
-            highScore.gameObject.SetActive(ScoreManager.IsHighScore);
+            _highScoreText.text = LanguageManager.Language.NewHighScore;
+            _highScoreText.gameObject.SetActive(ScoreManager.IsHighScore);
 
-            var timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshProUGUI>();
-            timeText.text = LanguageManager.Language.Time + ScoreManager.CurrentRecord.ToString("0.000");
-            timeText.color = StyleManager.CurrentTheme.Text;
+            _timeText.text = LanguageManager.Language.Time + ScoreManager.CurrentRecord.ToString("0.000");
+        }
 
-            GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
-            GameObject.FindWithTag(Tags.RestartButton).GetComponent<Image>().color = StyleManager.CurrentTheme.Text;
+        public void StyleScene()
+        {
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
+            _highScoreText.color = StyleManager.CurrentTheme.Text;
+            _timeText.color = StyleManager.CurrentTheme.Text;
+            _backButtonImage.color = StyleManager.CurrentTheme.Text;
+            _restartButtonImage.color = StyleManager.CurrentTheme.Text;
         }
 
         private ISystemController _systemController;
 
-        private void Awake() => _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+        #region UI elements
+        TextMeshProUGUI _highScoreText;
+        TextMeshProUGUI _timeText;
+        Image _backButtonImage;
+        Image _restartButtonImage;
+        #endregion
+
+        private void Awake()
+        {
+            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+
+            _highScoreText = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();
+            _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshProUGUI>();
+            _backButtonImage = GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>();
+            _restartButtonImage = GameObject.FindWithTag(Tags.RestartButton).GetComponent<Image>();
+        }
 
         private void FixedUpdate()
         {

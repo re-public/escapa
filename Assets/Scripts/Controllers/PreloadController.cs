@@ -1,17 +1,13 @@
-﻿using Escapa.Managers;
-using Escapa.Utility;
+﻿using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.Controllers
 {
     public sealed class PreloadController : MonoBehaviour, ISceneController
     {
-        public void PrepareScene()
-        {
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
+        public void PrepareScene() => _systemController.GoToScene(GameScenes.Menu);
 
-            _systemController.GoToScene(GameScenes.Menu);
-        }
+        public void StyleScene() { }
 
         private ISystemController _systemController;
 
