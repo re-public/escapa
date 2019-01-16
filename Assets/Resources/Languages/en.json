@@ -3,17 +3,23 @@
         "Easy",
         "Medium",
         "Hard",
-        "I N S A N E"
+        "I N S A N E",
+        "Custom"
     ],
+    "EnemiesCount": "Enemies count:",
     "GameCredit": "E S C A P A",
     "GameCopyright": "by re::public",
     "GameLink": "republicgames.org",
+    "GameSetupTitle": "Game setup",
     "HighScoreTitle": "High score:",
     "Logo": "E S C A P A",
+    "MinimalSpeed": "Minimal enemies speed",
+    "MaximumSpeed": "Maximum enemies speed",
     "NewHighScore": "New High score",
     "Play": "Play",
     "SoundCredit": "Background music:",
     "SoundCopyright": "Sky Loop by FoolBoyMedia",
     "SoundLink": "foolboymedia.co.uk",
+    "Start": "Start",
     "Time": "Time: "
 }

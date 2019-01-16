@@ -24,6 +24,15 @@ TagManager:
   - SoundCopyrightText
   - SoundLinkText
   - HighScoreTitleText
+  - AddEnemyButton
+  - GameSetupText
+  - MinimalSpeedText
+  - MaximumSpeedText
+  - CountSlider
+  - MinSpeedSlider
+  - MaxSpeedSlider
+  - StartText
+  - EnemiesCountText
   layers:
   - Default
   - TransparentFX

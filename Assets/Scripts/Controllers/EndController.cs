@@ -26,12 +26,11 @@ namespace Escapa.Controllers
         }
 
         private ISystemController _systemController;
-
         #region UI elements
-        TextMeshProUGUI _highScoreText;
-        TextMeshProUGUI _timeText;
-        Image _backButtonImage;
-        Image _restartButtonImage;
+        private TextMeshProUGUI _highScoreText;
+        private TextMeshProUGUI _timeText;
+        private Image _backButtonImage;
+        private Image _restartButtonImage;
         #endregion
 
         private void Awake()

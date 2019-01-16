@@ -28,21 +28,4 @@ namespace Escapa.Managers
             _language = JsonUtility.FromJson<Language>(json);
         }
     }
-
-    [Serializable]
-    public class Language
-    {
-        public string[] Difficulties;
-        public string GameCredit;
-        public string GameCopyright;
-        public string GameLink;
-        public string HighScoreTitle;
-        public string Logo;
-        public string NewHighScore;
-        public string Play;
-        public string SoundCredit;
-        public string SoundCopyright;
-        public string SoundLink;
-        public string Time;
-    }
 }

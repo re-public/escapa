@@ -19,6 +19,11 @@
             "Count": 4,
             "MinSpeed": 3.0,
             "MaxSpeed": 5.0
+        },
+        {
+            "Count": 1,
+            "MinSpeed": 0.1,
+            "MaxSpeed": 0.1
         }
     ]
 }

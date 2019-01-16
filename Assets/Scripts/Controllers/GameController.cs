@@ -40,10 +40,13 @@ namespace Escapa.Controllers
                     position = new Vector2(1.5f, -2.5f);
                 else if (i == 3)
                     position = new Vector2(-1.5f, -2.5f);
+                else if (i == 4)
+                    position = new Vector2(0f, 3f);
+                else if (i == 5)
+                    position = new Vector2(0f, -3f);
 
                 _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
             }
-            
         }
 
         public void StyleScene()

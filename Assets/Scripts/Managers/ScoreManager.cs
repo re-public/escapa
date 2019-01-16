@@ -16,7 +16,7 @@ namespace Escapa.Managers
         /// </summary>
         public static bool IsHighScore { get; private set; }
 
-        private const int _recordsCount = 4;
+        private const int _recordsCount = 5;
 
         private static float _startTime;
         private static float _finishTime;
