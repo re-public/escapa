@@ -16,6 +16,7 @@ namespace Escapa.Controllers
 
         public void StyleScene()
         {
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _backButton.color = StyleManager.CurrentTheme.Text;
             _highScoreTitleText.color = StyleManager.CurrentTheme.Text;
             _highScoreText.color = StyleManager.CurrentTheme.Text;

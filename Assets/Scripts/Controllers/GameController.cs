@@ -2,6 +2,7 @@
 using Escapa.Units;
 using Escapa.Utility;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Escapa.Controllers
@@ -47,12 +48,15 @@ namespace Escapa.Controllers
 
                 _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
             }
+
+            _timeText.text = string.Empty;
         }
 
         public void StyleScene()
         {
             Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _player.GetComponent<IColoredUnit>().Color = StyleManager.CurrentTheme.Player;
+            _timeText.color = StyleManager.CurrentTheme.TextAlfa;
             for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
                 _enemies[i].GetComponent<IColoredUnit>().Color = StyleManager.CurrentTheme.Enemy;
         }
@@ -61,6 +65,7 @@ namespace Escapa.Controllers
         private List<GameObject> _enemies;
         private GameObject _player;
         private ISystemController _systemController;
+        private TextMeshPro _timeText;
 
         private void Awake()
         {
@@ -68,6 +73,7 @@ namespace Escapa.Controllers
             _enemies = new List<GameObject>(4);
             _player = GameObject.FindWithTag(Tags.Player);
             _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+            _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshPro>();
 
             _player.GetComponent<IPlayer>().Die += OnPlayerDie;
             _player.GetComponent<IPlayer>().MousePressed += OnPlayerPressed;
@@ -77,6 +83,8 @@ namespace Escapa.Controllers
         {
             if (Input.GetKey(KeyCode.Escape))
                 _systemController.GoToScene(GameScenes.Menu);
+
+            _timeText.text = ScoreManager.CurrentRecord.ToString("0.00");
         }
 
         private void OnApplicationPause(bool pauseStatus)
@@ -87,7 +95,7 @@ namespace Escapa.Controllers
 
         private void OnPlayerDie()
         {
-            ScoreManager.Finish();
+            ScoreManager.IsCounting = false;
             AnalyticsManager.SendGameOverEvent();
 
             _systemController.GoToScene(GameScenes.End);
@@ -100,7 +108,7 @@ namespace Escapa.Controllers
             foreach (var enemy in _enemies)
                 enemy.GetComponent<IEnemy>().AddForce();
 
-            ScoreManager.Start();
+            StartCoroutine(ScoreManager.Count());
             AnalyticsManager.SendGameStartEvent();
         }
     }

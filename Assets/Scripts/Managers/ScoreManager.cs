@@ -1,4 +1,5 @@
 ﻿using Escapa.Utility;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,32 +7,31 @@ namespace Escapa.Managers
 {
     public static class ScoreManager
     {
+        public const float DeltaTime = 0.01f;
+        private const int _recordsCount = 5;
+
         /// <summary>
         /// Current game time.
         /// </summary>
-        public static float CurrentRecord => _finishTime - _startTime;
+        public static float CurrentRecord { get; private set; }
 
         /// <summary>
         /// Is current time is new high score.
         /// </summary>
         public static bool IsHighScore { get; private set; }
 
-        private const int _recordsCount = 5;
+        public static bool IsCounting { get; set; }
 
-        private static float _startTime;
-        private static float _finishTime;
-
-        public static void Start()
+        public static IEnumerator Count()
         {
-            IsHighScore = false;
-            _finishTime = 0f;
+            CurrentRecord = 0;
+            IsCounting = true;
 
-            _startTime = Time.realtimeSinceStartup;
-        }
-
-        public static void Finish()
-        {
-            _finishTime = Time.realtimeSinceStartup;
+            while (IsCounting)
+            {
+                CurrentRecord += DeltaTime;
+                yield return new WaitForSeconds(DeltaTime);
+            }
 
             if (CurrentRecord > CurrentTop)
             {

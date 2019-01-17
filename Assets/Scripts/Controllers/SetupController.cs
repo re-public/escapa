@@ -22,6 +22,7 @@ namespace Escapa.Controllers
 
         public void StyleScene()
         {
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _gameSetupTitleText.color = StyleManager.CurrentTheme.Text;
             _enemiesCountText.color = StyleManager.CurrentTheme.Text;
             _minimalSpeedText.color = StyleManager.CurrentTheme.Text;

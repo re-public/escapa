@@ -124,6 +124,7 @@ namespace Escapa.Utility
         public Color Enemy;
         public Color Player;
         public Color Text;
+        public Color TextAlfa;
     }
     #endregion
 }

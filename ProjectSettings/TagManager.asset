@@ -70,3 +70,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 3447189771
+    locked: 0
+  - name: Units
+    uniqueID: 68718321
+    locked: 0
