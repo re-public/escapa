@@ -75,5 +75,11 @@ namespace Escapa.Controllers
             _minSpeedSlider = GameObject.FindWithTag(Tags.MinSpeedSlider).GetComponent<Slider>();
             _maxSpeedSlider = GameObject.FindWithTag(Tags.MaxSpeedSlider).GetComponent<Slider>();
         }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                _systemController.GoToScene(GameScenes.Menu);
+        }
     }
 }
