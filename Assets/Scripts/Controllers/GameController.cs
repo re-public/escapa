@@ -95,7 +95,7 @@ namespace Escapa.Controllers
 
         private void OnPlayerDie()
         {
-            ScoreManager.IsCounting = false;
+            ScoreManager.StopCount();
             AnalyticsManager.SendGameOverEvent();
 
             _systemController.GoToScene(GameScenes.End);
@@ -108,7 +108,7 @@ namespace Escapa.Controllers
             foreach (var enemy in _enemies)
                 enemy.GetComponent<IEnemy>().AddForce();
 
-            StartCoroutine(ScoreManager.Count());
+            ScoreManager.StartCount();
             AnalyticsManager.SendGameStartEvent();
         }
     }

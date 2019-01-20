@@ -13,7 +13,7 @@ namespace Escapa.Controllers
             _highScoreText.text = LanguageManager.Language.NewHighScore;
             _highScoreText.gameObject.SetActive(ScoreManager.IsHighScore);
 
-            _timeText.text = LanguageManager.Language.Time + ScoreManager.CurrentRecord.ToString("0.000");
+            _timeText.text = LanguageManager.Language.Time + ScoreManager.LastTime.ToString("0.000");
         }
 
         public void StyleScene()

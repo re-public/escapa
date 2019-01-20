@@ -7,36 +7,37 @@ namespace Escapa.Managers
 {
     public static class ScoreManager
     {
-        public const float DeltaTime = 0.01f;
         private const int _recordsCount = 5;
+
+        private static float _startTime = 0;
 
         /// <summary>
         /// Current game time.
         /// </summary>
-        public static float CurrentRecord { get; private set; }
+        public static float CurrentRecord => _startTime > float.Epsilon ? Time.realtimeSinceStartup - _startTime : 0f;
+
+        public static float LastTime { get; private set; }
 
         /// <summary>
         /// Is current time is new high score.
         /// </summary>
         public static bool IsHighScore { get; private set; }
 
-        public static bool IsCounting { get; set; }
-
-        public static IEnumerator Count()
+        public static void StartCount()
         {
-            CurrentRecord = 0;
-            IsCounting = true;
+            IsHighScore = false;
+            _startTime = Time.realtimeSinceStartup;
+        }
 
-            while (IsCounting)
-            {
-                CurrentRecord += DeltaTime;
-                yield return new WaitForSeconds(DeltaTime);
-            }
+        public static void StopCount()
+        {
+            LastTime = CurrentRecord;
+            _startTime = 0f;
 
-            if (CurrentRecord > CurrentTop)
+            if (LastTime > CurrentTop)
             {
                 IsHighScore = true;
-                Records[DifficultyManager.Level] = CurrentRecord;
+                Records[DifficultyManager.Level] = LastTime;
             }
         }
 
