@@ -11,7 +11,7 @@ namespace Escapa.Buttons
     {
         public void Action()
         {
-            if (DifficultyManager.Level == DifficultyManager.DifficultiesCount - 1)
+            if (DifficultyManager.CurrentLevelIsCustom)
                 _systemController.GoToScene(GameScenes.Setup);
             else
                 _systemController.GoToScene(GameScenes.Game);

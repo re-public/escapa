@@ -15,9 +15,18 @@ namespace Escapa.Controllers
             _minimalSpeedText.text = LanguageManager.Language.MinimalSpeed;
             _maximumSpeedText.text = LanguageManager.Language.MaximumSpeed;
             _startText.text = LanguageManager.Language.Start;
+
             _countSlider.value = DifficultyManager.Difficulty.Count;
+            _countSlider.minValue = DifficultyManager.MinEnemyCountForSetup;
+            _countSlider.maxValue = DifficultyManager.MaxEnemyCountForSetup;
+
             _minSpeedSlider.value = DifficultyManager.Difficulty.MinSpeed;
+            _minSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
+            _minSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
+
             _maxSpeedSlider.value = DifficultyManager.Difficulty.MaxSpeed;
+            _maxSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
+            _maxSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
         }
 
         public void StyleScene()

@@ -26,6 +26,8 @@ namespace Escapa.Controllers
 
             _audioSource = GetComponent<AudioSource>();
 
+            SocialManager.Auth();
+
             SceneManager.sceneLoaded += OnSceneLoaded;
             Application.quitting += OnApplicationQuit;
         }
@@ -36,6 +38,7 @@ namespace Escapa.Controllers
         {
             DifficultyManager.SaveLevel();
             ScoreManager.SaveRecords();
+            SocialManager.SaveAchievementsLocal();
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
         }
 

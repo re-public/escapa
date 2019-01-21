@@ -3,6 +3,16 @@ using UnityEngine;
 
 namespace Escapa.Utility
 {
+    public enum Achievements
+    {
+        BlackHawk,
+        Hothead,
+        MovesLikeJagger,
+        PanicButton,
+        TakeItEasy,
+        Zen
+    }
+
     public enum GameScenes
     {
         Preload = 0,
@@ -22,6 +32,15 @@ namespace Escapa.Utility
         public static string MaxSpeed = "MaxSpeed";
         public static string MinSpeed = "MinSpeed";
         public static string Record = "Record";
+
+        #region Achievements
+        public static string BlackHawk = "BlackHawk";
+        public static string Hothead = "Hothead";
+        public static string MovesLikeJagger = "MovesLikeJagger";
+        public static string PanicButton = "PanicButton";
+        public static string TakeItEasy = "TakeItEasy";
+        public static string Zen = "Zen";
+        #endregion
     }
 
     public static class ResourceKeys
@@ -54,9 +73,10 @@ namespace Escapa.Utility
         public static string StartText = "StartText";
         public static string TimeText = "TimeText";
 
-        public static string AddEnemyButton = "AddEnemyButton";
+        public static string AchievementsButton = "AchievementsButton";
         public static string BackButton = "BackButton";
         public static string InfoButton = "InfoButton";
+        public static string LeaderboardsButton = "LeaderboardsButton";
         public static string PlayButton = "PlayButton";
         public static string RestartButton = "RestartButton";
         public static string SocialButton = "SocialButton";

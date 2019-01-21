@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Escapa.Units
 {
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
-    public sealed class Enemy : MonoBehaviour, IColoredUnit, IEnemy
+    public sealed class Enemy : MonoBehaviour, IEnemy
     {
         public Color Color
         {
