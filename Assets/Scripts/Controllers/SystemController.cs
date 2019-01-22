@@ -26,8 +26,6 @@ namespace Escapa.Controllers
 
             _audioSource = GetComponent<AudioSource>();
 
-            SocialManager.Auth();
-
             SceneManager.sceneLoaded += OnSceneLoaded;
             Application.quitting += OnApplicationQuit;
         }

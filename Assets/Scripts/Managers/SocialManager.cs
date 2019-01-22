@@ -8,7 +8,7 @@ namespace Escapa.Managers
 {
     public static class SocialManager
     {
-        public static void Auth()
+        public static void Auth(System.Action callback)
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
@@ -18,7 +18,6 @@ namespace Escapa.Managers
             {
                 if (success)
                 {
-                    ((PlayGamesPlatform)Social.Active).SetDefaultLeaderboardForUI(GooglePlayIds.leaderboard_easy);
                     ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
                 }
 
@@ -39,6 +38,8 @@ namespace Escapa.Managers
 
                     _achievementsFlags[i] = PlayerPrefs.GetInt(achievementName, 0) == 0 ? false : true;
                 }
+
+                callback?.Invoke();
             });
         }
 

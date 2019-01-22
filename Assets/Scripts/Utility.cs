@@ -64,6 +64,7 @@ namespace Escapa.Utility
         public static string GameSetupText = "GameSetupText";
         public static string HighScoreText = "HighScoreText";
         public static string HighScoreTitleText = "HighScoreTitleText";
+        public static string LoadingText = "LoadingText";
         public static string LogoText = "LogoText";
         public static string MinimalSpeedText = "MinimalSpeedText";
         public static string MaximumSpeedText = "MaximumSpeedText";
