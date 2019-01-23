@@ -73,7 +73,7 @@ namespace Escapa.Managers
         {
             if (!Social.localUser.authenticated || DifficultyManager.CurrentLevelIsCustom) return;
 
-            var time = (long)(ScoreManager.CurrentRecord * 1000);
+            var time = (long)(ScoreManager.LastTime * 1000);
             var leaderboardGuid = string.Empty;
 
             switch (DifficultyManager.Level)
