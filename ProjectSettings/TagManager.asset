@@ -36,7 +36,6 @@ TagManager:
   - Button
   - AchievementsButton
   - LeaderboardsButton
-  - LoadingText
   layers:
   - Default
   - TransparentFX
