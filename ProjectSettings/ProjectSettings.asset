@@ -113,7 +113,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.9.9
+  bundleVersion: 0.9.10
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -151,7 +151,7 @@ PlayerSettings:
     Android: org.republicgames.escapa
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 909
+  AndroidBundleVersionCode: 910
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -242,7 +242,7 @@ PlayerSettings:
   AndroidKeystoreName: "C:/Users/mukhinid/OneDrive/\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B/republic.keystore"
   AndroidKeyaliasName: escapa
   AndroidBuildApkPerCpuArchitecture: 1
-  AndroidTVCompatibility: 1
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1

@@ -66,6 +66,7 @@ namespace Escapa.Controllers
         private IPlayer _player;
         private ISystemController _systemController;
         private TextMeshPro _timeText;
+        private bool _isGameStarted;
 
         private void Awake()
         {
@@ -82,7 +83,11 @@ namespace Escapa.Controllers
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
-                OnPlayerDie();
+            {
+                ScoreManager.StopCount();
+
+                _systemController.GoToScene(GameScenes.Menu);
+            }
 
             _timeText.text = ScoreManager.CurrentRecord.ToString("0.00");
 
@@ -107,9 +112,13 @@ namespace Escapa.Controllers
 
         private void OnPlayerDie()
         {
+            if (!_isGameStarted) return;
+
             ScoreManager.StopCount();
             AnalyticsManager.SendGameOverEvent();
             SocialManager.SendScore();
+
+            _isGameStarted = false;
 
             _systemController.GoToScene(GameScenes.End);
         }
@@ -120,6 +129,8 @@ namespace Escapa.Controllers
 
             foreach (var enemy in _enemies)
                 enemy.GetComponent<IEnemy>().AddForce();
+
+            _isGameStarted = true;
 
             ScoreManager.StartCount();
             AnalyticsManager.SendGameStartEvent();
