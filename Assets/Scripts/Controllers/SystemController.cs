@@ -26,6 +26,7 @@ namespace Escapa.Controllers
 
             _audioSource = GetComponent<AudioSource>();
 
+            Input.multiTouchEnabled = false;
             SceneManager.sceneLoaded += OnSceneLoaded;
             Application.quitting += OnApplicationQuit;
         }

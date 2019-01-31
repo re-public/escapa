@@ -34,29 +34,53 @@ namespace Escapa.Units
             _moveTimeStart = 0f;
         }
 
+        private void FixedUpdate()
+        {
+            if (Input.touchCount > 0)
+                OnTouch(Input.GetTouch(0));
+        }
+
         private void OnCollisionEnter2D(Collision2D collision) => Die?.Invoke();
 
-        private void OnMouseDown() => MousePressed?.Invoke();
-
-        private void OnMouseDrag()
+        private void OnTouch(Touch touch)
         {
-            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.Translate(targetPosition - _prevPosition);
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            if (!IsTouched(transform.position, targetPosition)) return;
 
-            if (targetPosition == _prevPosition)
+            switch (touch.phase)
             {
-                if (_idleTimeStart < float.Epsilon)
-                    _idleTimeStart = ScoreManager.CurrentRecord;
-                _moveTimeStart = 0f;
-            }
-            else
-            {
-                if (_moveTimeStart < float.Epsilon)
-                    _moveTimeStart = ScoreManager.CurrentRecord;
-                _idleTimeStart = 0f;
-            }
+                case TouchPhase.Began:
+                    MousePressed?.Invoke();
+                    break;
+                case TouchPhase.Moved:
+                    if (_moveTimeStart < float.Epsilon)
+                        _moveTimeStart = ScoreManager.CurrentRecord;
+                    if (_idleTimeStart > float.Epsilon)
+                        _idleTimeStart = 0f;
 
-            _prevPosition = targetPosition;
+                    transform.Translate(targetPosition - _prevPosition);
+                    _prevPosition = targetPosition;
+
+                    break;
+                case TouchPhase.Stationary:
+                    if (_idleTimeStart < float.Epsilon)
+                        _idleTimeStart = ScoreManager.CurrentRecord;
+                    if (_moveTimeStart > float.Epsilon)
+                        _moveTimeStart = 0f;
+
+                    break;
+                case TouchPhase.Ended:
+                    break;
+                case TouchPhase.Canceled:
+                    break;
+                default:
+                    break;
+            }
         }
+
+        private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - 0.5f < touchPosition.x
+                                                                               && touchPosition.x < position.x + 0.5f
+                                                                               && position.y - 0.5f < touchPosition.y
+                                                                               && touchPosition.y < position.y + 0.5f;
     }
 }
