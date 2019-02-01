@@ -47,10 +47,11 @@ namespace Escapa.Units
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(touch.position);
             if (!IsTouched(transform.position, targetPosition)) return;
 
+            MousePressed?.Invoke();
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    MousePressed?.Invoke();
                     break;
                 case TouchPhase.Moved:
                     if (_moveTimeStart < float.Epsilon)
@@ -78,9 +79,9 @@ namespace Escapa.Units
             }
         }
 
-        private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - 0.5f < touchPosition.x
-                                                                               && touchPosition.x < position.x + 0.5f
-                                                                               && position.y - 0.5f < touchPosition.y
-                                                                               && touchPosition.y < position.y + 0.5f;
+        private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - 0.75f < touchPosition.x
+                                                                               && touchPosition.x < position.x + 0.75f
+                                                                               && position.y - 0.75f < touchPosition.y
+                                                                               && touchPosition.y < position.y + 0.75f;
     }
 }
