@@ -45,7 +45,7 @@ namespace Escapa.Controllers
             _startText.color = StyleManager.CurrentTheme.Text;
         }
 
-        public void OnCountValueChanged(float value) => _countSliderText.text = value.ToString("0.0");
+        public void OnCountValueChanged(float value) => _countSliderText.text = value.ToString();
 
         public void OnMaxSpeedValueChanged(float value)
         {
