@@ -38,9 +38,9 @@ namespace Escapa.Managers
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Difficulty).text;
             _difficulty = JsonUtility.FromJson<DifficultyRules>(json);
-            _difficulty.Levels[_difficultiesCount - 1].Count = PlayerPrefs.GetInt(PlayerPrefKeys.EnemiesCount, 0);
-            _difficulty.Levels[_difficultiesCount - 1].MaxSpeed = PlayerPrefs.GetFloat(PlayerPrefKeys.MaxSpeed, 0.1f);
-            _difficulty.Levels[_difficultiesCount - 1].MinSpeed = PlayerPrefs.GetFloat(PlayerPrefKeys.MinSpeed, 0.1f);
+            _difficulty.Levels[_difficultiesCount - 1].Count = PlayerPrefs.GetInt(PlayerPrefKeys.EnemiesCount, MinEnemyCountForSetup);
+            _difficulty.Levels[_difficultiesCount - 1].MaxSpeed = PlayerPrefs.GetFloat(PlayerPrefKeys.MaxSpeed, MaxEnemySpeedForSetup);
+            _difficulty.Levels[_difficultiesCount - 1].MinSpeed = PlayerPrefs.GetFloat(PlayerPrefKeys.MinSpeed, MinEnemySpeedForSetup);
         }
 
         private static void SaveDifficulty()

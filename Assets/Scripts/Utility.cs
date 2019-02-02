@@ -56,6 +56,7 @@ namespace Escapa.Utility
         public static string Enemies = "Enemies";
         public static string Player = "Player";
 
+        public static string CountSliderText = "CountSliderText";
         public static string DifficultyText = "DifficultyText";
         public static string EnemiesCountText = "EnemiesCountText";
         public static string GameCreditText = "GameCreditText";
@@ -67,7 +68,9 @@ namespace Escapa.Utility
         public static string LoadingText = "LoadingText";
         public static string LogoText = "LogoText";
         public static string MinimalSpeedText = "MinimalSpeedText";
+        public static string MinSpeedSliderText = "MinSpeedSliderText";
         public static string MaximumSpeedText = "MaximumSpeedText";
+        public static string MaxSpeedSliderText = "MaxSpeedSliderText";
         public static string SoundCreditText = "SoundCreditText";
         public static string SoundCopyrightText = "SoundCopyrightText";
         public static string SoundLinkText = "SoundLinkText";

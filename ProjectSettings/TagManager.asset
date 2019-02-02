@@ -36,6 +36,9 @@ TagManager:
   - Button
   - AchievementsButton
   - LeaderboardsButton
+  - CountSliderText
+  - MinSpeedSliderText
+  - MaxSpeedSliderText
   layers:
   - Default
   - TransparentFX
