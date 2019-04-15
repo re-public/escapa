@@ -23,7 +23,6 @@ namespace Escapa.Controllers
         {
             DontDestroyOnLoad(Camera.main);
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
             _audioSource = GetComponent<AudioSource>();
 
