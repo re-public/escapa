@@ -11,8 +11,6 @@ namespace Escapa.Controllers
     {
         public GameObject Enemy;
 
-        private char[] currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '0', '\0' };
-
         public void PrepareScene()
         {
             for (var i = 0; i < _edges.childCount; i++)
@@ -48,7 +46,7 @@ namespace Escapa.Controllers
                 else if (i == 5)
                     position = new Vector2(0f, -3f);
 
-                _enemies.Add(Instantiate(Enemy, position, Quaternion.identity));
+                _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
             }
 
             _timeText.text = string.Empty;
@@ -91,9 +89,7 @@ namespace Escapa.Controllers
                 _systemController.GoToScene(GameScenes.Menu);
             }
 
-            UpdateCurrentRecordBuffer(ScoreManager.CurrentRecord);
-
-            _timeText.SetText(new string(currentRecordBuffer));
+            _timeText.text = ScoreManager.CurrentRecord.ToString("0.00");
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == 3)
                 SocialManager.CompleteAchievement(Achievements.BlackHawk);
@@ -146,51 +142,6 @@ namespace Escapa.Controllers
                 else if (DifficultyManager.CurrentLevelIsMax)
                     SocialManager.CompleteAchievement(Achievements.Hothead);
             }
-        }
-
-        private void UpdateCurrentRecordBuffer(float value)
-        {
-            int firstPart = (int)value;
-            int secondPart = (int)((value - firstPart) * 100);
-            if (secondPart < 10)
-                secondPart *= 10;
-
-            int i = currentRecordBuffer.Length - 1;
-
-            currentRecordBuffer[i] = '\0';
-            --i;
-
-            if (secondPart == 0)
-            {
-                currentRecordBuffer[i] = '0';
-                currentRecordBuffer[i - 1] = '0';
-                currentRecordBuffer[i - 2] = '.';
-                i -= 3;
-            }
-            else
-            {
-                do
-                {
-                    currentRecordBuffer[i] = (char)(secondPart % 10 + '0');
-                    secondPart /= 10;
-                    --i;
-                }
-                while (secondPart > 0);
-
-                currentRecordBuffer[i] = '.';
-                --i;
-            }
-
-            do
-            {
-                currentRecordBuffer[i] = (char)(firstPart % 10 + '0');
-                firstPart /= 10;
-                --i;
-            }
-            while (firstPart > 0);
-
-            for (int j = 0; j < currentRecordBuffer.Length - i - 1; ++j)
-                currentRecordBuffer[j] = currentRecordBuffer[i + j + 1];
         }
     }
 }

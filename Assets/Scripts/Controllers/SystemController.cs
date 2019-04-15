@@ -23,12 +23,10 @@ namespace Escapa.Controllers
         {
             DontDestroyOnLoad(Camera.main);
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
             _audioSource = GetComponent<AudioSource>();
 
             Input.multiTouchEnabled = false;
-            QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
             SceneManager.sceneLoaded += OnSceneLoaded;
             Application.quitting += OnApplicationQuit;

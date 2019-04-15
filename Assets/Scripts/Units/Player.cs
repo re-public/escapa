@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Escapa.Units
 {
-    [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
+    [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer
     {
         public event PlayerEvent Die;
@@ -49,26 +49,6 @@ namespace Escapa.Units
 
         private void Update()
         {
-#if UNITY_EDITOR
-            _touch.phase = TouchPhase.Canceled;
-            _touch.position = Input.mousePosition;
-
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                _touch.phase = TouchPhase.Began;
-                //Cursor.visible = false;
-            }
-            else if (Input.GetKey(KeyCode.Mouse0))
-                _touch.phase = TouchPhase.Moved;
-            else if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                _touch.phase = TouchPhase.Ended;
-                //Cursor.visible = true;
-            }
-
-            OnTouch(_touch.phase, _touch.position);
-#endif
-
             if (Input.touchCount > 0)
             {
                 _touch = Input.GetTouch(0);
