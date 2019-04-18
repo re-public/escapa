@@ -1,5 +1,5 @@
-lastUpgrade=00959
-proj.pluginVersion=0.9.59
+lastUpgrade=00963
+proj.pluginVersion=0.9.63
 proj.AppId=19382507458
 and.BundleId=org.republicgames.escapa
 proj.classDir=Assets%5cScripts

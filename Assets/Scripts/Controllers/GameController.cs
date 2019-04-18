@@ -115,7 +115,6 @@ namespace Escapa.Controllers
             if (!_isGameStarted) return;
 
             ScoreManager.StopCount();
-            AnalyticsManager.SendGameOverEvent();
             SocialManager.SendScore();
 
             _isGameStarted = false;
@@ -133,7 +132,6 @@ namespace Escapa.Controllers
             _isGameStarted = true;
 
             ScoreManager.StartCount();
-            AnalyticsManager.SendGameStartEvent();
 
             if (DifficultyManager.CurrentLevelIsCustom)
             {

@@ -208,7 +208,17 @@ namespace GooglePlayGames.Android
                     using (var currentActivity = GetActivity())
                     {
                         using (var pendingResult = bridgeClass.CallStatic<AndroidJavaObject>(
-                            "getAnotherAuthCode", currentActivity, reAuthenticateIfNeeded, webClientId))
+                            "fetchToken",
+                            currentActivity,
+                            /* silent= */!reAuthenticateIfNeeded,
+                            /* requestAuthCode= */true,
+                            requestEmail,
+                            requestIdToken, 
+                            webClientId,
+                            /* forceRefresh= */false,
+                            oauthScopes.ToArray(),
+                            /* hidePopups= */true,
+                            accountName))
                         {
                             pendingResult.Call("setResultCallback", new ResultCallbackProxy(
                                 tokenResult => {
@@ -238,14 +248,6 @@ namespace GooglePlayGames.Android
             public void onResult(AndroidJavaObject tokenResult)
             {
                 mCallback(tokenResult);
-            }
-
-            // To prevent error:
-            // Java interface default methods are only supported since Android Oreo
-            // E Unity   : Exception: No such proxy method: GooglePlayGames.Android.AndroidTokenClient+ResultCallbackProxy.toString()
-            public string toString()
-            {
-                return "ResultCallbackProxy";
             }
         }
 
