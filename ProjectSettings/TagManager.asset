@@ -39,6 +39,7 @@ TagManager:
   - CountSliderText
   - MinSpeedSliderText
   - MaxSpeedSliderText
+  - EventSystem
   layers:
   - Default
   - TransparentFX

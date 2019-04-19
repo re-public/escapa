@@ -6,45 +6,8 @@ using UnityEngine.UI;
 
 namespace Escapa.Controllers
 {
-    public sealed class SetupController : MonoBehaviour, ISceneController
+    public sealed class SetupController : MonoBehaviour
     {
-        public void PrepareScene()
-        {
-            _gameSetupTitleText.text = LanguageManager.Language.GameSetupTitle;
-            _enemiesCountText.text = LanguageManager.Language.EnemiesCount;
-            _minimalSpeedText.text = LanguageManager.Language.MinimalSpeed;
-            _maximumSpeedText.text = LanguageManager.Language.MaximumSpeed;
-            _startText.text = LanguageManager.Language.Start;
-
-            _countSliderText.text = DifficultyManager.Difficulty.Count.ToString();
-            _countSlider.value = DifficultyManager.Difficulty.Count;            
-            _countSlider.minValue = DifficultyManager.MinEnemyCountForSetup;
-            _countSlider.maxValue = DifficultyManager.MaxEnemyCountForSetup;
-
-            _minSpeedSliderText.text = DifficultyManager.Difficulty.MinSpeed.ToString("0.0");
-            _minSpeedSlider.value = DifficultyManager.Difficulty.MinSpeed;
-            _minSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
-            _minSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
-
-            _maxSpeedSliderText.text = DifficultyManager.Difficulty.MaxSpeed.ToString("0.0");
-            _maxSpeedSlider.value = DifficultyManager.Difficulty.MaxSpeed;
-            _maxSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
-            _maxSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
-        }
-
-        public void StyleScene()
-        {
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
-            _countSliderText.color = StyleManager.CurrentTheme.Text;
-            _gameSetupTitleText.color = StyleManager.CurrentTheme.Text;
-            _enemiesCountText.color = StyleManager.CurrentTheme.Text;
-            _minimalSpeedText.color = StyleManager.CurrentTheme.Text;
-            _minSpeedSliderText.color = StyleManager.CurrentTheme.Text;
-            _maximumSpeedText.color = StyleManager.CurrentTheme.Text;
-            _maxSpeedSliderText.color = StyleManager.CurrentTheme.Text;
-            _startText.color = StyleManager.CurrentTheme.Text;
-        }
-
         public void OnCountValueChanged(float value) => _countSliderText.text = value.ToString();
 
         public void OnMaxSpeedValueChanged(float value)
@@ -100,6 +63,41 @@ namespace Escapa.Controllers
             _countSlider = GameObject.FindWithTag(Tags.CountSlider).GetComponent<Slider>();
             _minSpeedSlider = GameObject.FindWithTag(Tags.MinSpeedSlider).GetComponent<Slider>();
             _maxSpeedSlider = GameObject.FindWithTag(Tags.MaxSpeedSlider).GetComponent<Slider>();
+        }
+
+        private void Start()
+        {
+            _gameSetupTitleText.text = LanguageManager.Language.GameSetupTitle;
+            _enemiesCountText.text = LanguageManager.Language.EnemiesCount;
+            _minimalSpeedText.text = LanguageManager.Language.MinimalSpeed;
+            _maximumSpeedText.text = LanguageManager.Language.MaximumSpeed;
+            _startText.text = LanguageManager.Language.Start;
+
+            _countSliderText.text = DifficultyManager.Difficulty.Count.ToString();
+            _countSlider.value = DifficultyManager.Difficulty.Count;
+            _countSlider.minValue = DifficultyManager.MinEnemyCountForSetup;
+            _countSlider.maxValue = DifficultyManager.MaxEnemyCountForSetup;
+
+            _minSpeedSliderText.text = DifficultyManager.Difficulty.MinSpeed.ToString("0.0");
+            _minSpeedSlider.value = DifficultyManager.Difficulty.MinSpeed;
+            _minSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
+            _minSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
+
+            _maxSpeedSliderText.text = DifficultyManager.Difficulty.MaxSpeed.ToString("0.0");
+            _maxSpeedSlider.value = DifficultyManager.Difficulty.MaxSpeed;
+            _maxSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
+            _maxSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
+
+            //Style
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
+            _countSliderText.color = StyleManager.CurrentTheme.Text;
+            _gameSetupTitleText.color = StyleManager.CurrentTheme.Text;
+            _enemiesCountText.color = StyleManager.CurrentTheme.Text;
+            _minimalSpeedText.color = StyleManager.CurrentTheme.Text;
+            _minSpeedSliderText.color = StyleManager.CurrentTheme.Text;
+            _maximumSpeedText.color = StyleManager.CurrentTheme.Text;
+            _maxSpeedSliderText.color = StyleManager.CurrentTheme.Text;
+            _startText.color = StyleManager.CurrentTheme.Text;
         }
 
         private void FixedUpdate()

@@ -7,11 +7,30 @@ using UnityEngine;
 
 namespace Escapa.Controllers
 {
-    public sealed class GameController : MonoBehaviour, ISceneController
+    public sealed class GameController : MonoBehaviour
     {
         public GameObject Enemy;
 
-        public void PrepareScene()
+        private Transform _edges;
+        private List<GameObject> _enemies;
+        private IPlayer _player;
+        private ISystemController _systemController;
+        private TextMeshPro _timeText;
+        private bool _isGameStarted;
+
+        private void Awake()
+        {
+            _edges = GameObject.FindWithTag(Tags.Edges).transform;
+            _enemies = new List<GameObject>(4);
+            _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+            _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshPro>();
+
+            _player.Die += OnPlayerDie;
+            _player.MousePressed += OnPlayerPressed;
+        }
+
+        private void Start()
         {
             for (var i = 0; i < _edges.childCount; i++)
             {
@@ -50,34 +69,13 @@ namespace Escapa.Controllers
             }
 
             _timeText.text = string.Empty;
-        }
 
-        public void StyleScene()
-        {
+            //Style
             Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _player.Color = StyleManager.CurrentTheme.Player;
             _timeText.color = StyleManager.CurrentTheme.TextAlfa;
             for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
                 _enemies[i].GetComponent<IEnemy>().Color = StyleManager.CurrentTheme.Enemy;
-        }
-
-        private Transform _edges;
-        private List<GameObject> _enemies;
-        private IPlayer _player;
-        private ISystemController _systemController;
-        private TextMeshPro _timeText;
-        private bool _isGameStarted;
-
-        private void Awake()
-        {
-            _edges = GameObject.FindWithTag(Tags.Edges).transform;
-            _enemies = new List<GameObject>(4);
-            _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
-            _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshPro>();
-
-            _player.Die += OnPlayerDie;
-            _player.MousePressed += OnPlayerPressed;
         }
 
         private void FixedUpdate()

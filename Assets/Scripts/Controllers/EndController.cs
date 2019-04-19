@@ -2,35 +2,15 @@
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Escapa.Controllers
 {
-    public sealed class EndController : MonoBehaviour, ISceneController
+    public sealed class EndController : MonoBehaviour
     {
-        public void PrepareScene()
-        {
-            _highScoreText.text = LanguageManager.Language.NewHighScore;
-            _highScoreText.gameObject.SetActive(ScoreManager.IsHighScore);
-
-            _timeText.text = LanguageManager.Language.Time + ScoreManager.LastTime.ToString("0.000");
-        }
-
-        public void StyleScene()
-        {
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
-            _highScoreText.color = StyleManager.CurrentTheme.Text;
-            _timeText.color = StyleManager.CurrentTheme.Text;
-            _backButtonImage.color = StyleManager.CurrentTheme.Text;
-            _restartButtonImage.color = StyleManager.CurrentTheme.Text;
-        }
-
         private ISystemController _systemController;
         #region UI elements
         private TextMeshProUGUI _highScoreText;
         private TextMeshProUGUI _timeText;
-        private Image _backButtonImage;
-        private Image _restartButtonImage;
         #endregion
 
         private void Awake()
@@ -39,8 +19,19 @@ namespace Escapa.Controllers
 
             _highScoreText = GameObject.FindWithTag(Tags.HighScoreText).GetComponent<TextMeshProUGUI>();
             _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshProUGUI>();
-            _backButtonImage = GameObject.FindWithTag(Tags.BackButton).GetComponent<Image>();
-            _restartButtonImage = GameObject.FindWithTag(Tags.RestartButton).GetComponent<Image>();
+        }
+
+        private void Start()
+        {
+            _highScoreText.text = LanguageManager.Language.NewHighScore;
+            _highScoreText.gameObject.SetActive(ScoreManager.IsHighScore);
+
+            _timeText.text = LanguageManager.Language.Time + ScoreManager.LastTime.ToString("0.000");
+
+            //Style
+            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
+            _highScoreText.color = StyleManager.CurrentTheme.Text;
+            _timeText.color = StyleManager.CurrentTheme.Text;
         }
 
         private void FixedUpdate()

@@ -1,4 +1,5 @@
-﻿using Escapa.Utility;
+﻿using Escapa.Events;
+using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.Managers
@@ -29,10 +30,16 @@ namespace Escapa.Managers
         public static int Level
         {
             get => _level ?? (_level = PlayerPrefs.GetInt(PlayerPrefKeys.Level, 0)).Value;
-            private set => _level = value;
+            private set
+            {
+                _level = value;
+                DifficultyChanged?.Invoke();
+            }
         }
         public static int AddLevel() => Level == (_difficultiesCount - 1) ? Level = 0 : Level++;
         public static void SaveLevel() => PlayerPrefs.SetInt(PlayerPrefKeys.Level, _level.Value);
+
+        public static event DifficultyEvent DifficultyChanged;
 
         private static void LoadDifficulty()
         {

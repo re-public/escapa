@@ -92,6 +92,7 @@ namespace Escapa.Utility
 
         public static string SceneController = "SceneController";
         public static string SystemController = "SystemController";
+        public static string EventSystem = "EventSystem";
     }
 
     #region Difficulty classes

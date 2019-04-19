@@ -17,18 +17,17 @@ namespace Escapa.Controllers
         public void GoToScene(GameScenes scene) => SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Single);
 
         private AudioSource _audioSource;
-        private ISceneController _sceneController;
 
         private void Awake()
         {
             DontDestroyOnLoad(Camera.main);
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(GameObject.FindWithTag(Tags.EventSystem));
 
             _audioSource = GetComponent<AudioSource>();
 
             Input.multiTouchEnabled = false;
             Application.targetFrameRate = 60;
-            SceneManager.sceneLoaded += OnSceneLoaded;
             Application.quitting += OnApplicationQuit;
         }
 
@@ -40,13 +39,6 @@ namespace Escapa.Controllers
             ScoreManager.SaveRecords();
             SocialManager.SaveAchievementsLocal();
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
-        {
-            _sceneController = GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>();
-            _sceneController.PrepareScene();
-            _sceneController.StyleScene();
         }
     }
 }

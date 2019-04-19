@@ -1,5 +1,4 @@
-﻿using Escapa.Controllers;
-using Escapa.Managers;
+﻿using Escapa.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
@@ -10,23 +9,25 @@ namespace Escapa.Buttons
     [RequireComponent(typeof(Button), typeof(TextMeshProUGUI))]
     public sealed class DifficultyButton : MonoBehaviour, IButton
     {
-        public void Action()
-        {
-            DifficultyManager.AddLevel();
-
-            _buttonText.text = LanguageManager.Language.Difficulties[DifficultyManager.Level];
-            _sceneController.StyleScene();
-        }
+        public void Action() => DifficultyManager.AddLevel();
 
         private TextMeshProUGUI _buttonText;
-        private ISceneController _sceneController;
-        private ISystemController _systemController;
 
         private void Awake()
         {
             _buttonText = GetComponent<TextMeshProUGUI>();
-            _sceneController = GameObject.FindWithTag(Tags.SceneController).GetComponent<ISceneController>();
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+
+            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+            StyleManager.StyleChanged += OnStyleChanged;
         }
+
+        private void Start()
+        {
+            _buttonText.color = _buttonText.color = StyleManager.CurrentTheme.Text;
+            _buttonText.SetText(LanguageManager.Language.Difficulties[DifficultyManager.Level]);
+        }
+
+        private void OnDifficultyChanged() => _buttonText.SetText(LanguageManager.Language.Difficulties[DifficultyManager.Level]);
+        private void OnStyleChanged(Theme theme) => _buttonText.color = theme.Text;
     }
 }
