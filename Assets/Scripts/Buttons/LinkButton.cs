@@ -1,28 +1,14 @@
-﻿using Escapa.Managers;
-using Escapa.Utility;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Escapa.Buttons
 {
-    [RequireComponent(typeof(Button))]
-    public sealed class LinkButton : MonoBehaviour, IButton
+    public sealed class LinkButton : TextButtonBase
     {
-        public string Url;
+        public string url;
 
-        public void Action() => Application.OpenURL(Url);
-
-        private TextMeshProUGUI _buttonText;
-
-        private void Awake()
+        public override void Action()
         {
-            _buttonText = GetComponent<TextMeshProUGUI>();
-
-            StyleManager.StyleChanged += OnStyleChanged;
+            Application.OpenURL(url);
         }
-
-        private void Start() => _buttonText.color = _buttonText.color = StyleManager.CurrentTheme.Text;
-        private void OnStyleChanged(Theme theme) => _buttonText.color = theme.Text;
     }
 }

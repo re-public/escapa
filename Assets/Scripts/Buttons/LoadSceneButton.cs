@@ -1,31 +1,15 @@
-﻿using Escapa.Controllers;
-using Escapa.Managers;
-using Escapa.Utility;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using Escapa.Utility;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Buttons
 {
-    [RequireComponent(typeof(Button))]
-    public sealed class LoadSceneButton : MonoBehaviour, IButton
+    public sealed class LoadSceneButton : ImageButtonBase
     {
-        public GameScenes Scene;
+        public GameScenes scene;
 
-        public void Action() => _systemController.GoToScene(Scene);
-
-        private ISystemController _systemController;
-        private Image _image;
-
-        private void Awake()
+        public override void Action()
         {
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
-            _image = GetComponent<Image>();
-
-            StyleManager.StyleChanged += OnStyleChanged;
+            SceneManager.LoadSceneAsync((int) scene, LoadSceneMode.Single);
         }
-
-        private void Start() => _image.color = StyleManager.CurrentTheme.Text;
-
-        private void OnStyleChanged(Theme theme) => _image.color = theme.Text;
     }
 }

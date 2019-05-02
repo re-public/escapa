@@ -2,40 +2,33 @@
 using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Escapa.Buttons
 {
-    [RequireComponent(typeof(Button), typeof(Image))]
-    public sealed class SoundButton : MonoBehaviour, IButton
+    public sealed class SoundButton : ImageButtonBase
     {
-        public Sprite SpriteOn;
-        public Sprite SpriteOff;
+        public Sprite spriteOn;
+        public Sprite spriteOff;
 
-        public void Action()
+        public override void Action()
         {
             _systemController.IsSoundEnabled = !_systemController.IsSoundEnabled;
-            _image.sprite = _systemController.IsSoundEnabled ? SpriteOn : SpriteOff;
-            _image.color = StyleManager.CurrentTheme.Text;
+            Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
+            Image.color = StyleManager.CurrentTheme.Text;
         }
 
         private ISystemController _systemController;
-        private Image _image;
 
-        private void Awake()
+        private new void Awake()
         {
+            base.Awake();
             _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
-            _image = GetComponent<Image>();
-
-            StyleManager.StyleChanged += OnStyleChanged;
         }
 
-        private void Start()
+        private new void Start()
         {
-            _image.sprite = _systemController.IsSoundEnabled ? SpriteOn : SpriteOff;
-            _image.color = StyleManager.CurrentTheme.Text;
+            base.Start();
+            Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
         }
-
-        private void OnStyleChanged(Theme theme) => _image.color = theme.Text;
     }
 }

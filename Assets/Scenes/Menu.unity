@@ -468,7 +468,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -837,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: 5
+  scene: 5
 --- !u!1 &1817220567
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,8 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73e4535b9aa1e4469cb2159bad48aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteOn: {fileID: 21300000, guid: 74e4b9715bfc1af4cb6bf5f0bb64305a, type: 3}
-  SpriteOff: {fileID: 21300000, guid: 75e744b21f3d9374d81961a0813e228e, type: 3}
+  spriteOn: {fileID: 21300000, guid: 74e4b9715bfc1af4cb6bf5f0bb64305a, type: 3}
+  spriteOff: {fileID: 21300000, guid: 75e744b21f3d9374d81961a0813e228e, type: 3}
 --- !u!1 &1932380016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,4 +1232,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: 6
+  scene: 6
