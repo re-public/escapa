@@ -5,18 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - SystemController
-  - SceneController
-  - DifficultyText
   - LogoText
-  - PlayButton
-  - InfoButton
-  - SocialButton
-  - SoundButton
   - Edges
   - TimeText
   - HighScoreText
-  - BackButton
-  - RestartButton
   - GameCreditText
   - GameCopyrightText
   - GameLinkText

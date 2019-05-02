@@ -26,73 +26,63 @@ namespace Escapa.Utility
 
     public static class PlayerPrefKeys
     {
-        public static string EnemiesCount = "EnemiesCount";
-        public static string IsSoundEnabled = "SoundEnabled";
-        public static string Level = "Level";
-        public static string MaxSpeed = "MaxSpeed";
-        public static string MinSpeed = "MinSpeed";
-        public static string Record = "Record";
+        public const string EnemiesCount = "EnemiesCount";
+        public const string IsSoundEnabled = "SoundEnabled";
+        public const string Level = "Level";
+        public const string MaxSpeed = "MaxSpeed";
+        public const string MinSpeed = "MinSpeed";
+        public const string Record = "Record";
 
         #region Achievements
-        public static string BlackHawk = "BlackHawk";
-        public static string Hothead = "Hothead";
-        public static string MovesLikeJagger = "MovesLikeJagger";
-        public static string PanicButton = "PanicButton";
-        public static string TakeItEasy = "TakeItEasy";
-        public static string Zen = "Zen";
+        public const string BlackHawk = "BlackHawk";
+        public const string Hothead = "Hothead";
+        public const string MovesLikeJagger = "MovesLikeJagger";
+        public const string PanicButton = "PanicButton";
+        public const string TakeItEasy = "TakeItEasy";
+        public const string Zen = "Zen";
         #endregion
     }
 
     public static class ResourceKeys
     {
-        public static string Difficulty = "Difficulty";
-        public static string Languages = "Languages";
-        public static string Style = "Style";
+        public const string Difficulty = "Difficulty";
+        public const string Languages = "Languages";
+        public const string Style = "Style";
     }
 
     public static class Tags
     {
-        public static string Edges = "Edges";
-        public static string Enemies = "Enemies";
-        public static string Player = "Player";
+        public const string Edges = "Edges";
+        public const string Player = "Player";
 
-        public static string CountSliderText = "CountSliderText";
-        public static string DifficultyText = "DifficultyText";
-        public static string EnemiesCountText = "EnemiesCountText";
-        public static string GameCreditText = "GameCreditText";
-        public static string GameCopyrightText = "GameCopyrightText";
-        public static string GameLinkText = "GameLinkText";
-        public static string GameSetupText = "GameSetupText";
-        public static string HighScoreText = "HighScoreText";
-        public static string HighScoreTitleText = "HighScoreTitleText";
-        public static string LoadingText = "LoadingText";
-        public static string LogoText = "LogoText";
-        public static string MinimalSpeedText = "MinimalSpeedText";
-        public static string MinSpeedSliderText = "MinSpeedSliderText";
-        public static string MaximumSpeedText = "MaximumSpeedText";
-        public static string MaxSpeedSliderText = "MaxSpeedSliderText";
-        public static string SoundCreditText = "SoundCreditText";
-        public static string SoundCopyrightText = "SoundCopyrightText";
-        public static string SoundLinkText = "SoundLinkText";
-        public static string StartText = "StartText";
-        public static string TimeText = "TimeText";
+        public const string CountSliderText = "CountSliderText";
+        public const string EnemiesCountText = "EnemiesCountText";
+        public const string GameCreditText = "GameCreditText";
+        public const string GameCopyrightText = "GameCopyrightText";
+        public const string GameLinkText = "GameLinkText";
+        public const string GameSetupText = "GameSetupText";
+        public const string HighScoreText = "HighScoreText";
+        public const string HighScoreTitleText = "HighScoreTitleText";
+        public const string LogoText = "LogoText";
+        public const string MinimalSpeedText = "MinimalSpeedText";
+        public const string MinSpeedSliderText = "MinSpeedSliderText";
+        public const string MaximumSpeedText = "MaximumSpeedText";
+        public const string MaxSpeedSliderText = "MaxSpeedSliderText";
+        public const string SoundCreditText = "SoundCreditText";
+        public const string SoundCopyrightText = "SoundCopyrightText";
+        public const string SoundLinkText = "SoundLinkText";
+        public const string StartText = "StartText";
+        public const string TimeText = "TimeText";
 
-        public static string AchievementsButton = "AchievementsButton";
-        public static string BackButton = "BackButton";
-        public static string InfoButton = "InfoButton";
-        public static string LeaderboardsButton = "LeaderboardsButton";
-        public static string PlayButton = "PlayButton";
-        public static string RestartButton = "RestartButton";
-        public static string SocialButton = "SocialButton";
-        public static string SoundButton = "SoundButton";
+        public const string AchievementsButton = "AchievementsButton";
+        public const string LeaderboardsButton = "LeaderboardsButton";
 
-        public static string CountSlider = "CountSlider";
-        public static string MinSpeedSlider = "MinSpeedSlider";
-        public static string MaxSpeedSlider = "MaxSpeedSlider";
-
-        public static string SceneController = "SceneController";
-        public static string SystemController = "SystemController";
-        public static string EventSystem = "EventSystem";
+        public const string CountSlider = "CountSlider";
+        public const string MinSpeedSlider = "MinSpeedSlider";
+        public const string MaxSpeedSlider = "MaxSpeedSlider";
+        
+        public const string SystemController = "SystemController";
+        public const string EventSystem = "EventSystem";
     }
 
     #region Difficulty classes
