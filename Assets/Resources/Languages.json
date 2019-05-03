@@ -1,0 +1,166 @@
+{
+    "English": [
+        {
+            "Token": "DifficultyEasy",
+            "Text": "Easy"
+        },
+        {
+            "Token": "DifficultyMedium",
+            "Text": "Medium"
+        },
+        {
+            "Token": "DifficultyHard",
+            "Text": "Hard"
+        },
+        {
+            "Token": "DifficultyInsane",
+            "Text": "I N S A N E"
+        },
+        {
+            "Token": "DifficultyCustom",
+            "Text": "Custom"
+        },
+        {
+            "Token": "EnemiesCount",
+            "Text": "Enemies count:"
+        },
+        {
+            "Token": "GameCopyright",
+            "Text": "by <color=red>re::</color>public"
+        },
+        {
+            "Token": "GameLink",
+            "Text": "republicgames.org"
+        },
+        {
+            "Token": "GameSetupTitle",
+            "Text": "Game setup"
+        },
+        {
+            "Token": "HighScoreTitle",
+            "Text": "High score:"
+        },
+        {
+            "Token": "Logo",
+            "Text": "E S C A P A"
+        },
+        {
+            "Token": "MinimalSpeed",
+            "Text": "Minimal enemies speed"
+        },
+        {
+            "Token": "MaximumSpeed",
+            "Text": "Maximum enemies speed"
+        },
+        {
+            "Token": "NewHighScore",
+            "Text": "New High score"
+        },
+        {
+            "Token": "Play",
+            "Text": "Play"
+        },
+        {
+            "Token": "Republic",
+            "Text": "<color=red>re::</color>public"
+        },
+        {
+            "Token": "SoundCredit",
+            "Text": "Background music:"
+        },
+        {
+            "Token": "SoundCopyright",
+            "Text": "Sky Loop by FoolBoyMedia"
+        },
+        {
+            "Token": "SoundLink",
+            "Text": "foolboymedia.co.uk"
+        },
+        {
+            "Token": "Time",
+            "Text": "Time: "
+        }
+    ],
+    "Russian": [
+        {
+            "Token": "DifficultyEasy",
+            "Text": "Легко"
+        },
+        {
+            "Token": "DifficultyMedium",
+            "Text": "Средне"
+        },
+        {
+            "Token": "DifficultyHard",
+            "Text": "Сложно"
+        },
+        {
+            "Token": "DifficultyInsane",
+            "Text": "Б Е З У М И Е"
+        },
+        {
+            "Token": "DifficultyCustom",
+            "Text": "Особый"
+        },
+        {
+            "Token": "EnemiesCount",
+            "Text": "Число противников:"
+        },
+        {
+            "Token": "GameCopyright",
+            "Text": "сделано в <color=red>re::</color>public"
+        },
+        {
+            "Token": "GameLink",
+            "Text": "republicgames.org"
+        },
+        {
+            "Token": "GameSetupTitle",
+            "Text": "Настройка игры"
+        },
+        {
+            "Token": "HighScoreTitle",
+            "Text": "Рекорд:"
+        },
+        {
+            "Token": "Logo",
+            "Text": "Э С К А П А"
+        },
+        {
+            "Token": "MinimalSpeed",
+            "Text": "Минимальная скорость"
+        },
+        {
+            "Token": "MaximumSpeed",
+            "Text": "Максимальная скорость"
+        },
+        {
+            "Token": "NewHighScore",
+            "Text": "Новый рекорд"
+        },
+        {
+            "Token": "Play",
+            "Text": "Играть"
+        },
+        {
+            "Token": "Republic",
+            "Text": "<color=red>re::</color>public"
+        },
+        {
+            "Token": "SoundCredit",
+            "Text": "Фоновая музыка:"
+        },
+        {
+            "Token": "SoundCopyright",
+            "Text": "Sky Loop от FoolBoyMedia"
+        },
+        {
+            "Token": "SoundLink",
+            "Text": "foolboymedia.co.uk"
+        },
+        {
+            "Token": "Time",
+            "Text": "Время: "
+        }
+    ]
+}

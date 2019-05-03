@@ -1,30 +1,31 @@
-﻿using Escapa.Utility;
-using System;
+﻿using System.Linq;
+using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.Managers
 {
     public static class LanguageManager
     {
-        private static Language _language = null;
-        public static Language Language
+        private static Language _language;
+        public static string GetString(LanguageTokens token)
         {
-            get
+            if (_language == null)
             {
-                if (_language == null) LoadLanguage();
-                return _language;
+                LoadLanguage();
+            }
+
+            switch (Application.systemLanguage)
+            {
+                case SystemLanguage.Russian:
+                    return _language?.Russian.FirstOrDefault(x => x.Token == token.ToString())?.Text ?? string.Empty;
+                default:
+                    return _language?.English.FirstOrDefault(x => x.Token == token.ToString())?.Text ?? string.Empty;
             }
         }
 
         private static void LoadLanguage()
         {
-            var lang = "en";
-            switch (Application.systemLanguage)
-            {
-                case SystemLanguage.Russian: lang = "ru"; break;
-            }
-
-            var json = Resources.Load<TextAsset>($"{ResourceKeys.Languages}/{lang}").text;
+            var json = Resources.Load<TextAsset>($"{ResourceKeys.Languages}").text;
             _language = JsonUtility.FromJson<Language>(json);
         }
     }

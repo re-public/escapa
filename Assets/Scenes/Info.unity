@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  token: 18
   url: http://foolboymedia.co.uk
 --- !u!114 &109936025
 MonoBehaviour:
@@ -360,6 +361,7 @@ GameObject:
   - component: {fileID: 530442829}
   - component: {fileID: 530442831}
   - component: {fileID: 530442830}
+  - component: {fileID: 530442832}
   m_Layer: 0
   m_Name: SoundCreditText
   m_TagString: SoundCreditText
@@ -507,6 +509,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530442828}
   m_CullTransparentMesh: 0
+--- !u!114 &530442832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530442828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  token: 16
 --- !u!1 &813402172
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +533,7 @@ GameObject:
   - component: {fileID: 813402173}
   - component: {fileID: 813402175}
   - component: {fileID: 813402174}
+  - component: {fileID: 813402176}
   m_Layer: 0
   m_Name: GameCreditText
   m_TagString: GameCreditText
@@ -539,10 +555,10 @@ RectTransform:
   m_Father: {fileID: 1147400166}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: 270, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813402174
 MonoBehaviour:
@@ -665,6 +681,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813402172}
   m_CullTransparentMesh: 0
+--- !u!114 &813402176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813402172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  token: 10
 --- !u!1 &829616374
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  token: 7
   url: http://republicgames.org
 --- !u!114 &1258686054
 MonoBehaviour:
@@ -1053,6 +1083,7 @@ GameObject:
   - component: {fileID: 1418726878}
   - component: {fileID: 1418726880}
   - component: {fileID: 1418726879}
+  - component: {fileID: 1418726881}
   m_Layer: 0
   m_Name: GameCopyrightText
   m_TagString: GameCopyrightText
@@ -1152,8 +1183,8 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
+  m_isRichText: 0
+  m_parseCtrlCharacters: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_ignoreRectMaskCulling: 0
@@ -1200,6 +1231,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418726877}
   m_CullTransparentMesh: 0
+--- !u!114 &1418726881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418726877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  token: 6
 --- !u!1 &1719762378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBackButton: 1
   scene: 1
 --- !u!114 &1719762381
 MonoBehaviour:
@@ -1356,6 +1401,7 @@ GameObject:
   - component: {fileID: 1883133090}
   - component: {fileID: 1883133092}
   - component: {fileID: 1883133091}
+  - component: {fileID: 1883133093}
   m_Layer: 0
   m_Name: SoundCopyrightText
   m_TagString: SoundCopyrightText
@@ -1503,3 +1549,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883133089}
   m_CullTransparentMesh: 0
+--- !u!114 &1883133093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883133089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  token: 17

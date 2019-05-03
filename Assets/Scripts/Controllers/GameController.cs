@@ -2,7 +2,6 @@
 using Escapa.Units;
 using Escapa.Utility;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace Escapa.Controllers
@@ -15,7 +14,6 @@ namespace Escapa.Controllers
         private List<GameObject> _enemies;
         private IPlayer _player;
         private ISystemController _systemController;
-        private TextMeshPro _timeText;
         private bool _isGameStarted;
 
         private void Awake()
@@ -24,7 +22,6 @@ namespace Escapa.Controllers
             _enemies = new List<GameObject>(4);
             _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
             _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
-            _timeText = GameObject.FindWithTag(Tags.TimeText).GetComponent<TextMeshPro>();
 
             _player.Die += OnPlayerDie;
             _player.MousePressed += OnPlayerPressed;
@@ -68,12 +65,9 @@ namespace Escapa.Controllers
                 _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
             }
 
-            _timeText.text = string.Empty;
-
             //Style
             Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _player.Color = StyleManager.CurrentTheme.Player;
-            _timeText.color = StyleManager.CurrentTheme.TextAlfa;
             for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
                 _enemies[i].GetComponent<IEnemy>().Color = StyleManager.CurrentTheme.Enemy;
         }
@@ -86,8 +80,6 @@ namespace Escapa.Controllers
 
                 _systemController.GoToScene(GameScenes.Menu);
             }
-
-            _timeText.text = ScoreManager.CurrentRecord.ToString("0.00");
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == 3)
                 SocialManager.CompleteAchievement(Achievements.BlackHawk);

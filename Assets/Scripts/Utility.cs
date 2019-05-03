@@ -105,23 +105,39 @@ namespace Escapa.Utility
     [Serializable]
     public class Language
     {
-        public string[] Difficulties;
-        public string EnemiesCount;
-        public string GameCredit;
-        public string GameCopyright;
-        public string GameLink;
-        public string GameSetupTitle;
-        public string HighScoreTitle;
-        public string Logo;
-        public string MinimalSpeed;
-        public string MaximumSpeed;
-        public string NewHighScore;
-        public string Play;
-        public string SoundCredit;
-        public string SoundCopyright;
-        public string SoundLink;
-        public string Start;
-        public string Time;
+        public LanguagePair[] English;
+        public LanguagePair[] Russian;
+    }
+    
+    [Serializable]
+    public class LanguagePair
+    {
+        public string Token;
+        public string Text;
+    }
+
+    public enum LanguageTokens
+    {
+        DifficultyEasy,
+        DifficultyMedium,
+        DifficultyHard,
+        DifficultyInsane,
+        DifficultyCustom,
+        EnemiesCount,
+        GameCopyright,
+        GameLink,
+        GameSetupTitle,
+        HighScoreTitle,
+        Logo,
+        MinimalSpeed,
+        MaximumSpeed,
+        NewHighScore,
+        Play,
+        Republic,
+        SoundCredit,
+        SoundCopyright,
+        SoundLink,
+        Time
     }
     #endregion
 

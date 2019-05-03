@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 744256828}
   - component: {fileID: 744256830}
   - component: {fileID: 744256829}
+  - component: {fileID: 744256831}
   m_Layer: 0
   m_Name: MaximumSpeedText
   m_TagString: MaximumSpeedText
@@ -774,7 +775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -881,6 +882,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744256827}
   m_CullTransparentMesh: 0
+--- !u!114 &744256831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744256827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTranslating: 0
+  token: 12
 --- !u!1 &784099948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1394,7 @@ GameObject:
   - component: {fileID: 1278794730}
   - component: {fileID: 1278794732}
   - component: {fileID: 1278794731}
+  - component: {fileID: 1278794733}
   m_Layer: 0
   m_Name: MinimalSpeedText
   m_TagString: MinimalSpeedText
@@ -1419,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1526,6 +1542,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278794729}
   m_CullTransparentMesh: 0
+--- !u!114 &1278794733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278794729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTranslating: 0
+  token: 11
 --- !u!1 &1318055853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,6 +1567,7 @@ GameObject:
   - component: {fileID: 1318055854}
   - component: {fileID: 1318055856}
   - component: {fileID: 1318055855}
+  - component: {fileID: 1318055857}
   m_Layer: 0
   m_Name: GameSetupText
   m_TagString: GameSetupText
@@ -1577,7 +1608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1684,6 +1715,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318055853}
   m_CullTransparentMesh: 0
+--- !u!114 &1318055857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318055853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTranslating: 0
+  token: 8
 --- !u!1 &1605023169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1816,7 @@ GameObject:
   - component: {fileID: 1657717497}
   - component: {fileID: 1657717496}
   - component: {fileID: 1657717498}
+  - component: {fileID: 1657717499}
   m_Layer: 0
   m_Name: StartText
   m_TagString: StartText
@@ -1974,6 +2020,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1657717499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657717494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTranslating: 0
+  token: 14
 --- !u!1 &1660959838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2203,7 @@ GameObject:
   - component: {fileID: 1682908483}
   - component: {fileID: 1682908485}
   - component: {fileID: 1682908484}
+  - component: {fileID: 1682908486}
   m_Layer: 0
   m_Name: EnemiesCountText
   m_TagString: EnemiesCountText
@@ -2183,7 +2244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2290,6 +2351,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682908482}
   m_CullTransparentMesh: 0
+--- !u!114 &1682908486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682908482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTranslating: 0
+  token: 5
 --- !u!1 &1930630276
 GameObject:
   m_ObjectHideFlags: 0

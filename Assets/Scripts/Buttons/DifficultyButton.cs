@@ -1,4 +1,5 @@
 ﻿using Escapa.Managers;
+using Escapa.Utility;
 
 namespace Escapa.Buttons
 {
@@ -18,7 +19,8 @@ namespace Escapa.Buttons
         private new void Start()
         {
             base.Start();
-            TextMesh.SetText(LanguageManager.Language.Difficulties[DifficultyManager.Level]);
+            SetToken();
+            TextMesh.SetText(LanguageManager.GetString(token));
         }
         
         private new void OnDisable()
@@ -27,6 +29,32 @@ namespace Escapa.Buttons
             DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
         }
 
-        private void OnDifficultyChanged() => TextMesh.SetText(LanguageManager.Language.Difficulties[DifficultyManager.Level]);
+        private void OnDifficultyChanged()
+        {
+            SetToken();
+            TextMesh.SetText(LanguageManager.GetString(token));
+        }
+
+        private void SetToken()
+        {
+            switch (DifficultyManager.Level)
+            {
+                case 1:
+                    token = LanguageTokens.DifficultyMedium;
+                    break;
+                case 2:
+                    token = LanguageTokens.DifficultyHard;
+                    break;
+                case 3:
+                    token = LanguageTokens.DifficultyInsane;
+                    break;
+                case 4:
+                    token = LanguageTokens.DifficultyCustom;
+                    break;
+                default:
+                    token = LanguageTokens.DifficultyEasy;
+                    break;
+            }
+        }
     }
 }

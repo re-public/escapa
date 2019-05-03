@@ -9,6 +9,9 @@ namespace Escapa.Buttons
     [RequireComponent(typeof(TextMeshProUGUI), typeof(Button))]
     public abstract class TextButtonBase : MonoBehaviour
     {
+        public bool disableTranslating;
+        public LanguageTokens token;
+        
         protected TextMeshProUGUI TextMesh;
 
         protected void Awake()
@@ -23,6 +26,11 @@ namespace Escapa.Buttons
 
         protected void Start()
         {
+            if (!disableTranslating)
+            {
+                TextMesh.SetText(LanguageManager.GetString(token));
+                
+            }
             TextMesh.color = StyleManager.CurrentTheme.Text;
         }
 
