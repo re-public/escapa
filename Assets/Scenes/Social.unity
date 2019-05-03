@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 171463071}
   m_Layer: 5
   m_Name: BackButton
-  m_TagString: BackButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,7 +450,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 670681785}
   m_Layer: 5
   m_Name: HighScoreTitleText
-  m_TagString: HighScoreTitleText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 699287250}
   m_Layer: 5
   m_Name: HighScoreText
-  m_TagString: HighScoreText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 1181314814}
   m_Layer: 0
   m_Name: SocialController
-  m_TagString: SceneController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

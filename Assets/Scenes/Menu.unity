@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 947995135}
   m_Layer: 0
   m_Name: LogoText
-  m_TagString: LogoText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 10
 --- !u!1 &965791846
 GameObject:
@@ -308,7 +310,7 @@ GameObject:
   - component: {fileID: 965791850}
   m_Layer: 0
   m_Name: DifficultyText
-  m_TagString: DifficultyText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -538,7 +540,7 @@ GameObject:
   - component: {fileID: 1224082644}
   m_Layer: 0
   m_Name: PlayButton
-  m_TagString: PlayButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,7 +681,7 @@ GameObject:
   - component: {fileID: 1265168367}
   m_Layer: 0
   m_Name: MenuController
-  m_TagString: SceneController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,7 +727,7 @@ GameObject:
   - component: {fileID: 1622941387}
   m_Layer: 0
   m_Name: SocialButton
-  m_TagString: SocialButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -871,7 +873,7 @@ GameObject:
   - component: {fileID: 1817220572}
   m_Layer: 0
   m_Name: SoundButton
-  m_TagString: SoundButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1055,7 +1057,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1121,7 +1123,7 @@ GameObject:
   - component: {fileID: 2038641779}
   m_Layer: 0
   m_Name: InfoButton
-  m_TagString: InfoButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

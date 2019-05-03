@@ -270,7 +270,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 518726094}
   m_Layer: 0
   m_Name: SetupController
-  m_TagString: SceneController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 744256831}
   m_Layer: 0
   m_Name: MaximumSpeedText
-  m_TagString: MaximumSpeedText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,7 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 12
 --- !u!1 &784099948
 GameObject:
@@ -1397,7 +1399,7 @@ GameObject:
   - component: {fileID: 1278794733}
   m_Layer: 0
   m_Name: MinimalSpeedText
-  m_TagString: MinimalSpeedText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,7 +1556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 11
 --- !u!1 &1318055853
 GameObject:
@@ -1570,7 +1574,7 @@ GameObject:
   - component: {fileID: 1318055857}
   m_Layer: 0
   m_Name: GameSetupText
-  m_TagString: GameSetupText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1727,7 +1731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 8
 --- !u!1 &1605023169
 GameObject:
@@ -1819,7 +1825,7 @@ GameObject:
   - component: {fileID: 1657717499}
   m_Layer: 0
   m_Name: StartText
-  m_TagString: StartText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2032,7 +2038,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 14
 --- !u!1 &1660959838
 GameObject:
@@ -2206,7 +2214,7 @@ GameObject:
   - component: {fileID: 1682908486}
   m_Layer: 0
   m_Name: EnemiesCountText
-  m_TagString: EnemiesCountText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2363,7 +2371,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
   disableTranslating: 0
+  isAlfa: 0
   token: 5
 --- !u!1 &1930630276
 GameObject:

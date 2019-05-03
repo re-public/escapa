@@ -32,6 +32,7 @@ namespace Escapa.Controllers
         private void OnApplicationQuit()
         {
             DifficultyManager.SaveLevel();
+            DifficultyManager.SaveDifficulty();
             ScoreManager.SaveRecords();
             SocialManager.SaveAchievementsLocal();
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
