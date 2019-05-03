@@ -52,37 +52,18 @@ namespace Escapa.Utility
 
     public static class Tags
     {
-        public const string Edges = "Edges";
-        public const string Player = "Player";
-
-        public const string CountSliderText = "CountSliderText";
-        public const string EnemiesCountText = "EnemiesCountText";
-        public const string GameCreditText = "GameCreditText";
-        public const string GameCopyrightText = "GameCopyrightText";
-        public const string GameLinkText = "GameLinkText";
-        public const string GameSetupText = "GameSetupText";
-        public const string HighScoreText = "HighScoreText";
-        public const string HighScoreTitleText = "HighScoreTitleText";
-        public const string LogoText = "LogoText";
         public const string MainCamera = "MainCamera";
-        public const string MinimalSpeedText = "MinimalSpeedText";
-        public const string MinSpeedSliderText = "MinSpeedSliderText";
-        public const string MaximumSpeedText = "MaximumSpeedText";
-        public const string MaxSpeedSliderText = "MaxSpeedSliderText";
-        public const string SoundCreditText = "SoundCreditText";
-        public const string SoundCopyrightText = "SoundCopyrightText";
-        public const string SoundLinkText = "SoundLinkText";
-        public const string StartText = "StartText";
-        public const string TimeText = "TimeText";
-
-        public const string AchievementsButton = "AchievementsButton";
-        public const string LeaderboardsButton = "LeaderboardsButton";
-
+        public const string Player = "Player";
+        public const string SystemController = "SystemController";
+        public const string Edges = "Edges";
         public const string CountSlider = "CountSlider";
         public const string MinSpeedSlider = "MinSpeedSlider";
         public const string MaxSpeedSlider = "MaxSpeedSlider";
-        
-        public const string SystemController = "SystemController";
+        public const string AchievementsButton = "AchievementsButton";
+        public const string LeaderboardsButton = "LeaderboardsButton";
+        public const string CountSliderText = "CountSliderText";
+        public const string MinSpeedSliderText = "MinSpeedSliderText";
+        public const string MaxSpeedSliderText = "MaxSpeedSliderText";
         public const string EventSystem = "EventSystem";
     }
 

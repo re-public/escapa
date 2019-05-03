@@ -5,26 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - SystemController
-  - LogoText
   - Edges
-  - TimeText
-  - HighScoreText
-  - GameCreditText
-  - GameCopyrightText
-  - GameLinkText
-  - SoundCreditText
-  - SoundCopyrightText
-  - SoundLinkText
-  - HighScoreTitleText
-  - AddEnemyButton
-  - GameSetupText
-  - MinimalSpeedText
-  - MaximumSpeedText
   - CountSlider
   - MinSpeedSlider
   - MaxSpeedSlider
-  - StartText
-  - EnemiesCountText
   - Button
   - AchievementsButton
   - LeaderboardsButton
@@ -32,6 +16,14 @@ TagManager:
   - MinSpeedSliderText
   - MaxSpeedSliderText
   - EventSystem
+  - DifficultyText
+  - PlayButton
+  - SceneController
+  - SocialButton
+  - SoundButton
+  - InfoButton
+  - BackButton
+  - RestartButton
   layers:
   - Default
   - TransparentFX
