@@ -2,7 +2,7 @@
 
 namespace Escapa.Units
 {
-    public interface IPlayer : IColoredUnit
+    public interface IPlayer
     {
         event PlayerEvent Die;
         event PlayerEvent MousePressed;

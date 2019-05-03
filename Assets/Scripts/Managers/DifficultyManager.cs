@@ -34,11 +34,16 @@ namespace Escapa.Managers
             private set
             {
                 _level = value;
-                DifficultyChanged?.Invoke();
+                DifficultyChanged?.Invoke(Level);
             }
         }
-        public static int AddLevel() => Level == (DifficultiesCount - 1) ? Level = 0 : Level++;
-        public static void SaveLevel() => PlayerPrefs.SetInt(PlayerPrefKeys.Level, _level.Value);
+
+        public static void AddLevel()
+        {
+            Level = Level == DifficultiesCount - 1 ? 0 : Level + 1;
+        }
+
+        public static void SaveLevel() => PlayerPrefs.SetInt(PlayerPrefKeys.Level, Level);
 
         public static event DifficultyEvent DifficultyChanged;
         

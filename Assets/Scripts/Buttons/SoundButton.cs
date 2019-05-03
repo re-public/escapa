@@ -1,5 +1,4 @@
 ﻿using Escapa.Controllers;
-using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -14,7 +13,6 @@ namespace Escapa.Buttons
         {
             _systemController.IsSoundEnabled = !_systemController.IsSoundEnabled;
             Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
-            Image.color = StyleManager.CurrentTheme.Text;
         }
 
         private ISystemController _systemController;
@@ -25,9 +23,8 @@ namespace Escapa.Buttons
             _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
         }
 
-        private new void Start()
+        private void Start()
         {
-            base.Start();
             Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
         }
     }

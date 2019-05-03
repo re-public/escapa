@@ -71,11 +71,6 @@ namespace Escapa.Controllers
 
                 _enemies.Add(Instantiate(enemy, position, Quaternion.identity));
             }
-
-            //Style
-            _player.Color = StyleManager.CurrentTheme.Player;
-            for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
-                _enemies[i].GetComponent<IEnemy>().Color = StyleManager.CurrentTheme.Enemy;
         }
 
         private void FixedUpdate()

@@ -1,4 +1,4 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Controllers;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -10,22 +10,24 @@ namespace Escapa.Components
         public float UnitsPerPixel => _camera.orthographicSize * 2.0f / Screen.height;
         
         private Camera _camera;
+        private IStyleController _styleController;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             
             _camera = GetComponent<Camera>();
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()
         {
-            StyleManager.StyleChanged += OnStyleChanged;
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
         private void OnDisable()
         {
-            StyleManager.StyleChanged -= OnStyleChanged;
+            _styleController.StyleChanged -= OnStyleChanged;
         }
 
         private void OnStyleChanged(Theme theme)

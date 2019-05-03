@@ -16,7 +16,6 @@ namespace Escapa.Components
         {
             base.Start();
             TextMesh.SetText(string.Empty);
-            TextMesh.color = StyleManager.CurrentTheme.TextAlfa;
         }
 
         private void FixedUpdate()

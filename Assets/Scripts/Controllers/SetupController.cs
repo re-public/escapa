@@ -34,24 +34,30 @@ namespace Escapa.Controllers
             DifficultyManager.Difficulty.MaxSpeed = _maxSpeedSlider.value;
             SceneManager.LoadSceneAsync((int) GameScenes.Game, LoadSceneMode.Single);
         }
-        
-        #region UI Elements
+
+        private IStyleController _styleController;
         private TextMeshProUGUI _countSliderText;
         private TextMeshProUGUI _minSpeedSliderText;
         private TextMeshProUGUI _maxSpeedSliderText;
         private Slider _countSlider;
         private Slider _minSpeedSlider;
         private Slider _maxSpeedSlider;
-        #endregion
 
         private void Awake()
         {
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            
             _countSliderText = GameObject.FindWithTag(Tags.CountSliderText).GetComponent<TextMeshProUGUI>();
             _minSpeedSliderText = GameObject.FindWithTag(Tags.MinSpeedSliderText).GetComponent<TextMeshProUGUI>();
             _maxSpeedSliderText = GameObject.FindWithTag(Tags.MaxSpeedSliderText).GetComponent<TextMeshProUGUI>();
             _countSlider = GameObject.FindWithTag(Tags.CountSlider).GetComponent<Slider>();
             _minSpeedSlider = GameObject.FindWithTag(Tags.MinSpeedSlider).GetComponent<Slider>();
             _maxSpeedSlider = GameObject.FindWithTag(Tags.MaxSpeedSlider).GetComponent<Slider>();
+        }
+
+        private void OnEnable()
+        {
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
         private void Start()
@@ -70,17 +76,24 @@ namespace Escapa.Controllers
             _maxSpeedSlider.value = DifficultyManager.Difficulty.MaxSpeed;
             _maxSpeedSlider.minValue = DifficultyManager.MinEnemySpeedForSetup;
             _maxSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
+        }
 
-            //Style
-            _countSliderText.color = StyleManager.CurrentTheme.Text;
-            _minSpeedSliderText.color = StyleManager.CurrentTheme.Text;
-            _maxSpeedSliderText.color = StyleManager.CurrentTheme.Text;
+        private void OnDisable()
+        {
+            _styleController.StyleChanged -= OnStyleChanged;
         }
 
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
                 SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+        }
+
+        private void OnStyleChanged(Theme theme)
+        {
+            _countSliderText.color = theme.Text;
+            _minSpeedSliderText.color = theme.Text;
+            _maxSpeedSliderText.color = theme.Text;
         }
     }
 }

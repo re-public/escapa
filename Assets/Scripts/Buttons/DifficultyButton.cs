@@ -19,7 +19,7 @@ namespace Escapa.Buttons
         private new void Start()
         {
             base.Start();
-            SetToken();
+            SetToken(DifficultyManager.Level);
             TextMesh.SetText(LanguageManager.GetString(token));
         }
         
@@ -29,15 +29,15 @@ namespace Escapa.Buttons
             DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
         }
 
-        private void OnDifficultyChanged()
+        private void OnDifficultyChanged(int difficulty)
         {
-            SetToken();
+            SetToken(difficulty);
             TextMesh.SetText(LanguageManager.GetString(token));
         }
 
-        private void SetToken()
+        private void SetToken(int difficulty)
         {
-            switch (DifficultyManager.Level)
+            switch (difficulty)
             {
                 case 1:
                     token = LanguageTokens.DifficultyMedium;

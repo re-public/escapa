@@ -1,6 +1,6 @@
 ﻿namespace Escapa.Units
 {
-    public interface IEnemy : IColoredUnit
+    public interface IEnemy
     {
         void AddForce();
     }

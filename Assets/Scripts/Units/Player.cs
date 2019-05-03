@@ -1,4 +1,5 @@
 ﻿using Escapa.Components;
+using Escapa.Controllers;
 using Escapa.Events;
 using Escapa.Managers;
 using Escapa.Utility;
@@ -12,18 +13,13 @@ namespace Escapa.Units
         public event PlayerEvent Die;
         public event PlayerEvent MousePressed;
 
-        public Color Color
-        {
-            get => _spriteRenderer.color;
-            set => _spriteRenderer.color = value;
-        }
-
         public float IdleTime => ScoreManager.CurrentRecord - _idleTimeStart;
 
         public float MovingTime => ScoreManager.CurrentRecord - _moveTimeStart;
 
         private IMainCamera _camera;
         private SpriteRenderer _spriteRenderer;
+        private IStyleController _styleController;
         
         private float _halfScreenHeight;
         private float _halfScreenWidth;
@@ -40,9 +36,15 @@ namespace Escapa.Units
         {
             _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
             
             _halfScreenHeight = Screen.height / 2.0f;
             _halfScreenWidth = Screen.width / 2.0f;
+        }
+
+        private void OnEnable()
+        {
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
         private void Update()
@@ -62,7 +64,17 @@ namespace Escapa.Units
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D _) => Die?.Invoke();
+        private void OnCollisionEnter2D() => Die?.Invoke();
+
+        private void OnDisable()
+        {
+            _styleController.StyleChanged -= OnStyleChanged;
+        }
+
+        private void OnStyleChanged(Theme theme)
+        {
+            _spriteRenderer.color = theme.Player;
+        }
 
         private void OnTouch(TouchPhase phase, Vector2 position)
         {
@@ -72,10 +84,11 @@ namespace Escapa.Units
             switch (phase)
             {
                 case TouchPhase.Began:
-                    _isTouched = IsTouched(transform.position, _targetPosition);
-
-                    _offset.x = _targetPosition.x - transform.position.x;
-                    _offset.y = _targetPosition.y - transform.position.y;
+                    var pos = transform.position;
+                    
+                    _isTouched = IsTouched(pos, _targetPosition);
+                    _offset.x = _targetPosition.x - pos.x;
+                    _offset.y = _targetPosition.y - pos.y;
                     break;
 
                 case TouchPhase.Moved:

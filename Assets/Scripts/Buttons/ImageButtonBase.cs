@@ -1,4 +1,4 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Controllers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,29 +9,27 @@ namespace Escapa.Buttons
     public abstract class ImageButtonBase : MonoBehaviour
     {
         protected Image Image;
+        
+        private IStyleController _styleController;
 
         protected void Awake()
         {
-            Image = GetComponent<Image>();            
+            Image = GetComponent<Image>();          
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
 
         protected void OnEnable()
         {
-            StyleManager.StyleChanged += OnStyleChanged;
-        }
-
-        protected void Start()
-        {
-            Image.color = StyleManager.CurrentTheme.Text;
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
         protected void OnDisable()
         {
-            StyleManager.StyleChanged -= OnStyleChanged;
+            _styleController.StyleChanged -= OnStyleChanged;
         }
 
 
-        protected void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(Theme theme)
         {
             Image.color = theme.Text;
         }

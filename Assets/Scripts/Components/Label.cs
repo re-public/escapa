@@ -1,4 +1,5 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Controllers;
+using Escapa.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
@@ -12,19 +13,21 @@ namespace Escapa.Components
         public bool disableTranslating;
         public bool isAlfa;
         public LanguageTokens token;
+        private IStyleController _styleController;
         
         protected TextMeshProUGUI TextMesh;
 
         protected void Awake()
         {
             TextMesh = GetComponent<TextMeshProUGUI>();
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
 
         protected void OnEnable()
         {
             if (!disableStyling)
             {
-                StyleManager.StyleChanged += OnStyleChanged;
+                _styleController.StyleChanged += OnStyleChanged;
             }
         }
 
@@ -34,18 +37,13 @@ namespace Escapa.Components
             {
                 TextMesh.SetText(LanguageManager.GetString(token));
             }
-
-            if (!disableStyling)
-            {
-                TextMesh.color = isAlfa ? StyleManager.CurrentTheme.TextAlfa : StyleManager.CurrentTheme.Text;
-            }
         }
 
         protected void OnDisable()
         {
             if (!disableStyling)
             {
-                StyleManager.StyleChanged -= OnStyleChanged;
+                _styleController.StyleChanged -= OnStyleChanged;
             }
         }
 

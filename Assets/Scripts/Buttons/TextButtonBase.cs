@@ -1,4 +1,5 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Controllers;
+using Escapa.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
@@ -14,14 +15,17 @@ namespace Escapa.Buttons
         
         protected TextMeshProUGUI TextMesh;
 
+        private IStyleController _styleController;
+        
         protected void Awake()
         {
             TextMesh = GetComponent<TextMeshProUGUI>();
+            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
         
         protected void OnEnable()
         {
-            StyleManager.StyleChanged += OnStyleChanged;
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
         protected void Start()
@@ -29,18 +33,16 @@ namespace Escapa.Buttons
             if (!disableTranslating)
             {
                 TextMesh.SetText(LanguageManager.GetString(token));
-                
             }
-            TextMesh.color = StyleManager.CurrentTheme.Text;
         }
 
         protected void OnDisable()
         {
-            StyleManager.StyleChanged -= OnStyleChanged;
+            _styleController.StyleChanged -= OnStyleChanged;
         }
 
 
-        protected void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(Theme theme)
         {
             TextMesh.color = theme.Text;
         }
