@@ -2,27 +2,32 @@
 using Escapa.Units;
 using Escapa.Utility;
 using System.Collections.Generic;
+using Escapa.Components;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
     public sealed class GameController : MonoBehaviour
     {
-        public GameObject Enemy;
+        public GameObject enemy;
 
+        private IMainCamera _camera;
         private Transform _edges;
         private List<GameObject> _enemies;
         private IPlayer _player;
-        private ISystemController _systemController;
         private bool _isGameStarted;
 
         private void Awake()
         {
+            _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
             _edges = GameObject.FindWithTag(Tags.Edges).transform;
             _enemies = new List<GameObject>(4);
             _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+        }
 
+        private void OnEnable()
+        {
             _player.Die += OnPlayerDie;
             _player.MousePressed += OnPlayerPressed;
         }
@@ -34,20 +39,20 @@ namespace Escapa.Controllers
                 var position = Vector2.zero;
 
                 if (i == 0)
-                    position.x = -Screen.width * Camera.main.orthographicSize / Screen.height;
+                    position.x = -Screen.width * _camera.UnitsPerPixel / 2f;
                 else if (i == 1)
-                    position.y = Camera.main.orthographicSize;
+                    position.y = Screen.height * _camera.UnitsPerPixel / 2f;
                 else if (i == 2)
-                    position.x = Screen.width * Camera.main.orthographicSize / Screen.height;
+                    position.x = Screen.width * _camera.UnitsPerPixel / 2f;
                 else if (i == 3)
-                    position.y = -Camera.main.orthographicSize;
+                    position.y = -Screen.height * _camera.UnitsPerPixel / 2f;
 
                 _edges.GetChild(i).position = position;
             }
 
             for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
             {
-                Vector2 position = Vector2.zero;
+                var position = Vector2.zero;
 
                 if (i == 0)
                     position = new Vector2(-1.5f, 2.5f);
@@ -62,11 +67,10 @@ namespace Escapa.Controllers
                 else if (i == 5)
                     position = new Vector2(0f, -3f);
 
-                _enemies.Add((GameObject)Instantiate(Enemy, position, Quaternion.identity));
+                _enemies.Add(Instantiate(enemy, position, Quaternion.identity));
             }
 
             //Style
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _player.Color = StyleManager.CurrentTheme.Player;
             for (var i = 0; i < DifficultyManager.Difficulty.Count; i++)
                 _enemies[i].GetComponent<IEnemy>().Color = StyleManager.CurrentTheme.Enemy;
@@ -78,7 +82,7 @@ namespace Escapa.Controllers
             {
                 ScoreManager.StopCount();
 
-                _systemController.GoToScene(GameScenes.Menu);
+                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
             }
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == 3)
@@ -109,15 +113,15 @@ namespace Escapa.Controllers
 
             _isGameStarted = false;
 
-            _systemController.GoToScene(GameScenes.End);
+            SceneManager.LoadSceneAsync((int) GameScenes.End, LoadSceneMode.Single);
         }
 
         private void OnPlayerPressed()
         {
             _player.MousePressed -= OnPlayerPressed;
 
-            foreach (var enemy in _enemies)
-                enemy.GetComponent<IEnemy>().AddForce();
+            foreach (var enemyObj in _enemies)
+                enemyObj.GetComponent<IEnemy>().AddForce();
 
             _isGameStarted = true;
 

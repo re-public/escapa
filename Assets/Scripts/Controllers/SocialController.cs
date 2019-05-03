@@ -25,8 +25,6 @@ namespace Escapa.Controllers
 
         private void Start()
         {
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
-            
             if (!Social.localUser.authenticated)
             {
                 _achievementsButton.gameObject.SetActive(false);

@@ -61,10 +61,6 @@
             "Text": "Play"
         },
         {
-            "Token": "Republic",
-            "Text": "<color=red>re::</color>public"
-        },
-        {
             "Token": "SoundCredit",
             "Text": "Background music:"
         },
@@ -141,10 +137,6 @@
         {
             "Token": "Play",
             "Text": "Играть"
-        },
-        {
-            "Token": "Republic",
-            "Text": "<color=red>re::</color>public"
         },
         {
             "Token": "SoundCredit",

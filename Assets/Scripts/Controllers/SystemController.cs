@@ -1,7 +1,6 @@
 ﻿using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -14,13 +13,10 @@ namespace Escapa.Controllers
             set => _audioSource.mute = !value;
         }
 
-        public void GoToScene(GameScenes scene) => SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Single);
-
         private AudioSource _audioSource;
 
         private void Awake()
         {
-            DontDestroyOnLoad(Camera.main);
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(GameObject.FindWithTag(Tags.EventSystem));
 
@@ -31,7 +27,7 @@ namespace Escapa.Controllers
             Application.quitting += OnApplicationQuit;
         }
 
-        private void Start() => IsSoundEnabled = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundEnabled, 1) == 1 ? true : false;
+        private void Start() => IsSoundEnabled = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundEnabled, 1) == 1;
 
         private void OnApplicationQuit()
         {

@@ -292,7 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  token: 18
+  disableTranslating: 0
+  token: 17
   url: http://foolboymedia.co.uk
 --- !u!114 &109936025
 MonoBehaviour:
@@ -521,6 +522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
+  disableTranslating: 0
+  isAlfa: 0
   token: 16
 --- !u!1 &813402172
 GameObject:
@@ -693,6 +697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
+  disableTranslating: 0
+  isAlfa: 0
   token: 10
 --- !u!1 &829616374
 GameObject:
@@ -1014,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableTranslating: 0
   token: 7
   url: http://republicgames.org
 --- !u!114 &1258686054
@@ -1124,7 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1183,7 +1191,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1243,6 +1251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
+  disableTranslating: 0
+  isAlfa: 0
   token: 6
 --- !u!1 &1719762378
 GameObject:
@@ -1561,4 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableStyling: 0
+  disableTranslating: 0
+  isAlfa: 0
   token: 17

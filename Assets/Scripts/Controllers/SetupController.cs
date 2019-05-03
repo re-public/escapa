@@ -72,7 +72,6 @@ namespace Escapa.Controllers
             _maxSpeedSlider.maxValue = DifficultyManager.MaxEnemySpeedForSetup;
 
             //Style
-            Camera.main.backgroundColor = StyleManager.CurrentTheme.Background;
             _countSliderText.color = StyleManager.CurrentTheme.Text;
             _minSpeedSliderText.color = StyleManager.CurrentTheme.Text;
             _maxSpeedSliderText.color = StyleManager.CurrentTheme.Text;

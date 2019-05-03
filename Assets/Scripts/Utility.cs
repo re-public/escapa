@@ -64,6 +64,7 @@ namespace Escapa.Utility
         public const string HighScoreText = "HighScoreText";
         public const string HighScoreTitleText = "HighScoreTitleText";
         public const string LogoText = "LogoText";
+        public const string MainCamera = "MainCamera";
         public const string MinimalSpeedText = "MinimalSpeedText";
         public const string MinSpeedSliderText = "MinSpeedSliderText";
         public const string MaximumSpeedText = "MaximumSpeedText";
@@ -133,7 +134,6 @@ namespace Escapa.Utility
         MaximumSpeed,
         NewHighScore,
         Play,
-        Republic,
         SoundCredit,
         SoundCopyright,
         SoundLink,

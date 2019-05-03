@@ -6,7 +6,7 @@ namespace Escapa.Managers
 {
     public static class StyleManager
     {
-        private static Style _style = null;
+        private static Style _style;
         public static Theme CurrentTheme
         {
             get
@@ -24,6 +24,7 @@ namespace Escapa.Managers
             _style = JsonUtility.FromJson<Style>(json);
 
             DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+            StyleChanged?.Invoke(CurrentTheme);
         }
 
         private static void OnDifficultyChanged() => StyleChanged?.Invoke(CurrentTheme);
