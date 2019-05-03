@@ -16,6 +16,7 @@ namespace Escapa.Controllers
         private Transform _edges;
         private List<GameObject> _enemies;
         private IPlayer _player;
+        private ISocialController _socialController;
         private bool _isGameStarted;
 
         private void Awake()
@@ -24,6 +25,7 @@ namespace Escapa.Controllers
             _edges = GameObject.FindWithTag(Tags.Edges).transform;
             _enemies = new List<GameObject>(4);
             _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+            _socialController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISocialController>();
         }
 
         private void OnEnable()
@@ -86,19 +88,19 @@ namespace Escapa.Controllers
             }
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == 3)
-                SocialManager.CompleteAchievement(Achievements.BlackHawk);
+                _socialController.CompleteAchievement(Achievements.BlackHawk);
 
             if (_player.IdleTime > 5f)
-                SocialManager.CompleteAchievement(Achievements.Zen);
+                _socialController.CompleteAchievement(Achievements.Zen);
             else if (_player.MovingTime > 10f)
-                SocialManager.CompleteAchievement(Achievements.MovesLikeJagger);
+                _socialController.CompleteAchievement(Achievements.MovesLikeJagger);
         }
 
         private void OnApplicationPause(bool pauseStatus)
         {
             if (pauseStatus)
             {
-                SocialManager.CompleteAchievement(Achievements.PanicButton);
+                _socialController.CompleteAchievement(Achievements.PanicButton);
 
                 OnPlayerDie();
             }
@@ -109,7 +111,7 @@ namespace Escapa.Controllers
             if (!_isGameStarted) return;
 
             ScoreManager.StopCount();
-            SocialManager.SendScore();
+            _socialController.SendScore();
 
             _isGameStarted = false;
 
@@ -130,9 +132,9 @@ namespace Escapa.Controllers
             if (DifficultyManager.CurrentLevelIsCustom)
             {
                 if (DifficultyManager.CurrentLevelIsMin)
-                    SocialManager.CompleteAchievement(Achievements.TakeItEasy);
+                    _socialController.CompleteAchievement(Achievements.TakeItEasy);
                 else if (DifficultyManager.CurrentLevelIsMax)
-                    SocialManager.CompleteAchievement(Achievements.Hothead);
+                    _socialController.CompleteAchievement(Achievements.Hothead);
             }
         }
     }

@@ -14,6 +14,7 @@ namespace Escapa.Controllers
         }
 
         private AudioSource _audioSource;
+        private ISocialController _socialController;
 
         private void Awake()
         {
@@ -21,6 +22,7 @@ namespace Escapa.Controllers
             DontDestroyOnLoad(GameObject.FindWithTag(Tags.EventSystem));
 
             _audioSource = GetComponent<AudioSource>();
+            _socialController = GetComponent<ISocialController>();
 
             Input.multiTouchEnabled = false;
             Application.targetFrameRate = 60;
@@ -34,7 +36,7 @@ namespace Escapa.Controllers
             DifficultyManager.SaveLevel();
             DifficultyManager.SaveDifficulty();
             ScoreManager.SaveRecords();
-            SocialManager.SaveAchievementsLocal();
+            _socialController.SaveAchievementsLocal();
             PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundEnabled, IsSoundEnabled ? 1 : 0);
         }
     }
