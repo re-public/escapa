@@ -30,9 +30,9 @@ namespace Escapa.Controllers
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged(int difficulty)
+        private void OnDifficultyChanged(Difficulties difficulty)
         {
-            _currentTheme = difficulty;
+            _currentTheme = (int) difficulty;
             StyleChanged?.Invoke(_style.Themes[_currentTheme]);
         }
 

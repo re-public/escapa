@@ -582,9 +582,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableStyling: 0
-  disableTranslating: 0
+  disableTranslating: 1
   isAlfa: 0
-  token: 19
+  token: 13
 --- !u!1 &1683737854
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 13
+  token: 8
 --- !u!1 &1963600639
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +813,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

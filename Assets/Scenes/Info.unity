@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableTranslating: 0
-  token: 17
+  token: 12
   url: http://foolboymedia.co.uk
 --- !u!114 &109936025
 MonoBehaviour:
@@ -525,7 +525,7 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 16
+  token: 10
 --- !u!1 &813402172
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 813402174}
   - component: {fileID: 813402176}
   m_Layer: 0
-  m_Name: GameCreditText
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 10
+  token: 7
 --- !u!1 &1147400163
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableTranslating: 0
-  token: 7
+  token: 5
   url: http://republicgames.org
 --- !u!114 &1258686054
 MonoBehaviour:
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 6
+  token: 4
 --- !u!1 &1719762378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,4 +1532,4 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 17
+  token: 11

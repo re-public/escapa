@@ -1,4 +1,5 @@
-﻿using Escapa.Managers;
+﻿using System;
+using Escapa.Managers;
 using Escapa.Utility;
 
 namespace Escapa.Buttons
@@ -29,31 +30,30 @@ namespace Escapa.Buttons
             DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
         }
 
-        private void OnDifficultyChanged(int difficulty)
+        private void OnDifficultyChanged(Difficulties difficulty)
         {
             SetToken(difficulty);
             TextMesh.SetText(LanguageManager.GetString(token));
         }
 
-        private void SetToken(int difficulty)
+        private void SetToken(Difficulties difficulty)
         {
             switch (difficulty)
             {
-                case 1:
-                    token = LanguageTokens.DifficultyMedium;
-                    break;
-                case 2:
-                    token = LanguageTokens.DifficultyHard;
-                    break;
-                case 3:
-                    token = LanguageTokens.DifficultyInsane;
-                    break;
-                case 4:
-                    token = LanguageTokens.DifficultyCustom;
-                    break;
-                default:
+                case Difficulties.Easy:
                     token = LanguageTokens.DifficultyEasy;
                     break;
+                case Difficulties.Medium:
+                    token = LanguageTokens.DifficultyMedium;
+                    break;
+                case Difficulties.Hard:
+                    token = LanguageTokens.DifficultyHard;
+                    break;
+                case Difficulties.Insane:
+                    token = LanguageTokens.DifficultyInsane;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(difficulty));
             }
         }
     }

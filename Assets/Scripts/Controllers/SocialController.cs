@@ -19,14 +19,10 @@ namespace Escapa.Controllers
             {
                 case Achievements.BlackHawk:
                     achievementGuid = GooglePlayIds.achievement_black_hawk; break;
-                case Achievements.Hothead:
-                    achievementGuid = GooglePlayIds.achievement_hothead; break;
                 case Achievements.MovesLikeJagger:
                     achievementGuid = GooglePlayIds.achievement_moves_like_jagger; break;
                 case Achievements.PanicButton:
                     achievementGuid = GooglePlayIds.achievement_panic_button; break;
-                case Achievements.TakeItEasy:
-                    achievementGuid = GooglePlayIds.achievement_take_it_easy; break;
                 case Achievements.Zen:
                     achievementGuid = GooglePlayIds.achievement_zen; break;
             }
@@ -37,20 +33,20 @@ namespace Escapa.Controllers
 
         public void SendScore()
         {
-            if (!Social.localUser.authenticated || DifficultyManager.CurrentLevelIsCustom) return;
+            if (!Social.localUser.authenticated) return;
 
             var time = (long)(ScoreManager.LastTime * 1000);
             var leaderboardGuid = string.Empty;
 
             switch (DifficultyManager.Level)
             {
-                case 0:
+                case Difficulties.Easy:
                     leaderboardGuid = GooglePlayIds.leaderboard_easy; break;
-                case 1:
+                case Difficulties.Medium:
                     leaderboardGuid = GooglePlayIds.leaderboard_medium; break;
-                case 2:
+                case Difficulties.Hard:
                     leaderboardGuid = GooglePlayIds.leaderboard_hard; break;
-                case 3:
+                case Difficulties.Insane:
                     leaderboardGuid = GooglePlayIds.leaderboard_i_n_s_a_n_e; break;
             }
 
@@ -66,10 +62,8 @@ namespace Escapa.Controllers
                 switch ((Achievements)i)
                 {
                     case Achievements.BlackHawk: achievementName = PlayerPrefKeys.BlackHawk; break;
-                    case Achievements.Hothead: achievementName = PlayerPrefKeys.Hothead; break;
                     case Achievements.MovesLikeJagger: achievementName = PlayerPrefKeys.MovesLikeJagger; break;
                     case Achievements.PanicButton: achievementName = PlayerPrefKeys.PanicButton; break;
-                    case Achievements.TakeItEasy: achievementName = PlayerPrefKeys.TakeItEasy; break;
                     case Achievements.Zen: achievementName = PlayerPrefKeys.Zen; break;
                 }
 
@@ -112,10 +106,8 @@ namespace Escapa.Controllers
                     switch ((Achievements)i)
                     {
                         case Achievements.BlackHawk: achievementName = PlayerPrefKeys.BlackHawk; break;
-                        case Achievements.Hothead: achievementName = PlayerPrefKeys.Hothead; break;
                         case Achievements.MovesLikeJagger: achievementName = PlayerPrefKeys.MovesLikeJagger; break;
                         case Achievements.PanicButton: achievementName = PlayerPrefKeys.PanicButton; break;
-                        case Achievements.TakeItEasy: achievementName = PlayerPrefKeys.TakeItEasy; break;
                         case Achievements.Zen: achievementName = PlayerPrefKeys.Zen; break;
                     }
 

@@ -6,10 +6,8 @@ namespace Escapa.Utility
     public enum Achievements
     {
         BlackHawk,
-        Hothead,
         MovesLikeJagger,
         PanicButton,
-        TakeItEasy,
         Zen
     }
 
@@ -17,30 +15,10 @@ namespace Escapa.Utility
     {
         Preload = 0,
         Menu,
-        Setup,
         Game,
         End,
         Social,
         Info
-    }
-
-    public static class PlayerPrefKeys
-    {
-        public const string EnemiesCount = "EnemiesCount";
-        public const string IsSoundEnabled = "SoundEnabled";
-        public const string Level = "Level";
-        public const string MaxSpeed = "MaxSpeed";
-        public const string MinSpeed = "MinSpeed";
-        public const string Record = "Record";
-
-        #region Achievements
-        public const string BlackHawk = "BlackHawk";
-        public const string Hothead = "Hothead";
-        public const string MovesLikeJagger = "MovesLikeJagger";
-        public const string PanicButton = "PanicButton";
-        public const string TakeItEasy = "TakeItEasy";
-        public const string Zen = "Zen";
-        #endregion
     }
 
     public static class ResourceKeys
@@ -55,15 +33,6 @@ namespace Escapa.Utility
         public const string MainCamera = "MainCamera";
         public const string Player = "Player";
         public const string SystemController = "SystemController";
-        public const string Edges = "Edges";
-        public const string CountSlider = "CountSlider";
-        public const string MinSpeedSlider = "MinSpeedSlider";
-        public const string MaxSpeedSlider = "MaxSpeedSlider";
-        public const string AchievementsButton = "AchievementsButton";
-        public const string LeaderboardsButton = "LeaderboardsButton";
-        public const string CountSliderText = "CountSliderText";
-        public const string MinSpeedSliderText = "MinSpeedSliderText";
-        public const string MaxSpeedSliderText = "MaxSpeedSliderText";
         public const string EventSystem = "EventSystem";
     }
 
@@ -77,7 +46,6 @@ namespace Escapa.Utility
     [Serializable]
     public class LevelRules
     {
-        public int Count;
         public float MinSpeed;
         public float MaxSpeed;
     }
@@ -104,15 +72,10 @@ namespace Escapa.Utility
         DifficultyMedium,
         DifficultyHard,
         DifficultyInsane,
-        DifficultyCustom,
-        EnemiesCount,
         GameCopyright,
         GameLink,
-        GameSetupTitle,
         HighScoreTitle,
         Logo,
-        MinimalSpeed,
-        MaximumSpeed,
         NewHighScore,
         Play,
         SoundCredit,

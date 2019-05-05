@@ -6,9 +6,7 @@ namespace Escapa.Managers
 {
     public static class ScoreManager
     {
-        private const int _recordsCount = 5;
-
-        private static float _startTime = 0;
+        private static float _startTime;
 
         /// <summary>
         /// Current game time.
@@ -36,25 +34,25 @@ namespace Escapa.Managers
             if (LastTime > CurrentTop)
             {
                 IsHighScore = true;
-                Records[DifficultyManager.Level] = LastTime;
+                Records[(int) DifficultyManager.Level] = LastTime;
             }
         }
 
         /// <summary>
         /// Current high score.
         /// </summary>
-        public static float CurrentTop => Records[DifficultyManager.Level];
+        public static float CurrentTop => Records[(int) DifficultyManager.Level];
 
-        private static List<float> _records = null;
+        private static List<float> _records;
         private static List<float> Records
         {
             get
             {
                 if (_records == null)
                 {
-                    _records = new List<float>(_recordsCount);
+                    _records = new List<float>();
 
-                    for (var i = 0; i < _recordsCount; i++)
+                    for (var i = Difficulties.Easy; i <= Difficulties.Insane; i++)
                         _records.Add(PlayerPrefs.GetFloat($"{PlayerPrefKeys.Record}{i}", 0f));
                 }
 
@@ -67,8 +65,11 @@ namespace Escapa.Managers
         /// </summary>
         public static void SaveRecords()
         {
-            for (var i = 0; i < _recordsCount; i++)
-                PlayerPrefs.SetFloat($"{PlayerPrefKeys.Record}{i}", Records[i]);
+            for (var i = Difficulties.Easy; i <= Difficulties.Insane; i++)
+            {
+                var index = (int) i;
+                PlayerPrefs.SetFloat($"{PlayerPrefKeys.Record}{index}", Records[index]);
+            }
         }
     }
 }

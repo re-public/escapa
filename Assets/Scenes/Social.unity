@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 73162308}
   m_Layer: 5
   m_Name: LeaderboardsButton
-  m_TagString: LeaderboardsButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
   disableStyling: 0
   disableTranslating: 0
   isAlfa: 0
-  token: 9
+  token: 6
 --- !u!1 &699287246
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableStyling: 0
-  disableTranslating: 0
+  disableTranslating: 1
   isAlfa: 0
   token: 0
 --- !u!1 &2045183721
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 2045183726}
   m_Layer: 5
   m_Name: AchievementsButton
-  m_TagString: AchievementsButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

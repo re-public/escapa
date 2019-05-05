@@ -1,5 +1,4 @@
-﻿using Escapa.Managers;
-using Escapa.Utility;
+﻿using Escapa.Utility;
 using UnityEngine.SceneManagement;
 
 namespace Escapa.Buttons
@@ -8,10 +7,7 @@ namespace Escapa.Buttons
     {
         public override void Action()
         {
-            if (DifficultyManager.CurrentLevelIsCustom)
-                SceneManager.LoadSceneAsync((int) GameScenes.Setup, LoadSceneMode.Single);
-            else
-                SceneManager.LoadSceneAsync((int) GameScenes.Game, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync((int) GameScenes.Game, LoadSceneMode.Single);
         }
     }
 }

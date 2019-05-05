@@ -17,14 +17,6 @@
             "Text": "I N S A N E"
         },
         {
-            "Token": "DifficultyCustom",
-            "Text": "Custom"
-        },
-        {
-            "Token": "EnemiesCount",
-            "Text": "Enemies count:"
-        },
-        {
             "Token": "GameCopyright",
             "Text": "by <color=red>re::</color>public"
         },
@@ -33,24 +25,12 @@
             "Text": "republicgames.org"
         },
         {
-            "Token": "GameSetupTitle",
-            "Text": "Game setup"
-        },
-        {
             "Token": "HighScoreTitle",
             "Text": "High score:"
         },
         {
             "Token": "Logo",
             "Text": "E S C A P A"
-        },
-        {
-            "Token": "MinimalSpeed",
-            "Text": "Minimal enemies speed"
-        },
-        {
-            "Token": "MaximumSpeed",
-            "Text": "Maximum enemies speed"
         },
         {
             "Token": "NewHighScore",
@@ -99,10 +79,6 @@
             "Text": "Особый"
         },
         {
-            "Token": "EnemiesCount",
-            "Text": "Число противников:"
-        },
-        {
             "Token": "GameCopyright",
             "Text": "сделано в <color=red>re::</color>public"
         },
@@ -111,24 +87,12 @@
             "Text": "republicgames.org"
         },
         {
-            "Token": "GameSetupTitle",
-            "Text": "Настройка игры"
-        },
-        {
             "Token": "HighScoreTitle",
             "Text": "Рекорд:"
         },
         {
             "Token": "Logo",
             "Text": "Э С К А П А"
-        },
-        {
-            "Token": "MinimalSpeed",
-            "Text": "Минимальная скорость"
-        },
-        {
-            "Token": "MaximumSpeed",
-            "Text": "Максимальная скорость"
         },
         {
             "Token": "NewHighScore",
