@@ -26,7 +26,6 @@ namespace Escapa.Controllers
 
             Input.multiTouchEnabled = false;
             Application.targetFrameRate = 60;
-            Application.quitting += OnApplicationQuit;
         }
 
         private void Start() => IsSoundEnabled = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundEnabled, 1) == 1;
