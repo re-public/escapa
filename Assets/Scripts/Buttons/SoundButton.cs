@@ -1,4 +1,4 @@
-﻿using Escapa.Controllers;
+﻿using Escapa.Components;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -11,21 +11,21 @@ namespace Escapa.Buttons
 
         public override void Action()
         {
-            _systemController.IsSoundEnabled = !_systemController.IsSoundEnabled;
-            Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
+            _soundPlayer.IsMuted = !_soundPlayer.IsMuted;
+            Image.sprite = _soundPlayer.IsMuted ? spriteOff : spriteOn;
         }
 
-        private ISystemController _systemController;
+        private ISoundPlayer _soundPlayer;
 
         private new void Awake()
         {
             base.Awake();
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+            _soundPlayer = GameObject.FindWithTag(Tags.SoundPlayer).GetComponent<ISoundPlayer>();
         }
 
         private void Start()
         {
-            Image.sprite = _systemController.IsSoundEnabled ? spriteOn : spriteOff;
+            Image.sprite = _soundPlayer.IsMuted ? spriteOff : spriteOn;
         }
     }
 }

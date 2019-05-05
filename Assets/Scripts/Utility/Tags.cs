@@ -6,5 +6,6 @@
         public const string Player = "Player";
         public const string SystemController = "SystemController";
         public const string EventSystem = "EventSystem";
+        public const string SoundPlayer = "SoundPlayer";
     }
 }
