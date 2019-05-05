@@ -21,21 +21,6 @@ namespace Escapa.Utility
         Info
     }
 
-    public static class ResourceKeys
-    {
-        public const string Difficulty = "Difficulty";
-        public const string Languages = "Languages";
-        public const string Style = "Style";
-    }
-
-    public static class Tags
-    {
-        public const string MainCamera = "MainCamera";
-        public const string Player = "Player";
-        public const string SystemController = "SystemController";
-        public const string EventSystem = "EventSystem";
-    }
-
     #region Difficulty classes
     [Serializable]
     public class DifficultyRules
