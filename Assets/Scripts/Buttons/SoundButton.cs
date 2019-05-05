@@ -1,4 +1,5 @@
 ﻿using Escapa.Components;
+using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -9,12 +10,6 @@ namespace Escapa.Buttons
         public Sprite spriteOn;
         public Sprite spriteOff;
 
-        public override void Action()
-        {
-            _soundPlayer.IsMuted = !_soundPlayer.IsMuted;
-            Image.sprite = _soundPlayer.IsMuted ? spriteOff : spriteOn;
-        }
-
         private ISoundPlayer _soundPlayer;
 
         private new void Awake()
@@ -23,9 +18,21 @@ namespace Escapa.Buttons
             _soundPlayer = GameObject.FindWithTag(Tags.SoundPlayer).GetComponent<ISoundPlayer>();
         }
 
-        private void Start()
+        private new void OnEnable()
         {
-            Image.sprite = _soundPlayer.IsMuted ? spriteOff : spriteOn;
+            base.OnEnable();
+            _soundPlayer.MuteChanged += OnMuteChanged;
+        }
+
+        private new void OnDisable()
+        {
+            base.OnDisable();
+            _soundPlayer.MuteChanged -= OnMuteChanged;
+        }
+
+        private void OnMuteChanged(SystemEventArgs e)
+        {
+            Image.sprite = e.IsSoundMuted ? spriteOff : spriteOn;
         }
     }
 }

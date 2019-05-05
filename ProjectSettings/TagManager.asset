@@ -7,6 +7,7 @@ TagManager:
   - SystemController
   - EventSystem
   - SoundPlayer
+  - SoundButton
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,9 @@
-﻿namespace Escapa.Components
+﻿using Escapa.Events;
+
+namespace Escapa.Components
 {
     public interface ISoundPlayer
     {
-        bool IsMuted { get; set; }
+        event SystemEvent MuteChanged;
     }
 }
