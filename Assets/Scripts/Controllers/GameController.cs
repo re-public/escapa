@@ -1,4 +1,5 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Events;
+using Escapa.Managers;
 using Escapa.Units;
 using Escapa.Utility;
 using UnityEngine;
@@ -6,11 +7,14 @@ using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
-    public sealed class GameController : MonoBehaviour
+    public sealed class GameController : MonoBehaviour, IGameController
     {
+        public event GameEvent GameInitialized;
+        public event GameEvent GameStarted;
+        public event GameEvent GameEnded;
+        
         private IPlayer _player;
         private ISocialController _socialController;
-        private bool _isGameStarted;
 
         private void Awake()
         {
@@ -22,6 +26,11 @@ namespace Escapa.Controllers
         {
             _player.Die += OnPlayerDie;
             _player.MousePressed += OnPlayerPressed;
+        }
+
+        private void Start()
+        {
+            GameInitialized?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
         }
 
         private void FixedUpdate()
@@ -54,13 +63,10 @@ namespace Escapa.Controllers
 
         private void OnPlayerDie()
         {
-            if (!_isGameStarted) return;
-
             ScoreManager.StopCount();
             _socialController.SendScore();
 
-            _isGameStarted = false;
-
+            GameEnded?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
             SceneManager.LoadSceneAsync((int) GameScenes.End, LoadSceneMode.Single);
         }
 
@@ -68,9 +74,8 @@ namespace Escapa.Controllers
         {
             _player.MousePressed -= OnPlayerPressed;
 
-            _isGameStarted = true;
-
             ScoreManager.StartCount();
+            GameStarted?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
         }
     }
 }

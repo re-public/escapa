@@ -1,4 +1,4 @@
-﻿using Escapa.Components;
+﻿using Escapa.Controllers;
 using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
@@ -10,24 +10,26 @@ namespace Escapa.Buttons
         public Sprite spriteOn;
         public Sprite spriteOff;
 
-        private ISoundPlayer _soundPlayer;
+        private ISystemController _systemController;
 
         private new void Awake()
         {
             base.Awake();
-            _soundPlayer = GameObject.FindWithTag(Tags.SoundPlayer).GetComponent<ISoundPlayer>();
+            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
         }
 
         private new void OnEnable()
         {
             base.OnEnable();
-            _soundPlayer.MuteChanged += OnMuteChanged;
+            _systemController.MuteChanged += OnMuteChanged;
+            _systemController.SceneLoaded += OnMuteChanged;
         }
 
         private new void OnDisable()
         {
             base.OnDisable();
-            _soundPlayer.MuteChanged -= OnMuteChanged;
+            _systemController.MuteChanged -= OnMuteChanged;
+            _systemController.SceneLoaded -= OnMuteChanged;
         }
 
         private void OnMuteChanged(SystemEventArgs e)

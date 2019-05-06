@@ -1,4 +1,5 @@
 ﻿using System;
+using Escapa.Utility;
 
 namespace Escapa.Events
 {
@@ -7,10 +8,12 @@ namespace Escapa.Events
     public sealed class SystemEventArgs : EventArgs
     {
         public bool IsSoundMuted { get; }
+        public GameScenes Scene { get; }
 
-        public SystemEventArgs(bool isSoundMuted)
+        public SystemEventArgs(bool isSoundMuted, GameScenes scene)
         {
             IsSoundMuted = isSoundMuted;
+            Scene = scene;
         }
     }
 }

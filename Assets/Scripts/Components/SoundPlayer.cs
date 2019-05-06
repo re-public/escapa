@@ -1,4 +1,4 @@
-﻿using Escapa.Buttons;
+﻿using Escapa.Controllers;
 using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
@@ -6,33 +6,24 @@ using UnityEngine;
 namespace Escapa.Components
 {
     [RequireComponent(typeof(AudioSource))]
-    public sealed class SoundPlayer : MonoBehaviour, ISoundPlayer
+    public sealed class SoundPlayer : MonoBehaviour
     {
-        public event SystemEvent MuteChanged;
-        
         private AudioSource _audioSource;
-        private bool _isMuted;
 
-        private IButton _soundButton;
+        private ISystemController _systemController;
         
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             
             _audioSource = GetComponent<AudioSource>();
-            _soundButton = GameObject.FindWithTag(Tags.SoundButton).GetComponent<IButton>();
+            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
         }
 
         private void OnEnable()
         {
-            _soundButton.ButtonClicked += OnSoundButtonClicked;
-        }
-
-        private void Start()
-        {
-            _isMuted = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundMuted, 0) == 1;
-            _audioSource.mute = _isMuted;
-            MuteChanged?.Invoke(new SystemEventArgs(_isMuted));
+            _systemController.MuteChanged += OnMuteChanged;
+            _systemController.SceneLoaded += OnSceneLoaded;
         }
 
         private void OnApplicationPause(bool pauseStatus)
@@ -47,21 +38,23 @@ namespace Escapa.Components
             }
         }
 
-        private void OnApplicationQuit()
-        {
-            PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundMuted, _isMuted ? 1 : 0);
-        }
-
         private void OnDisable()
         {
-            _soundButton.ButtonClicked -= OnSoundButtonClicked;
+            _systemController.MuteChanged += OnMuteChanged;
+            _systemController.SceneLoaded += OnSceneLoaded;
         }
 
-        private void OnSoundButtonClicked()
+        private void OnMuteChanged(SystemEventArgs e)
         {
-            _isMuted = !_isMuted;
-            _audioSource.mute = _isMuted;
-            MuteChanged?.Invoke(new SystemEventArgs(_isMuted));
+            _audioSource.mute = e.IsSoundMuted;
+        }
+
+        private void OnSceneLoaded(SystemEventArgs e)
+        {
+            if (!_audioSource.isPlaying && e.Scene == GameScenes.Menu)
+            {
+                _audioSource.Play();
+            }
         }
     }
 }

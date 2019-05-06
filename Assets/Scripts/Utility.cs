@@ -21,21 +21,6 @@ namespace Escapa.Utility
         Info
     }
 
-    #region Difficulty classes
-    [Serializable]
-    public class DifficultyRules
-    {
-        public LevelRules[] Levels;
-    }
-
-    [Serializable]
-    public class LevelRules
-    {
-        public float MinSpeed;
-        public float MaxSpeed;
-    }
-    #endregion
-
     #region Language classes
     [Serializable]
     public class Language

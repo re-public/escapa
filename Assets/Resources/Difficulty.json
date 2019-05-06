@@ -1,20 +1,24 @@
 {
-    "Levels": [
+    "levels": [
         {
-            "MinSpeed": 2.0,
-            "MaxSpeed": 3.0
+            "difficulty": 0,
+            "minSpeed": 2.0,
+            "maxSpeed": 3.0
         },
         {
-            "MinSpeed": 2.0,
-            "MaxSpeed": 3.0
+            "difficulty": 1,
+            "minSpeed": 2.0,
+            "maxSpeed": 3.0
         },
         {
-            "MinSpeed": 3.0,
-            "MaxSpeed": 4.0
+            "difficulty": 2,
+            "minSpeed": 3.0,
+            "maxSpeed": 4.0
         },
         {
-            "MinSpeed": 3.0,
-            "MaxSpeed": 5.0
+            "difficulty": 3,
+            "minSpeed": 3.0,
+            "maxSpeed": 5.0
         }
     ]
 }

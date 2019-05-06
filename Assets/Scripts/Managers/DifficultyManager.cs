@@ -6,13 +6,13 @@ namespace Escapa.Managers
 {
     public static class DifficultyManager
     {
-        private static DifficultyRules _difficulty;
-        public static LevelRules Difficulty
+        private static Levels _difficulty;
+        public static Level Difficulty
         {
             get
             {
                 if (_difficulty == null) LoadDifficulty();
-                return _difficulty.Levels[(int) Level];
+                return _difficulty.levels[(int) Level];
             }
         }
 
@@ -44,7 +44,7 @@ namespace Escapa.Managers
         private static void LoadDifficulty()
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Difficulty).text;
-            _difficulty = JsonUtility.FromJson<DifficultyRules>(json);
+            _difficulty = JsonUtility.FromJson<Levels>(json);
         }
     }
 }
