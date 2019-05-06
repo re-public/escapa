@@ -47,10 +47,15 @@ namespace Escapa.Components
         private void OnMuteChanged(SystemEventArgs e)
         {
             _audioSource.mute = e.IsSoundMuted;
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }
         }
 
         private void OnSceneLoaded(SystemEventArgs e)
         {
+            _audioSource.mute = e.IsSoundMuted;
             if (!_audioSource.isPlaying && e.Scene == GameScenes.Menu)
             {
                 _audioSource.Play();
