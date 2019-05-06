@@ -58,9 +58,9 @@ namespace Escapa.Units
             _rigidbody2D.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
         }
         
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            _spriteRenderer.color = theme.Enemy;
+            _spriteRenderer.color = e.Theme.Enemy;
         }
     }
 }

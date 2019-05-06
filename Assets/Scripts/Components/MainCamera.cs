@@ -1,4 +1,5 @@
 ﻿using Escapa.Controllers;
+using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -30,9 +31,9 @@ namespace Escapa.Components
             _styleController.StyleChanged -= OnStyleChanged;
         }
 
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            _camera.backgroundColor = theme.Background;
+            _camera.backgroundColor = e.Theme.Background;
         }
     }
 }

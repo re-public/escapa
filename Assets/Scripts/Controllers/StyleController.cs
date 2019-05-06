@@ -2,44 +2,46 @@
 using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
     public sealed class StyleController : MonoBehaviour, IStyleController
     {
         public event StyleEvent StyleChanged;
-
-        private int _currentTheme;
+        
         private Style _style;
+
+        private ISystemController _systemController;
 
         private void Awake()
         {
+            _systemController = GetComponent<ISystemController>();
+            
             var json = Resources.Load<TextAsset>(ResourceKeys.Style).text;
             _style = JsonUtility.FromJson<Style>(json);
         }
 
         private void OnEnable()
         {
+            _systemController.SceneLoaded += OnSceneLoaded;
             DifficultyManager.DifficultyChanged += OnDifficultyChanged;
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            _systemController.SceneLoaded -= OnSceneLoaded;
+            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
         }
 
         private void OnDifficultyChanged(Difficulties difficulty)
         {
-            _currentTheme = (int) difficulty;
-            StyleChanged?.Invoke(_style.Themes[_currentTheme]);
+            StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[(int) difficulty]));
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode _)
+        private void OnSceneLoaded(SystemEventArgs e)
         {
-            if(scene.buildIndex != (int)GameScenes.Preload)
-                StyleChanged?.Invoke(_style.Themes[_currentTheme]);   
+            if(e.Scene != GameScenes.Preload)
+                StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[(int) DifficultyManager.Level]));   
         }
     }
 }

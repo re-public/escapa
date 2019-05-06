@@ -1,4 +1,5 @@
 ﻿using Escapa.Controllers;
+using Escapa.Events;
 using Escapa.Managers;
 using Escapa.Utility;
 using TMPro;
@@ -47,9 +48,9 @@ namespace Escapa.Components
             }
         }
 
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            TextMesh.color = isAlfa ? theme.TextAlfa : theme.Text;
+            TextMesh.color = isAlfa ? e.Theme.TextAlfa : e.Theme.Text;
         }
     }
 }

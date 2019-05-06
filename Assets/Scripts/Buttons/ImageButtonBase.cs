@@ -32,9 +32,9 @@ namespace Escapa.Buttons
         }
 
 
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            Image.color = theme.Text;
+            Image.color = e.Theme.Text;
         }
 
         public virtual void Action()

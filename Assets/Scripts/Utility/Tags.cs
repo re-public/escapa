@@ -7,7 +7,7 @@
         public const string GameController = "GameController";
         public const string SystemController = "SystemController";
         public const string EventSystem = "EventSystem";
-        public const string SoundPlayer = "SoundPlayer";
         public const string SoundButton = "SoundButton";
+        public const string StyleController = "StyleController";
     }
 }

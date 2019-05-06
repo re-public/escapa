@@ -71,9 +71,9 @@ namespace Escapa.Units
             _styleController.StyleChanged -= OnStyleChanged;
         }
 
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            _spriteRenderer.color = theme.Player;
+            _spriteRenderer.color = e.Theme.Player;
         }
 
         private void OnTouch(TouchPhase phase, Vector2 position)

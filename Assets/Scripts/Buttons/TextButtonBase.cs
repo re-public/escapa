@@ -1,4 +1,5 @@
 ﻿using Escapa.Controllers;
+using Escapa.Events;
 using Escapa.Managers;
 using Escapa.Utility;
 using TMPro;
@@ -42,9 +43,9 @@ namespace Escapa.Buttons
         }
 
 
-        private void OnStyleChanged(Theme theme)
+        private void OnStyleChanged(StyleEventArgs e)
         {
-            TextMesh.color = theme.Text;
+            TextMesh.color = e.Theme.Text;
         }
         
         public abstract void Action();
