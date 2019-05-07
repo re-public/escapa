@@ -7,12 +7,10 @@ namespace Escapa.Events
     
     public sealed class SystemEventArgs : EventArgs
     {
-        public bool IsSoundMuted { get; }
         public GameScenes Scene { get; }
 
-        public SystemEventArgs(bool isSoundMuted, GameScenes scene)
+        public SystemEventArgs(GameScenes scene)
         {
-            IsSoundMuted = isSoundMuted;
             Scene = scene;
         }
     }

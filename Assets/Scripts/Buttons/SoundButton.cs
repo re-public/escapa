@@ -10,31 +10,29 @@ namespace Escapa.Buttons
         public Sprite spriteOn;
         public Sprite spriteOff;
 
-        private ISystemController _systemController;
+        private ISoundController _soundController;
 
         private new void Awake()
         {
             base.Awake();
-            _systemController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISystemController>();
+            _soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
         }
 
         private new void OnEnable()
         {
             base.OnEnable();
-            _systemController.MuteChanged += OnMuteChanged;
-            _systemController.SceneLoaded += OnMuteChanged;
+            _soundController.MuteChanged += OnMuteChanged;
         }
 
         private new void OnDisable()
         {
             base.OnDisable();
-            _systemController.MuteChanged -= OnMuteChanged;
-            _systemController.SceneLoaded -= OnMuteChanged;
+            _soundController.MuteChanged -= OnMuteChanged;
         }
 
-        private void OnMuteChanged(SystemEventArgs e)
+        private void OnMuteChanged(SoundEventArgs e)
         {
-            Image.sprite = e.IsSoundMuted ? spriteOff : spriteOn;
+            Image.sprite = e.IsMuted ? spriteOff : spriteOn;
         }
     }
 }

@@ -8,6 +8,5 @@
         public const string SystemController = "SystemController";
         public const string EventSystem = "EventSystem";
         public const string SoundButton = "SoundButton";
-        public const string StyleController = "StyleController";
     }
 }
