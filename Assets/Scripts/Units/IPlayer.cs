@@ -4,17 +4,9 @@ namespace Escapa.Units
 {
     public interface IPlayer
     {
-        event PlayerEvent Die;
-        event PlayerEvent MousePressed;
-
-        /// <summary>
-        /// Time without moving.
-        /// </summary>
-        float IdleTime { get; }
-
-        /// <summary>
-        /// Time in non-stop moving.
-        /// </summary>
-        float MovingTime { get; }
+        event PlayerEvent Died;
+        event PlayerEvent Moved;
+        event PlayerEvent Pressed;
+        event PlayerEvent Stopped;
     }
 }

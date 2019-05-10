@@ -3,7 +3,6 @@ using Escapa.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -55,7 +54,7 @@ namespace Escapa.Controllers
 
         public void SaveAchievementsLocal()
         {
-            for (var i = 0; i < _achievementsCount; i++)
+            for (var i = 0; i < AchievementsCount; i++)
             {
                 var achievementName = string.Empty;
 
@@ -71,21 +70,22 @@ namespace Escapa.Controllers
             }
         }
 
-        private static readonly int _achievementsCount = 6;
-        private static bool[] _achievementsFlags;
+        private const int AchievementsCount = 6;
+        private bool[] _achievementsFlags;
+
+        private ISystemController _systemController;
+
+        private void Awake()
+        {
+            _systemController = GetComponent<ISystemController>();
+        }
 
         private void Start()
         {
             Auth();
         }
-
-        private void FixedUpdate()
-        {
-            if (Input.GetKey(KeyCode.Escape))
-                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
-        }
         
-        private static void Auth()
+        private void Auth()
         {
             var config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
@@ -98,8 +98,8 @@ namespace Escapa.Controllers
                     ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
                 }
 
-                _achievementsFlags = new bool[_achievementsCount];
-                for (var i = 0; i < _achievementsCount; i++)
+                _achievementsFlags = new bool[AchievementsCount];
+                for (var i = 0; i < AchievementsCount; i++)
                 {
                     var achievementName = string.Empty;
 
@@ -114,7 +114,7 @@ namespace Escapa.Controllers
                     _achievementsFlags[i] = PlayerPrefs.GetInt(achievementName, 0) != 0;
                 }
 
-                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+                _systemController.GoToScene(GameScenes.Menu);
             });
         }
     }

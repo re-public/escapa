@@ -15,7 +15,7 @@ namespace Escapa.Buttons
         private new void Awake()
         {
             base.Awake();
-            _soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
+            _soundController = GameObject.FindWithTag(Tags.GameController).GetComponent<ISoundController>();
         }
 
         private new void OnEnable()

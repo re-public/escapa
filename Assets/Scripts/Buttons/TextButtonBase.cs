@@ -21,7 +21,7 @@ namespace Escapa.Buttons
         protected void Awake()
         {
             TextMesh = GetComponent<TextMeshProUGUI>();
-            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
         
         protected void OnEnable()

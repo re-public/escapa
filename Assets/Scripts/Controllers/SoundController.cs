@@ -2,7 +2,6 @@
 using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -14,20 +13,20 @@ namespace Escapa.Controllers
         private bool _isMuted;
         private AudioSource _audioSource;
         private IButton _soundButton;
+        private ISystemController _systemController;
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-
             _isMuted = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundMuted, 0) == 1;
             
             _audioSource = GetComponent<AudioSource>();
+            _systemController = GetComponent<ISystemController>();
         }
 
         private void OnEnable()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            _systemController.SceneLoaded += OnSceneLoaded;
+            _systemController.SceneUnloaded += OnSceneUnloaded;
         }
 
         private void OnApplicationPause(bool pauseStatus)
@@ -49,13 +48,13 @@ namespace Escapa.Controllers
 
         private void OnDisable()
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            _systemController.SceneLoaded -= OnSceneLoaded;
+            _systemController.SceneUnloaded -= OnSceneUnloaded;
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        private void OnSceneLoaded(SystemEventArgs e)
         {
-            if (scene.buildIndex == (int) GameScenes.Menu)
+            if (e.Scene == GameScenes.Menu)
             {
                 if (!_isMuted && _audioSource.isPlaying)
                 {
@@ -67,9 +66,9 @@ namespace Escapa.Controllers
             }
         }
 
-        private void OnSceneUnloaded(Scene scene)
+        private void OnSceneUnloaded(SystemEventArgs e)
         {
-            if (scene.buildIndex == (int) GameScenes.Menu)
+            if (e.Scene == GameScenes.Menu)
             {
                 _soundButton.ButtonClicked -= OnSoundButtonClicked;
             }

@@ -8,7 +8,8 @@ namespace Escapa.Controllers
     public sealed class StyleController : MonoBehaviour, IStyleController
     {
         public event StyleEvent StyleChanged;
-        
+
+        private int _currentStyle;
         private Style _style;
 
         private ISystemController _systemController;
@@ -35,13 +36,14 @@ namespace Escapa.Controllers
 
         private void OnDifficultyChanged(Difficulties difficulty)
         {
-            StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[(int) difficulty]));
+            _currentStyle = (int) difficulty;
+            StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[_currentStyle]));
         }
 
         private void OnSceneLoaded(SystemEventArgs e)
         {
             if(e.Scene != GameScenes.Preload)
-                StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[(int) DifficultyManager.Level]));   
+                StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[_currentStyle]));   
         }
     }
 }

@@ -9,6 +9,8 @@ namespace Escapa.Components
     public sealed class MainCamera : MonoBehaviour, IMainCamera
     {
         public float UnitsPerPixel => _camera.orthographicSize * 2.0f / Screen.height;
+
+        public Vector2 ScreenToWorldPoint(Vector2 point) => _camera.ScreenToWorldPoint(point);
         
         private Camera _camera;
         private IStyleController _styleController;
@@ -18,7 +20,7 @@ namespace Escapa.Components
             DontDestroyOnLoad(gameObject);
             
             _camera = GetComponent<Camera>();
-            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()

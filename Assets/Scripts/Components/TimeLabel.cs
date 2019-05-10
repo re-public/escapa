@@ -1,21 +1,46 @@
-﻿using Escapa.Managers;
+﻿using Escapa.Controllers;
+using Escapa.Events;
+using Escapa.Managers;
 using Escapa.Utility;
+using TMPro;
+using UnityEngine;
 
 namespace Escapa.Components
 {
-    public sealed class TimeLabel : Label
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public sealed class TimeLabel : MonoBehaviour
     {
-        private new void Awake()
+        private IGameController _gameController;
+        private IStyleController _styleController;
+        private TextMeshProUGUI _textMesh;
+
+        private void Awake()
         {
-            base.Awake();
-            disableTranslating = true;
-            token = LanguageTokens.Time;
+            _gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
+            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
+            _textMesh = GetComponent<TextMeshProUGUI>();
         }
-        
-        private new void Start()
+
+        private void OnEnable()
         {
-            base.Start();
-            TextMesh.SetText(LanguageManager.GetString(token) + ScoreManager.LastTime.ToString("0.000"));
+            _gameController.GameEnded += OnGameEnded;
+            _styleController.StyleChanged += OnStyleChanged;
+        }
+
+        private void OnDisable()
+        {
+            _gameController.GameEnded -= OnGameEnded;
+            _styleController.StyleChanged -= OnStyleChanged;
+        }
+
+        private void OnStyleChanged(StyleEventArgs e)
+        {
+            _textMesh.color = e.Theme.Text;
+        }
+
+        private void OnGameEnded(GameEventArgs e)
+        {
+            _textMesh.SetText(LanguageManager.GetString(LanguageTokens.Time) + e.Time.ToString("0.000"));
         }
     }
 }

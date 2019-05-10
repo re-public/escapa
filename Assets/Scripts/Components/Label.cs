@@ -8,49 +8,37 @@ using UnityEngine;
 namespace Escapa.Components
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class Label : MonoBehaviour
+    public sealed class Label : MonoBehaviour
     {
-        public bool disableStyling;
-        public bool disableTranslating;
-        public bool isAlfa;
         public LanguageTokens token;
+
         private IStyleController _styleController;
-        
-        protected TextMeshProUGUI TextMesh;
+        private TextMeshProUGUI _textMesh;
 
-        protected void Awake()
+        private void Awake()
         {
-            TextMesh = GetComponent<TextMeshProUGUI>();
-            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _textMesh = GetComponent<TextMeshProUGUI>();
+            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
 
-        protected void OnEnable()
+        private void OnEnable()
         {
-            if (!disableStyling)
-            {
-                _styleController.StyleChanged += OnStyleChanged;
-            }
+            _styleController.StyleChanged += OnStyleChanged;
         }
 
-        protected void Start()
+        private void Start()
         {
-            if (!disableTranslating)
-            {
-                TextMesh.SetText(LanguageManager.GetString(token));
-            }
+            _textMesh.SetText(LanguageManager.GetString(token));
         }
 
-        protected void OnDisable()
+        private void OnDisable()
         {
-            if (!disableStyling)
-            {
-                _styleController.StyleChanged -= OnStyleChanged;
-            }
+            _styleController.StyleChanged -= OnStyleChanged;
         }
 
         private void OnStyleChanged(StyleEventArgs e)
         {
-            TextMesh.color = isAlfa ? e.Theme.TextAlfa : e.Theme.Text;
+            _textMesh.color = e.Theme.Text;
         }
     }
 }

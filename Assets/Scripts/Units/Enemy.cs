@@ -22,8 +22,10 @@ namespace Escapa.Units
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
-            _styleController = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+
+            var go = GameObject.FindWithTag(Tags.GameController);
+            _gameController = go.GetComponent<IGameController>();
+            _styleController = go.GetComponent<IStyleController>();
         }
         
         private void OnEnable()

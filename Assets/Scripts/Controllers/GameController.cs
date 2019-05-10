@@ -3,7 +3,6 @@ using Escapa.Managers;
 using Escapa.Units;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -15,22 +14,21 @@ namespace Escapa.Controllers
         
         private IPlayer _player;
         private ISocialController _socialController;
+        private ISystemController _systemController;
+
+        private float? _idleTime;
+        private float? _movingTime;
 
         private void Awake()
         {
-            _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-            _socialController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISocialController>();
+            _socialController = GetComponent<ISocialController>();
+            _systemController = GetComponent<ISystemController>();
         }
 
         private void OnEnable()
         {
-            _player.Die += OnPlayerDie;
-            _player.MousePressed += OnPlayerPressed;
-        }
-
-        private void Start()
-        {
-            GameInitialized?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
+            _systemController.SceneLoaded += OnSceneLoaded;
+            _systemController.SceneUnloaded += OnSceneUnloaded;
         }
 
         private void FixedUpdate()
@@ -39,15 +37,15 @@ namespace Escapa.Controllers
             {
                 ScoreManager.StopCount();
 
-                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+                _systemController.GoToScene(GameScenes.Menu);
             }
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == Difficulties.Insane)
                 _socialController.CompleteAchievement(Achievements.BlackHawk);
 
-            if (_player.IdleTime > 5f)
+            if (_idleTime.HasValue && ScoreManager.CurrentRecord - _idleTime.Value > 5f)
                 _socialController.CompleteAchievement(Achievements.Zen);
-            else if (_player.MovingTime > 10f)
+            else if (_movingTime.HasValue && ScoreManager.CurrentRecord - _movingTime > 10f)
                 _socialController.CompleteAchievement(Achievements.MovesLikeJagger);
         }
 
@@ -61,21 +59,73 @@ namespace Escapa.Controllers
             }
         }
 
+        private void OnDisable()
+        {
+            _systemController.SceneLoaded -= OnSceneLoaded;
+            _systemController.SceneUnloaded -= OnSceneUnloaded;
+        }
+
         private void OnPlayerDie()
         {
             ScoreManager.StopCount();
             _socialController.SendScore();
+            
+            _systemController.GoToScene(GameScenes.End);
+        }
 
-            GameEnded?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
-            SceneManager.LoadSceneAsync((int) GameScenes.End, LoadSceneMode.Single);
+        private void OnPlayerMoved()
+        {
+            if (!_movingTime.HasValue)
+            {
+                _movingTime = ScoreManager.CurrentRecord;
+                _idleTime = null;
+            }
         }
 
         private void OnPlayerPressed()
         {
-            _player.MousePressed -= OnPlayerPressed;
+            _player.Pressed -= OnPlayerPressed;
 
             ScoreManager.StartCount();
             GameStarted?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
+        }
+
+        private void OnPlayerStopped()
+        {
+            if (!_idleTime.HasValue)
+            {
+                _idleTime = ScoreManager.CurrentRecord;
+                _movingTime = null;
+            }
+        }
+
+        private void OnSceneLoaded(SystemEventArgs e)
+        {
+            if (e.Scene == GameScenes.Game)
+            {
+                _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+                _player.Died += OnPlayerDie;
+                _player.Moved += OnPlayerMoved;
+                _player.Pressed += OnPlayerPressed;
+                _player.Stopped += OnPlayerStopped;
+                
+                GameInitialized?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
+            }
+            else if (e.Scene == GameScenes.End)
+            {
+                GameEnded?.Invoke(new GameEventArgs(ScoreManager.LastTime, DifficultyManager.Difficulty));
+            }
+        }
+
+        private void OnSceneUnloaded(SystemEventArgs e)
+        {
+            if (e.Scene == GameScenes.Game)
+            {
+                _player.Died -= OnPlayerDie;
+                _player.Moved -= OnPlayerMoved;
+                _player.Pressed -= OnPlayerPressed;
+                _player.Stopped -= OnPlayerStopped;
+            }
         }
     }
 }
