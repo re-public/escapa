@@ -10,18 +10,15 @@ namespace Escapa.Buttons
     public abstract class ImageButtonBase : MonoBehaviour, IButton
     {
         public event ButtonEvent ButtonClicked;
-
-        protected GameObject GameController;
+        
         protected Image Image;
-
+        
         private IStyleController _styleController;
 
         protected void Awake()
         {
-            Image = GetComponent<Image>();
-            GameController = GameObject.FindWithTag(Tags.GameController);
-            
-            _styleController = GameController.GetComponent<IStyleController>();
+            Image = GetComponent<Image>();          
+            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
 
         protected void OnEnable()

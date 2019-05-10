@@ -3,6 +3,7 @@ using Escapa.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -73,13 +74,6 @@ namespace Escapa.Controllers
         private const int AchievementsCount = 6;
         private bool[] _achievementsFlags;
 
-        private ISystemController _systemController;
-
-        private void Awake()
-        {
-            _systemController = GetComponent<ISystemController>();
-        }
-
         private void Start()
         {
             Auth();
@@ -114,7 +108,7 @@ namespace Escapa.Controllers
                     _achievementsFlags[i] = PlayerPrefs.GetInt(achievementName, 0) != 0;
                 }
 
-                _systemController.GoToScene(GameScenes.Menu);
+                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
             });
         }
     }

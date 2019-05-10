@@ -2,6 +2,7 @@
 using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -13,20 +14,18 @@ namespace Escapa.Controllers
         private bool _isMuted;
         private AudioSource _audioSource;
         private IButton _soundButton;
-        private ISystemController _systemController;
 
         private void Awake()
         {
             _isMuted = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundMuted, 0) == 1;
             
             _audioSource = GetComponent<AudioSource>();
-            _systemController = GetComponent<ISystemController>();
         }
 
         private void OnEnable()
         {
-            _systemController.SceneLoaded += OnSceneLoaded;
-            _systemController.SceneUnloaded += OnSceneUnloaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
         private void OnApplicationPause(bool pauseStatus)
@@ -48,13 +47,13 @@ namespace Escapa.Controllers
 
         private void OnDisable()
         {
-            _systemController.SceneLoaded -= OnSceneLoaded;
-            _systemController.SceneUnloaded -= OnSceneUnloaded;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
-        private void OnSceneLoaded(SystemEventArgs e)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (e.Scene == GameScenes.Menu)
+            if (scene.buildIndex == (int) GameScenes.Menu)
             {
                 if (!_isMuted && _audioSource.isPlaying)
                 {
@@ -66,12 +65,12 @@ namespace Escapa.Controllers
             }
         }
 
-        private void OnSceneUnloaded(SystemEventArgs e)
+        private void OnSceneUnloaded(Scene scene)
         {
-            if (e.Scene == GameScenes.Menu)
+            if (scene.buildIndex == (int) GameScenes.Menu)
             {
                 _soundButton.ButtonClicked -= OnSoundButtonClicked;
-            }
+            }   
         }
 
         private void OnSoundButtonClicked()

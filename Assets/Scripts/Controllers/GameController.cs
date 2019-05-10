@@ -3,6 +3,7 @@ using Escapa.Managers;
 using Escapa.Units;
 using Escapa.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -14,7 +15,6 @@ namespace Escapa.Controllers
         
         private IPlayer _player;
         private ISocialController _socialController;
-        private ISystemController _systemController;
 
         private float? _idleTime;
         private float? _movingTime;
@@ -22,13 +22,12 @@ namespace Escapa.Controllers
         private void Awake()
         {
             _socialController = GetComponent<ISocialController>();
-            _systemController = GetComponent<ISystemController>();
         }
 
         private void OnEnable()
         {
-            _systemController.SceneLoaded += OnSceneLoaded;
-            _systemController.SceneUnloaded += OnSceneUnloaded;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
         private void FixedUpdate()
@@ -36,8 +35,6 @@ namespace Escapa.Controllers
             if (Input.GetKey(KeyCode.Escape))
             {
                 ScoreManager.StopCount();
-
-                _systemController.GoToScene(GameScenes.Menu);
             }
 
             if (ScoreManager.CurrentRecord > 18f && DifficultyManager.Level == Difficulties.Insane)
@@ -61,16 +58,14 @@ namespace Escapa.Controllers
 
         private void OnDisable()
         {
-            _systemController.SceneLoaded -= OnSceneLoaded;
-            _systemController.SceneUnloaded -= OnSceneUnloaded;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
         private void OnPlayerDie()
         {
             ScoreManager.StopCount();
             _socialController.SendScore();
-            
-            _systemController.GoToScene(GameScenes.End);
         }
 
         private void OnPlayerMoved()
@@ -99,9 +94,9 @@ namespace Escapa.Controllers
             }
         }
 
-        private void OnSceneLoaded(SystemEventArgs e)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (e.Scene == GameScenes.Game)
+            if (scene.buildIndex == (int) GameScenes.Game)
             {
                 _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
                 _player.Died += OnPlayerDie;
@@ -111,15 +106,15 @@ namespace Escapa.Controllers
                 
                 GameInitialized?.Invoke(new GameEventArgs(ScoreManager.CurrentRecord, DifficultyManager.Difficulty));
             }
-            else if (e.Scene == GameScenes.End)
+            else if (scene.buildIndex == (int) GameScenes.End)
             {
                 GameEnded?.Invoke(new GameEventArgs(ScoreManager.LastTime, DifficultyManager.Difficulty));
             }
         }
 
-        private void OnSceneUnloaded(SystemEventArgs e)
+        private void OnSceneUnloaded(Scene scene)
         {
-            if (e.Scene == GameScenes.Game)
+            if (scene.buildIndex == (int) GameScenes.Game)
             {
                 _player.Died -= OnPlayerDie;
                 _player.Moved -= OnPlayerMoved;

@@ -1,34 +1,16 @@
-﻿using Escapa.Controllers;
-using Escapa.Utility;
-using UnityEngine;
+﻿using Escapa.Utility;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Buttons
 {
     public sealed class LoadSceneButton : ImageButtonBase
     {
-        public bool isBackButton;
         public GameScenes scene;
-
-        private ISystemController _systemController;
 
         public override void Action()
         {
+            SceneManager.LoadSceneAsync((int) scene, LoadSceneMode.Single);
             base.Action();
-            _systemController.GoToScene(scene);
-        }
-
-        private new void Awake()
-        {
-            base.Awake();
-            _systemController = GameController.GetComponent<ISystemController>();
-        }
-
-        private void FixedUpdate()
-        {
-            if (isBackButton && Input.GetKey(KeyCode.Escape))
-            {
-                Action();
-            }
         }
     }
 }

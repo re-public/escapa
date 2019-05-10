@@ -2,6 +2,7 @@
 using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Controllers
 {
@@ -11,26 +12,22 @@ namespace Escapa.Controllers
 
         private int _currentStyle;
         private Style _style;
-
-        private ISystemController _systemController;
-
+        
         private void Awake()
         {
-            _systemController = GetComponent<ISystemController>();
-            
             var json = Resources.Load<TextAsset>(ResourceKeys.Style).text;
             _style = JsonUtility.FromJson<Style>(json);
         }
 
         private void OnEnable()
         {
-            _systemController.SceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
             DifficultyManager.DifficultyChanged += OnDifficultyChanged;
         }
 
         private void OnDisable()
         {
-            _systemController.SceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
         }
 
@@ -40,10 +37,12 @@ namespace Escapa.Controllers
             StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[_currentStyle]));
         }
 
-        private void OnSceneLoaded(SystemEventArgs e)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if(e.Scene != GameScenes.Preload)
-                StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[_currentStyle]));   
+            if(scene.buildIndex != (int) GameScenes.Preload)
+            {
+                StyleChanged?.Invoke(new StyleEventArgs(_style.Themes[_currentStyle]));
+            }   
         }
     }
 }

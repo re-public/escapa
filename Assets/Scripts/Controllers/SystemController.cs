@@ -1,4 +1,4 @@
-﻿using Escapa.Events;
+﻿using Escapa.Buttons;
 using Escapa.Managers;
 using Escapa.Utility;
 using UnityEngine;
@@ -7,17 +7,11 @@ using UnityEngine.SceneManagement;
 namespace Escapa.Controllers
 {
     [RequireComponent(typeof(ISoundController))]
-    public sealed class SystemController : MonoBehaviour, ISystemController
+    public sealed class SystemController : MonoBehaviour
     {
-        public event SystemEvent SceneLoaded;
-        public event SystemEvent SceneUnloaded;
-        
+        private GameScenes _current;
         private ISocialController _socialController;
-
-        public void GoToScene(GameScenes scene)
-        {
-            SceneManager.LoadSceneAsync((int) scene, LoadSceneMode.Single);
-        }
+        private IButton _backButton;
 
         private void Awake()
         {
@@ -33,7 +27,14 @@ namespace Escapa.Controllers
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                GoBack();
+            }
         }
 
         private void OnApplicationQuit()
@@ -47,17 +48,23 @@ namespace Escapa.Controllers
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
+
+        private void GoBack()
+        {
+            if(_current == GameScenes.Menu)
+            {
+                Application.Quit();
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+            }
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            SceneLoaded?.Invoke(new SystemEventArgs((GameScenes) scene.buildIndex));
-        }
-
-        private void OnSceneUnloaded(Scene scene)
-        {
-            SceneUnloaded?.Invoke(new SystemEventArgs((GameScenes) scene.buildIndex));
+            _current = (GameScenes) scene.buildIndex;
         }
     }
 }
