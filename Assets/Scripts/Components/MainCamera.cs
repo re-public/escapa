@@ -1,7 +1,7 @@
-﻿using Escapa.Controllers;
-using Escapa.Events;
+﻿using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Components
 {
@@ -13,29 +13,30 @@ namespace Escapa.Components
         public Vector2 ScreenToWorldPoint(Vector2 point) => _camera.ScreenToWorldPoint(point);
         
         private Camera _camera;
-        private IStyleController _styleController;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             
             _camera = GetComponent<Camera>();
-            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()
         {
-            _styleController.StyleChanged += OnStyleChanged;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-            _styleController.StyleChanged -= OnStyleChanged;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnStyleChanged(StyleEventArgs e)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            _camera.backgroundColor = e.Theme.Background;
+            if (scene.buildIndex != (int) GameScenes.Preload)
+            {
+                _camera.backgroundColor = StyleManager.Current.Background;                
+            }
         }
     }
 }

@@ -291,9 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableStyling: 0
-  disableTranslating: 0
-  isAlfa: 0
   token: 7
 --- !u!1 &965791846
 GameObject:
@@ -669,51 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBackButton: 0
   scene: 2
---- !u!1 &1265168366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1265168368}
-  - component: {fileID: 1265168367}
-  m_Layer: 0
-  m_Name: MenuController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1265168367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265168366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af2ad758d9c039c4c973b12a19fad78b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1265168368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265168366}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622941382
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBackButton: 0
   scene: 4
 --- !u!1 &1817220567
 GameObject:
@@ -1254,5 +1206,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87b527419a606d48be738f957fb825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBackButton: 0
   scene: 5

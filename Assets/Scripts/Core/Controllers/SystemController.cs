@@ -1,24 +1,20 @@
-﻿using Escapa.Buttons;
-using Escapa.Managers;
+﻿using Escapa.Core.Interfaces;
+using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Escapa.Controllers
+namespace Escapa.Core.Controllers
 {
     [RequireComponent(typeof(ISoundController))]
     public sealed class SystemController : MonoBehaviour
     {
         private GameScenes _current;
-        private ISocialController _socialController;
-        private IButton _backButton;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(GameObject.FindWithTag(Tags.EventSystem));
-            
-            _socialController = GetComponent<ISocialController>();
 
             Input.multiTouchEnabled = false;
             Application.targetFrameRate = 60;
@@ -27,6 +23,11 @@ namespace Escapa.Controllers
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void Start()
+        {
+            SocialManager.Auth(OnAuthenticated);
         }
 
         private void FixedUpdate()
@@ -39,10 +40,8 @@ namespace Escapa.Controllers
 
         private void OnApplicationQuit()
         {
-            DifficultyManager.SaveLevel();
             DifficultyManager.SaveDifficulty();
-            ScoreManager.SaveRecords();
-            _socialController.SaveAchievementsLocal();
+            ScoreManager.SaveScores();
         }
 
         private void OnDisable()
@@ -60,6 +59,11 @@ namespace Escapa.Controllers
             {
                 SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
             }
+        }
+
+        private void OnAuthenticated()
+        {
+            SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)

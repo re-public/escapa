@@ -2,7 +2,7 @@
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Managers
+namespace Escapa.Core.Managers
 {
     public static class LanguageManager
     {

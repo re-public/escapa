@@ -1,9 +1,11 @@
 ﻿using Escapa.Events;
 
-namespace Escapa.Controllers
+namespace Escapa.Core.Interfaces
 {
     public interface ISoundController
     {
         event SoundEvent MuteChanged;
+
+        void Mute();
     }
 }

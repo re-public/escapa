@@ -2,15 +2,11 @@
 {
     public static class PlayerPrefKeys
     {
+        public const string Difficulty = "Difficulty";
         public const string IsSoundMuted = "IsSoundMuted";
-        public const string Level = "Level";
-        public const string Record = "Record";
-
-        #region Achievements
-        public const string BlackHawk = "BlackHawk";
-        public const string MovesLikeJagger = "MovesLikeJagger";
-        public const string PanicButton = "PanicButton";
-        public const string Zen = "Zen";
-        #endregion
+        public const string Score0 = "Score0";
+        public const string Score1 = "Score1";
+        public const string Score2 = "Score2";
+        public const string Score3 = "Score3";
     }
 }

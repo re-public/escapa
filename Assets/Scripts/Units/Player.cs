@@ -1,5 +1,5 @@
 ﻿using Escapa.Components;
-using Escapa.Controllers;
+using Escapa.Core.Managers;
 using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
@@ -16,7 +16,6 @@ namespace Escapa.Units
 
         private IMainCamera _camera;
         private SpriteRenderer _spriteRenderer;
-        private IStyleController _styleController;
 
         private bool _isTouched;
         private Vector2 _targetPosition;
@@ -25,12 +24,11 @@ namespace Escapa.Units
         {
             _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _styleController = GameObject.FindWithTag(Tags.GameController).GetComponent<IStyleController>();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            _styleController.StyleChanged += OnStyleChanged;
+            _spriteRenderer.color = StyleManager.Current.Player;
         }
 
         private void Update()
@@ -49,16 +47,6 @@ namespace Escapa.Units
         }
 
         private void OnCollisionEnter2D() => Died?.Invoke();
-
-        private void OnDisable()
-        {
-            _styleController.StyleChanged -= OnStyleChanged;
-        }
-
-        private void OnStyleChanged(StyleEventArgs e)
-        {
-            _spriteRenderer.color = e.Theme.Player;
-        }
 
         private void OnTouch(TouchPhase phase, Vector2 position)
         {

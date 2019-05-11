@@ -1,5 +1,5 @@
 ﻿using System;
-using Escapa.Managers;
+using Escapa.Core.Managers;
 using Escapa.Utility;
 
 namespace Escapa.Buttons
@@ -9,30 +9,14 @@ namespace Escapa.Buttons
         public override void Action()
         {
             DifficultyManager.AddLevel();
-        }
-
-        private new void OnEnable()
-        {
-            base.OnEnable();
-            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+            SetToken(DifficultyManager.Current.difficulty);
+            TextMesh.SetText(LanguageManager.GetString(token));
         }
 
         private new void Start()
         {
             base.Start();
-            SetToken(DifficultyManager.Level);
-            TextMesh.SetText(LanguageManager.GetString(token));
-        }
-        
-        private new void OnDisable()
-        {
-            base.OnDisable();
-            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
-        }
-
-        private void OnDifficultyChanged(Difficulties difficulty)
-        {
-            SetToken(difficulty);
+            SetToken(DifficultyManager.Current.difficulty);
             TextMesh.SetText(LanguageManager.GetString(token));
         }
 
