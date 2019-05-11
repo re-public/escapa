@@ -10,7 +10,6 @@ namespace Escapa.Buttons
         public override void Action()
         {
             SceneManager.LoadSceneAsync((int) scene, LoadSceneMode.Single);
-            base.Action();
         }
     }
 }

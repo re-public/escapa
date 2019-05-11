@@ -61,7 +61,7 @@ namespace Escapa.Core.Controllers
             }
         }
 
-        private void OnAuthenticated()
+        private static void OnAuthenticated()
         {
             SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
         }

@@ -1,15 +1,12 @@
 ﻿using Escapa.Core.Managers;
-using Escapa.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Escapa.Buttons
 {
     [RequireComponent(typeof(Image), typeof(Button))]
-    public abstract class ImageButtonBase : MonoBehaviour, IButton
+    public abstract class ImageButtonBase : MonoBehaviour
     {
-        public event ButtonEvent ButtonClicked;
-        
         protected Image Image;
 
         protected void Awake()
@@ -22,9 +19,6 @@ namespace Escapa.Buttons
             Image.color = StyleManager.Current.Text;
         }
 
-        public virtual void Action()
-        {
-            ButtonClicked?.Invoke();
-        }
+        public abstract void Action();
     }
 }

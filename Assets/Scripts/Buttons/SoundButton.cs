@@ -14,7 +14,6 @@ namespace Escapa.Buttons
 
         public override void Action()
         {
-            base.Action();
             _soundController.Mute();
         }
 
