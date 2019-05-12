@@ -15,7 +15,7 @@ namespace Escapa.Core.Managers
         /// <summary>
         /// Raised when dificulty has been changed.
         /// </summary>
-        public static event DifficultyEvent DifficultyChanged;
+        public static event GameEvent DifficultyChanged;
         
         /// <summary>
         /// Current difficulty level.

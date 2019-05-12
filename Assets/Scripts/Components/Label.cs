@@ -17,9 +17,24 @@ namespace Escapa.Components
             _textMesh = GetComponent<TextMeshProUGUI>();
         }
 
+        private void OnEnable()
+        {
+            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+        }
+
         private void Start()
         {
             _textMesh.SetText(LanguageManager.GetString(token));
+            _textMesh.color = StyleManager.Current.text;
+        }
+
+        private void OnDisable()
+        {
+            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+        }
+
+        private void OnDifficultyChanged()
+        {
             _textMesh.color = StyleManager.Current.text;
         }
     }

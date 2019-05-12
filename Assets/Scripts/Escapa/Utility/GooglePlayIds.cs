@@ -28,13 +28,11 @@ public static class GooglePlayIds
         public const string leaderboard_medium = "CggIwq-mmkgQAhAI"; // <GPGSID>
         public const string leaderboard_easy = "CggIwq-mmkgQAhAH"; // <GPGSID>
         public const string achievement_panic_button = "CggIwq-mmkgQAhAB"; // <GPGSID>
-        public const string leaderboard_hard = "CggIwq-mmkgQAhAJ"; // <GPGSID>
-        public const string achievement_take_it_easy = "CggIwq-mmkgQAhAG"; // <GPGSID>
         public const string achievement_moves_like_jagger = "CggIwq-mmkgQAhAE"; // <GPGSID>
         public const string achievement_black_hawk = "CggIwq-mmkgQAhAC"; // <GPGSID>
         public const string achievement_zen = "CggIwq-mmkgQAhAD"; // <GPGSID>
         public const string leaderboard_i_n_s_a_n_e = "CggIwq-mmkgQAhAK"; // <GPGSID>
-        public const string achievement_hothead = "CggIwq-mmkgQAhAF"; // <GPGSID>
+        public const string leaderboard_hard = "CggIwq-mmkgQAhAJ"; // <GPGSID>
 
 }
 }

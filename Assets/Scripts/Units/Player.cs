@@ -9,10 +9,10 @@ namespace Escapa.Units
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer
     {
-        public event PlayerEvent Died;
-        public event PlayerEvent Moved;
-        public event PlayerEvent Pressed;
-        public event PlayerEvent Stopped;
+        public event GameEvent Died;
+        public event GameEvent Moved;
+        public event GameEvent Pressed;
+        public event GameEvent Stopped;
 
         private IMainCamera _camera;
         private SpriteRenderer _spriteRenderer;
