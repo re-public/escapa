@@ -28,7 +28,7 @@ namespace Escapa.Units
 
         private void Start()
         {
-            _spriteRenderer.color = StyleManager.Current.Player;
+            _spriteRenderer.color = StyleManager.Current.player;
         }
 
         private void Update()

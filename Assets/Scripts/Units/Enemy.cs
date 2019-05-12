@@ -40,7 +40,7 @@ namespace Escapa.Units
             {
                 _minSpeed = DifficultyManager.Current.minSpeed;
                 _maxSpeed = DifficultyManager.Current.maxSpeed;
-                _spriteRenderer.color = StyleManager.Current.Enemy;
+                _spriteRenderer.color = StyleManager.Current.enemy;
             }
         }
 

@@ -23,13 +23,15 @@ namespace Escapa.Buttons
             _soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
         }
 
-        private void OnEnable()
+        private new void OnEnable()
         {
+            base.OnEnable();
             _soundController.MuteChanged += OnMuteChanged;
         }
 
-        private void OnDisable()
+        private new void OnDisable()
         {
+            base.OnDisable();
             _soundController.MuteChanged -= OnMuteChanged;
         }
 

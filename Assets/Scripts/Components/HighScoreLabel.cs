@@ -16,7 +16,7 @@ namespace Escapa.Components
         private void Start()
         {
             _textMesh.SetText(ScoreManager.CurrentHigh.ToString("0.000"));
-            _textMesh.color = StyleManager.Current.Text;
+            _textMesh.color = StyleManager.Current.text;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Escapa.Components
         private void Start()
         {
             _textMesh.SetText(LanguageManager.GetString(token));
-            _textMesh.color = StyleManager.Current.Text;
+            _textMesh.color = StyleManager.Current.text;
         }
     }
 }

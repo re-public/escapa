@@ -1,122 +1,118 @@
 {
-    "English": [
+    "english": [
         {
-            "Token": "DifficultyEasy",
-            "Text": "Easy"
+            "token": "DifficultyEasy",
+            "text": "Easy"
         },
         {
-            "Token": "DifficultyMedium",
-            "Text": "Medium"
+            "token": "DifficultyMedium",
+            "text": "Medium"
         },
         {
-            "Token": "DifficultyHard",
-            "Text": "Hard"
+            "token": "DifficultyHard",
+            "text": "Hard"
         },
         {
-            "Token": "DifficultyInsane",
-            "Text": "I N S A N E"
+            "token": "DifficultyInsane",
+            "text": "I N S A N E"
         },
         {
-            "Token": "GameCopyright",
-            "Text": "by <color=red>re::</color>public"
+            "token": "GameCopyright",
+            "text": "by <color=red>re::</color>public"
         },
         {
-            "Token": "GameLink",
-            "Text": "republicgames.org"
+            "token": "GameLink",
+            "text": "republicgames.org"
         },
         {
-            "Token": "HighScoreTitle",
-            "Text": "High score:"
+            "token": "HighScoreTitle",
+            "text": "High score:"
         },
         {
-            "Token": "Logo",
-            "Text": "E S C A P A"
+            "token": "Logo",
+            "text": "E S C A P A"
         },
         {
-            "Token": "NewHighScore",
-            "Text": "New High score"
+            "token": "NewHighScore",
+            "text": "New High score"
         },
         {
-            "Token": "Play",
-            "Text": "Play"
+            "token": "Play",
+            "text": "Play"
         },
         {
-            "Token": "SoundCredit",
-            "Text": "Background music:"
+            "token": "SoundCredit",
+            "text": "Background music:"
         },
         {
-            "Token": "SoundCopyright",
-            "Text": "Sky Loop by FoolBoyMedia"
+            "token": "SoundCopyright",
+            "text": "Sky Loop by FoolBoyMedia"
         },
         {
-            "Token": "SoundLink",
-            "Text": "foolboymedia.co.uk"
+            "token": "SoundLink",
+            "text": "foolboymedia.co.uk"
         },
         {
-            "Token": "Time",
-            "Text": "Time: "
+            "token": "Time",
+            "text": "Time: "
         }
     ],
     "Russian": [
         {
-            "Token": "DifficultyEasy",
-            "Text": "Легко"
+            "token": "DifficultyEasy",
+            "text": "Легко"
         },
         {
-            "Token": "DifficultyMedium",
-            "Text": "Средне"
+            "token": "DifficultyMedium",
+            "text": "Средне"
         },
         {
-            "Token": "DifficultyHard",
-            "Text": "Сложно"
+            "token": "DifficultyHard",
+            "text": "Сложно"
         },
         {
-            "Token": "DifficultyInsane",
-            "Text": "Б Е З У М И Е"
+            "token": "DifficultyInsane",
+            "text": "Б Е З У М И Е"
         },
         {
-            "Token": "DifficultyCustom",
-            "Text": "Особый"
+            "token": "GameCopyright",
+            "text": "сделано в <color=red>re::</color>public"
         },
         {
-            "Token": "GameCopyright",
-            "Text": "сделано в <color=red>re::</color>public"
+            "token": "GameLink",
+            "text": "republicgames.org"
         },
         {
-            "Token": "GameLink",
-            "Text": "republicgames.org"
+            "token": "HighScoreTitle",
+            "text": "Рекорд:"
         },
         {
-            "Token": "HighScoreTitle",
-            "Text": "Рекорд:"
+            "token": "Logo",
+            "text": "Э С К А П А"
         },
         {
-            "Token": "Logo",
-            "Text": "Э С К А П А"
+            "token": "NewHighScore",
+            "text": "Новый рекорд"
         },
         {
-            "Token": "NewHighScore",
-            "Text": "Новый рекорд"
+            "token": "Play",
+            "text": "Играть"
         },
         {
-            "Token": "Play",
-            "Text": "Играть"
+            "token": "SoundCredit",
+            "text": "Фоновая музыка:"
         },
         {
-            "Token": "SoundCredit",
-            "Text": "Фоновая музыка:"
+            "token": "SoundCopyright",
+            "text": "Sky Loop от FoolBoyMedia"
         },
         {
-            "Token": "SoundCopyright",
-            "Text": "Sky Loop от FoolBoyMedia"
+            "token": "SoundLink",
+            "text": "foolboymedia.co.uk"
         },
         {
-            "Token": "SoundLink",
-            "Text": "foolboymedia.co.uk"
-        },
-        {
-            "Token": "Time",
-            "Text": "Время: "
+            "token": "Time",
+            "text": "Время: "
         }
     ]
 }

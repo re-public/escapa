@@ -23,19 +23,26 @@ namespace Escapa.Components
 
         private void OnEnable()
         {
+            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
+            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnDifficultyChanged()
+        {
+            _camera.backgroundColor = StyleManager.Current.background;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             if (scene.buildIndex != (int) GameScenes.Preload)
             {
-                _camera.backgroundColor = StyleManager.Current.Background;                
+                _camera.backgroundColor = StyleManager.Current.background;                
             }
         }
     }

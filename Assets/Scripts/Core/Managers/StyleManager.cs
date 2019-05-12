@@ -29,7 +29,7 @@ namespace Escapa.Core.Managers
         private static Theme[] LoadStyle()
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Style).text;
-            return JsonUtility.FromJson<Style>(json).Themes;
+            return JsonUtility.FromJson<Style>(json).themes;
         }
     }
 }

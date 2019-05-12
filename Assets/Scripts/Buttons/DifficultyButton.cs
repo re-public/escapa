@@ -19,7 +19,7 @@ namespace Escapa.Buttons
             SetToken(DifficultyManager.Current.difficulty);
             TextMesh.SetText(LanguageManager.GetString(token));
         }
-
+        
         private void SetToken(Difficulties difficulty)
         {
             switch (difficulty)

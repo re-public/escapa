@@ -14,9 +14,16 @@ namespace Escapa.Buttons
         
         protected TextMeshProUGUI TextMesh;
         
+        public abstract void Action();
+        
         protected void Awake()
         {
             TextMesh = GetComponent<TextMeshProUGUI>();
+        }
+
+        protected void OnEnable()
+        {
+            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
         }
 
         protected void Start()
@@ -26,9 +33,17 @@ namespace Escapa.Buttons
                 TextMesh.SetText(LanguageManager.GetString(token));
             }
 
-            TextMesh.color = StyleManager.Current.Text;
+            TextMesh.color = StyleManager.Current.text;
         }
 
-        public abstract void Action();
+        protected void OnDisable()
+        {
+            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+        }
+
+        private void OnDifficultyChanged()
+        {
+            TextMesh.color = StyleManager.Current.text;
+        }
     }
 }

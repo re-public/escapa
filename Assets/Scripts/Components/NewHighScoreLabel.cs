@@ -18,7 +18,7 @@ namespace Escapa.Components
         {
             gameObject.SetActive(ScoreManager.IsHighScore);
             _textMesh.SetText(LanguageManager.GetString(LanguageTokens.NewHighScore));
-            _textMesh.color = StyleManager.Current.Text;
+            _textMesh.color = StyleManager.Current.text;
         }
     }
 }

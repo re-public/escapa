@@ -7,6 +7,8 @@ namespace Escapa.Buttons
     [RequireComponent(typeof(Image), typeof(Button))]
     public abstract class ImageButtonBase : MonoBehaviour
     {
+        public abstract void Action();
+        
         protected Image Image;
 
         protected void Awake()
@@ -14,11 +16,24 @@ namespace Escapa.Buttons
             Image = GetComponent<Image>();
         }
 
-        private void Start()
+        protected void OnEnable()
         {
-            Image.color = StyleManager.Current.Text;
+            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
         }
 
-        public abstract void Action();
+        protected void Start()
+        {
+            Image.color = StyleManager.Current.text;
+        }
+
+        protected void OnDisable()
+        {
+            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+        }
+
+        private void OnDifficultyChanged()
+        {
+            Image.color = StyleManager.Current.text;
+        }
     }
 }

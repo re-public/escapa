@@ -17,9 +17,9 @@ namespace Escapa.Core.Managers
             switch (Application.systemLanguage)
             {
                 case SystemLanguage.Russian:
-                    return _language?.Russian.FirstOrDefault(x => x.Token == token.ToString())?.Text ?? string.Empty;
+                    return _language?.russian.FirstOrDefault(x => x.token == token.ToString())?.text ?? string.Empty;
                 default:
-                    return _language?.English.FirstOrDefault(x => x.Token == token.ToString())?.Text ?? string.Empty;
+                    return _language?.english.FirstOrDefault(x => x.token == token.ToString())?.text ?? string.Empty;
             }
         }
 
