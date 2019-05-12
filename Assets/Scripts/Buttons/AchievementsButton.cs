@@ -12,8 +12,9 @@ namespace Escapa.Buttons
             }
         }
 
-        private void Start()
+        private new void Start()
         {
+            base.Start();
             gameObject.SetActive(Social.localUser.authenticated);
         }
     }
