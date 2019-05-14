@@ -1,8 +1,8 @@
-﻿using System;
-using Escapa.Utility;
+﻿using Escapa.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 namespace Escapa.Core.Managers
 {
@@ -14,7 +14,7 @@ namespace Escapa.Core.Managers
         /// <param name="achievementGuid">Guid of achievement to complete.</param>
         public static void CompleteAchievement(string achievementGuid)
         {
-            if (Social.localUser.authenticated && !string.IsNullOrWhiteSpace(achievementGuid))
+            if (!string.IsNullOrWhiteSpace(achievementGuid))
             {
                 Social.ReportProgress(achievementGuid, 100d, success => { });
             }
@@ -25,38 +25,35 @@ namespace Escapa.Core.Managers
         /// </summary>
         public static void SendScore()
         {
-            if (Social.localUser.authenticated)
+            var time = (long) (ScoreManager.LastTime * 1000);
+            var leaderboardGuid = string.Empty;
+
+            switch (DifficultyManager.Current.difficulty)
             {
-
-                var time = (long) (ScoreManager.LastTime * 1000);
-                var leaderboardGuid = string.Empty;
-
-                switch (DifficultyManager.Current.difficulty)
-                {
-                    case Difficulties.Easy:
-                        leaderboardGuid = GooglePlayIds.leaderboard_easy;
-                        break;
-                    case Difficulties.Medium:
-                        leaderboardGuid = GooglePlayIds.leaderboard_medium;
-                        break;
-                    case Difficulties.Hard:
-                        leaderboardGuid = GooglePlayIds.leaderboard_hard;
-                        break;
-                    case Difficulties.Insane:
-                        leaderboardGuid = GooglePlayIds.leaderboard_i_n_s_a_n_e;
-                        break;
-                }
-
-                Social.ReportScore(time, leaderboardGuid, success => { });
+                case Difficulties.Easy:
+                    leaderboardGuid = GooglePlayIds.leaderboard_easy;
+                    break;
+                case Difficulties.Medium:
+                    leaderboardGuid = GooglePlayIds.leaderboard_medium;
+                    break;
+                case Difficulties.Hard:
+                    leaderboardGuid = GooglePlayIds.leaderboard_hard;
+                    break;
+                case Difficulties.Insane:
+                    leaderboardGuid = GooglePlayIds.leaderboard_i_n_s_a_n_e;
+                    break;
             }
+
+            Social.ReportScore(time, leaderboardGuid, success => { });
         }
 
         /// <summary>
         /// Authorize in google play services.
         /// </summary>
-        public static void Auth(Action callback)
+        /// <param name="callback">Function to execute after authentication.</param>
+        public static void Auth(System.Action callback)
         {
-            var config = new PlayGamesClientConfiguration.Builder().Build();
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.Activate();
 
@@ -66,7 +63,7 @@ namespace Escapa.Core.Managers
                 {
                     ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
                 }
-                
+
                 callback?.Invoke();
             });
         }

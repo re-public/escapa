@@ -80,6 +80,7 @@ namespace Escapa.Core.Managers
         /// </summary>
         public static void SaveScores()
         {
+            if(_highScores == null) return;
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, _highScores[0]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, _highScores[1]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, _highScores[2]);

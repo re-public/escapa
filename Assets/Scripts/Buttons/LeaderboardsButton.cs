@@ -6,10 +6,7 @@ namespace Escapa.Buttons
     {
         public override void Action()
         {
-            if (Social.localUser.authenticated)
-            {
-                Social.ShowLeaderboardUI();
-            }
+            Social.ShowLeaderboardUI();
         }
         
         private new void Start()
