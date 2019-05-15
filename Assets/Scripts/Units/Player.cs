@@ -1,4 +1,4 @@
-﻿using Escapa.Components;
+﻿using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
 using Escapa.Events;
 using Escapa.Utility;

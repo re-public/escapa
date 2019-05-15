@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Escapa.Components
+namespace Escapa.Core.Interfaces
 {
     public interface IMainCamera
     {

@@ -2,7 +2,6 @@
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace Escapa.Core.Managers
 {

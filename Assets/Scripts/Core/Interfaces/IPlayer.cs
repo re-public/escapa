@@ -1,6 +1,6 @@
 ﻿using Escapa.Events;
 
-namespace Escapa.Units
+namespace Escapa.Core.Interfaces
 {
     public interface IPlayer
     {

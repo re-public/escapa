@@ -1,4 +1,5 @@
 ﻿using System;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 

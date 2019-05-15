@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Managers;
+﻿using Escapa.Core.Interfaces;
+using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
