@@ -25,10 +25,7 @@ namespace Escapa.Units
             _gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
         }
         
-        private void OnEnable()
-        {
-            _gameController.GameStarted += OnGameStarted;
-        }
+        private void OnEnable() => _gameController.GameStarted += OnGameStarted;
 
         private void Start()
         {
@@ -44,10 +41,7 @@ namespace Escapa.Units
             }
         }
 
-        private void OnDisable()
-        {
-            _gameController.GameStarted -= OnGameStarted;
-        }
+        private void OnDisable() => _gameController.GameStarted -= OnGameStarted;
 
         private void OnGameStarted()
         {

@@ -4,10 +4,7 @@ namespace Escapa.Buttons
 {
     public sealed class AchievementsButton : ImageButtonBase
     {
-        public override void Action()
-        {
-            Social.ShowAchievementsUI();
-        }
+        public override void Action() => Social.ShowAchievementsUI();
 
         private new void Start()
         {

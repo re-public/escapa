@@ -9,10 +9,7 @@ namespace Escapa.Components
     {
         private TextMeshProUGUI _textMesh;
 
-        private void Awake()
-        {
-            _textMesh = GetComponent<TextMeshProUGUI>();
-        }
+        private void Awake() => _textMesh = GetComponent<TextMeshProUGUI>();
         
         private void Start()
         {

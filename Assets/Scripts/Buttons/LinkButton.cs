@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Escapa.Core.Managers;
+using UnityEngine;
 
 namespace Escapa.Buttons
 {
@@ -6,9 +7,12 @@ namespace Escapa.Buttons
     {
         public string url;
 
-        public override void Action()
+        public override void Action() => Application.OpenURL(url);
+
+        private new void Start()
         {
-            Application.OpenURL(url);
+            base.Start();
+            TextMesh.SetText(LanguageManager.GetString(token));
         }
     }
 }

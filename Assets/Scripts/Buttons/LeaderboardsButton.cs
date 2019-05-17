@@ -4,10 +4,7 @@ namespace Escapa.Buttons
 {
     public sealed class LeaderboardsButton : ImageButtonBase
     {
-        public override void Action()
-        {
-            Social.ShowLeaderboardUI();
-        }
+        public override void Action() => Social.ShowLeaderboardUI();
         
         private new void Start()
         {

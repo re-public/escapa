@@ -1,7 +1,6 @@
 ﻿using Escapa.Events;
 using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
-using Escapa.Units;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +16,7 @@ namespace Escapa.Core.Controllers
         private float? _idleTime;
         private float? _movingTime;
 
-        private void Awake()
-        {
-            _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-        }
+        private void Awake() => _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
 
         private void OnEnable()
         {
@@ -33,9 +29,7 @@ namespace Escapa.Core.Controllers
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
-            {
                 ScoreManager.StopCount();
-            }
 
             if (ScoreManager.CurrentTime > 18f && DifficultyManager.Current.difficulty == Difficulties.Insane)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_black_hawk);

@@ -4,36 +4,19 @@ using UnityEngine.UI;
 
 namespace Escapa.Buttons
 {
-    [RequireComponent(typeof(Image), typeof(Button))]
-    public abstract class ImageButtonBase : MonoBehaviour
+    [RequireComponent(typeof(Image))]
+    public abstract class ImageButtonBase : ButtonBase
     {
-        public abstract void Action();
-        
         protected Image Image;
 
-        protected void Awake()
-        {
-            Image = GetComponent<Image>();
-        }
+        protected void Awake() => Image = GetComponent<Image>();
 
-        protected void OnEnable()
-        {
-            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
-        }
+        protected void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;
 
-        protected void Start()
-        {
-            Image.color = StyleManager.Current.text;
-        }
+        protected void Start() => Image.color = StyleManager.Current.text;
 
-        protected void OnDisable()
-        {
-            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
-        }
+        protected void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged()
-        {
-            Image.color = StyleManager.Current.text;
-        }
+        private void OnDifficultyChanged() => Image.color = StyleManager.Current.text;
     }
 }
