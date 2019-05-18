@@ -287,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTranslating: 0
   token: 12
   url: http://foolboymedia.co.uk
 --- !u!114 &109936025
@@ -514,7 +513,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 530442828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   token: 10
@@ -689,7 +688,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 813402172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   token: 7
@@ -973,7 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTranslating: 0
   token: 5
   url: http://republicgames.org
 --- !u!114 &1258686054
@@ -1200,7 +1198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418726877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   token: 4
@@ -1517,7 +1515,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1883133089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   token: 11

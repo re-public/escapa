@@ -8,7 +8,6 @@ namespace Escapa.Buttons
     [RequireComponent(typeof(TextMeshProUGUI))]
     public abstract class TextButtonBase : ButtonBase
     {
-        public bool disableTranslating;
         public LanguageTokens token;
         
         protected TextMeshProUGUI TextMesh;

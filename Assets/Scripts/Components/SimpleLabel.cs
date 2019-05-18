@@ -3,12 +3,14 @@ using Escapa.Utility;
 
 namespace Escapa.Components
 {
-    public sealed class TimeLabel : Label
+    public sealed class SimpleLabel : Label
     {
+        public LanguageTokens token;
+
         private new void Start()
         {
             base.Start();
-            TextMesh.SetText(LanguageManager.GetString(LanguageTokens.Time) + ScoreManager.LastTime.ToString("0.000"));
+            TextMesh.SetText(LanguageManager.GetString(token));
         }
     }
 }

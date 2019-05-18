@@ -1,22 +1,13 @@
 ﻿using Escapa.Core.Managers;
-using TMPro;
-using UnityEngine;
 
 namespace Escapa.Components
 {
-    public sealed class HighScoreLabel : MonoBehaviour
+    public sealed class HighScoreLabel : Label
     {
-        private TextMeshProUGUI _textMesh;
-
-        private void Awake()
+        private new void Start()
         {
-            _textMesh = GetComponent<TextMeshProUGUI>();
-        }
-
-        private void Start()
-        {
-            _textMesh.SetText(ScoreManager.CurrentHigh.ToString("0.000"));
-            _textMesh.color = StyleManager.Current.text;
+            base.Start();
+            TextMesh.SetText(ScoreManager.CurrentHigh.ToString("0.000"));
         }
     }
 }

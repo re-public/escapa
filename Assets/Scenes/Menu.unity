@@ -242,8 +242,8 @@ MonoBehaviour:
     textComponent: {fileID: 947995133}
     characterCount: 4
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 947995131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd937639afec93e47a341c78fdda8021, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   token: 7
@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c1710f332a48643bf70dffdf3d26ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTranslating: 1
   token: 0
 --- !u!114 &965791851
 MonoBehaviour:
