@@ -18,6 +18,7 @@ namespace Escapa.Components.Game
         private SpriteRenderer _spriteRenderer;
 
         private bool _isTouched;
+        private Vector2 _oldPosition;
         private Vector2 _targetPosition;
 
         private void Awake()
@@ -34,36 +35,24 @@ namespace Escapa.Components.Game
             {
                 var touch = Input.GetTouch(0);
                 var position = _camera.ScreenToWorldPoint(touch.position);
-                OnTouch(touch.phase, position);
+                OnTouch(position);
             }
 
             if (_isTouched)
                 transform.position = _targetPosition;
+
+            if (Vector2.Distance(_targetPosition, _oldPosition) > float.Epsilon)
+                Moved?.Invoke();
+            else
+                Stopped?.Invoke();
+            _oldPosition = _targetPosition;
         }
 
         private void OnCollisionEnter2D() => Died?.Invoke();
 
-        private void OnTouch(TouchPhase phase, Vector2 position)
+        private void OnTouch(Vector2 position)
         {
             _isTouched = IsTouched(position, _targetPosition);
-
-            switch (phase)
-            {
-                case TouchPhase.Began:
-                case TouchPhase.Moved:
-                    Moved?.Invoke();
-                    break;
-
-                case TouchPhase.Stationary:
-                    Stopped?.Invoke();
-                    break;
-
-                case TouchPhase.Ended:
-                case TouchPhase.Canceled:
-                    _isTouched = false;
-                    Stopped?.Invoke();
-                    break;
-            }
 
             if (_isTouched)
             {
