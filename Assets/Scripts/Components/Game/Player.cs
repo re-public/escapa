@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Escapa.Components.Game
 {
-    [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
+    [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer
     {
         public event GameEvent Died;
