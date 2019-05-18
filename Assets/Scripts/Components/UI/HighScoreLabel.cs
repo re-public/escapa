@@ -1,6 +1,6 @@
 ﻿using Escapa.Core.Managers;
 
-namespace Escapa.Components
+namespace Escapa.Components.UI
 {
     public sealed class HighScoreLabel : Label
     {

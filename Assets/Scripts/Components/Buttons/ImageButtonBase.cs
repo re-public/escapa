@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Escapa.Buttons
+namespace Escapa.Components.Buttons
 {
     [RequireComponent(typeof(Image))]
     public abstract class ImageButtonBase : ButtonBase

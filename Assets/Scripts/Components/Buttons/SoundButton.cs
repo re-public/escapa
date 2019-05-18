@@ -2,7 +2,7 @@
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Buttons
+namespace Escapa.Components.Buttons
 {
     public sealed class SoundButton : ImageButtonBase
     {

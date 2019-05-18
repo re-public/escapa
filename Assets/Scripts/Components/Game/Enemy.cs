@@ -3,7 +3,7 @@ using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Units
+namespace Escapa.Components.Game
 {
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
     public sealed class Enemy : MonoBehaviour
@@ -30,9 +30,7 @@ namespace Escapa.Units
         private void Start()
         {
             if (DifficultyManager.Current.difficulty < difficulty)
-            {
                 gameObject.SetActive(false);
-            }
             else
             {
                 _minSpeed = DifficultyManager.Current.minSpeed;

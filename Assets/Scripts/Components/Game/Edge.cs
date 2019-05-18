@@ -3,18 +3,16 @@ using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Components
+namespace Escapa.Components.Game
 {
+    [RequireComponent(typeof(EdgeCollider2D))]
     public sealed class Edge : MonoBehaviour
     {
         public Edges edgeType;
         
         private IMainCamera _camera;
 
-        private void Awake()
-        {
-            _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-        }
+        private void Awake() => _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
 
         private void Start()
         {

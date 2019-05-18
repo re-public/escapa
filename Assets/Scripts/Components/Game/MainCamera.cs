@@ -4,7 +4,7 @@ using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Escapa.Components
+namespace Escapa.Components.Game
 {
     [RequireComponent(typeof(Camera))]
     public sealed class MainCamera : MonoBehaviour, IMainCamera
@@ -34,17 +34,12 @@ namespace Escapa.Components
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged()
-        {
-            _camera.backgroundColor = StyleManager.Current.background;
-        }
+        private void OnDifficultyChanged() => _camera.backgroundColor = StyleManager.Current.background;
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             if (scene.buildIndex != (int) GameScenes.Preload)
-            {
-                _camera.backgroundColor = StyleManager.Current.background;                
-            }
+                _camera.backgroundColor = StyleManager.Current.background;
         }
     }
 }

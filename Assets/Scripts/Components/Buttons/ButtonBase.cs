@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Escapa.Buttons
+namespace Escapa.Components.Buttons
 {
     /// <summary>
     /// Base class for buttons.

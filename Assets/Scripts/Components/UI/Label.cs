@@ -1,17 +1,14 @@
 ﻿using Escapa.Core.Managers;
-using Escapa.Utility;
 using TMPro;
 using UnityEngine;
 
-namespace Escapa.Buttons
+namespace Escapa.Components.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public abstract class TextButtonBase : ButtonBase
-    {
-        public LanguageTokens token;
-        
+    public abstract class Label : MonoBehaviour
+    {        
         protected TextMeshProUGUI TextMesh;
-        
+
         protected void Awake() => TextMesh = GetComponent<TextMeshProUGUI>();
 
         protected void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;

@@ -1,7 +1,7 @@
 ﻿using Escapa.Core.Managers;
 using UnityEngine;
 
-namespace Escapa.Buttons
+namespace Escapa.Components.Buttons
 {
     public sealed class LinkButton : TextButtonBase
     {

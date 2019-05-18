@@ -4,7 +4,7 @@ using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Units
+namespace Escapa.Components.Game
 {
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer
@@ -26,10 +26,7 @@ namespace Escapa.Units
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start()
-        {
-            _spriteRenderer.color = StyleManager.Current.player;
-        }
+        private void Start() => _spriteRenderer.color = StyleManager.Current.player;
 
         private void Update()
         {
@@ -41,9 +38,7 @@ namespace Escapa.Units
             }
 
             if (_isTouched)
-            {
                 transform.position = _targetPosition;
-            }
         }
 
         private void OnCollisionEnter2D() => Died?.Invoke();
