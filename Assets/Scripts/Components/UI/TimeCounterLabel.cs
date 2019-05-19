@@ -4,7 +4,7 @@ namespace Escapa.Components.UI
 {
     public sealed class TimeCounterLabel : Label
     {
-        private readonly char[] _currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '0', '\0' };
+        private readonly char[] _currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '\0' };
 
         private new void Start() => TextMesh.color = StyleManager.Current.textAlfa;
 
@@ -17,9 +17,7 @@ namespace Escapa.Components.UI
         private void UpdateCurrentRecordBuffer(float value)
         {
             int firstPart = (int)value;
-            int secondPart = (int)((value - firstPart) * 100);
-            if (secondPart < 10)
-                secondPart *= 10;
+            int secondPart = (int)((value - firstPart) * 10);
 
             int i = _currentRecordBuffer.Length - 1;
 
@@ -29,9 +27,8 @@ namespace Escapa.Components.UI
             if (secondPart == 0)
             {
                 _currentRecordBuffer[i] = '0';
-                _currentRecordBuffer[i - 1] = '0';
-                _currentRecordBuffer[i - 2] = '.';
-                i -= 3;
+                _currentRecordBuffer[i - 1] = '.';
+                i -= 2;
             }
             else
             {
