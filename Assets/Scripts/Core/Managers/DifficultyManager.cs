@@ -1,4 +1,4 @@
-﻿using Escapa.Events;
+﻿using Escapa.Core.Events;
 using Escapa.Utility;
 using UnityEngine;
 

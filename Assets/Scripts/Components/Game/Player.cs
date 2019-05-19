@@ -1,6 +1,6 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
-using Escapa.Events;
 using Escapa.Utility;
 using UnityEngine;
 
