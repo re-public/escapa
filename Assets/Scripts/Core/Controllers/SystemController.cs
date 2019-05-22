@@ -29,10 +29,21 @@ namespace Escapa.Core.Controllers
                 GoBack();
         }
 
+        // If user wants to quit using Task Manager.
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause)
+            {
+                DifficultyManager.Save();
+                ScoreManager.Save();
+            }
+        }
+
+        // If user wants to quit the usual way.
         private void OnApplicationQuit()
         {
-            DifficultyManager.SaveDifficulty();
-            ScoreManager.SaveScores();
+            DifficultyManager.Save();
+            ScoreManager.Save();
         }
 
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
