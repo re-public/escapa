@@ -8,25 +8,14 @@ namespace Escapa.Core.Managers
     /// </summary>
     public static class StyleManager
     {
-        private static Theme[] _themes;
+        private static readonly Theme[] _themes = Load();
 
         /// <summary>
         /// Current theme.
         /// </summary>
-        public static Theme Current
-        {
-            get
-            {
-                if (_themes == null)
-                {
-                    _themes = LoadStyle();
-                }
-
-                return _themes[(int) DifficultyManager.Current.difficulty];
-            }
-        }
+        public static Theme Current => _themes[(int) DifficultyManager.Current.difficulty];
         
-        private static Theme[] LoadStyle()
+        private static Theme[] Load()
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Style).text;
             return JsonUtility.FromJson<Style>(json).themes;

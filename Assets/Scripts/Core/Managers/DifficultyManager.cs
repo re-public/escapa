@@ -9,7 +9,7 @@ namespace Escapa.Core.Managers
     /// </summary>
     public static class DifficultyManager
     {
-        private static Level[] _levels = LoadDifficulty();
+        private static readonly Level[] _levels = Load();
         private static int _currentDifficulty = PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
 
         /// <summary>
@@ -34,13 +34,13 @@ namespace Escapa.Core.Managers
         /// <summary>
         /// Save current difficulty.
         /// </summary>
-        public static void SaveDifficulty() => PlayerPrefs.SetInt(PlayerPrefKeys.Difficulty, _currentDifficulty);
+        public static void Save() => PlayerPrefs.SetInt(PlayerPrefKeys.Difficulty, _currentDifficulty);
 
         /// <summary>
         /// Load difficulties from file.
         /// </summary>
         /// <returns>Array of difficulty levels.</returns>
-        private static Level[] LoadDifficulty()
+        private static Level[] Load()
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Difficulty).text;
             return JsonUtility.FromJson<Levels>(json).levels;

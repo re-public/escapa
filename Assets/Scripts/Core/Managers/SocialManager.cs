@@ -14,9 +14,7 @@ namespace Escapa.Core.Managers
         public static void CompleteAchievement(string achievementGuid)
         {
             if (!string.IsNullOrWhiteSpace(achievementGuid))
-            {
                 Social.ReportProgress(achievementGuid, 100d, success => { });
-            }
         }
 
         /// <summary>
@@ -59,9 +57,7 @@ namespace Escapa.Core.Managers
             Social.localUser.Authenticate(success => 
             {
                 if (success)
-                {
                     ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
-                }
 
                 callback?.Invoke();
             });

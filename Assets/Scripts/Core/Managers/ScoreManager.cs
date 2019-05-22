@@ -9,7 +9,7 @@ namespace Escapa.Core.Managers
     public static class ScoreManager
     {
         private static float _startTime;
-        private static float[] _highScores;
+        private static readonly float[] _highScores = Load();
 
         /// <summary>
         /// Current game time.
@@ -55,39 +55,22 @@ namespace Escapa.Core.Managers
         /// </summary>
         public static float CurrentHigh
         {
-            get
-            {
-                if (_highScores == null)
-                {
-                    _highScores = LoadScores();
-                }
-
-                return _highScores[(int) DifficultyManager.Current.difficulty];
-            }
-            private set
-            {
-                if (_highScores == null)
-                {
-                    _highScores = LoadScores();
-                }
-
-                _highScores[(int) DifficultyManager.Current.difficulty] = value;
-            }
+            get => _highScores[(int) DifficultyManager.Current.difficulty];
+            private set => _highScores[(int) DifficultyManager.Current.difficulty] = value;
         }
 
         /// <summary>
-        /// Save all records in memory.
+        /// Save all scores in memory.
         /// </summary>
-        public static void SaveScores()
+        public static void Save()
         {
-            if(_highScores == null) return;
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, _highScores[0]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, _highScores[1]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, _highScores[2]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, _highScores[3]);
         }
         
-        private static float[] LoadScores()
+        private static float[] Load()
         {
             return new []
             {

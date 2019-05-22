@@ -6,14 +6,9 @@ namespace Escapa.Core.Managers
 {
     public static class LanguageManager
     {
-        private static Language _language;
+        private static readonly Language _language = Load();
         public static string GetString(LanguageTokens token)
         {
-            if (_language == null)
-            {
-                LoadLanguage();
-            }
-
             switch (Application.systemLanguage)
             {
                 case SystemLanguage.Russian:
@@ -23,10 +18,10 @@ namespace Escapa.Core.Managers
             }
         }
 
-        private static void LoadLanguage()
+        private static Language Load()
         {
             var json = Resources.Load<TextAsset>($"{ResourceKeys.Languages}").text;
-            _language = JsonUtility.FromJson<Language>(json);
+            return JsonUtility.FromJson<Language>(json);
         }
     }
 }
