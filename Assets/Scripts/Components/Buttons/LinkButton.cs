@@ -1,10 +1,12 @@
 ﻿using Escapa.Core.Managers;
+using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.Components.Buttons
 {
     public sealed class LinkButton : TextButtonBase
     {
+        public LanguageTokens token;
         public string url;
 
         public override void Action() => Application.OpenURL(url);

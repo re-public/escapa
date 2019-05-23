@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 965791848}
   - component: {fileID: 965791851}
   - component: {fileID: 965791850}
+  - component: {fileID: 965791852}
   m_Layer: 0
   m_Name: DifficultyText
   m_TagString: Untagged
@@ -462,7 +463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c1710f332a48643bf70dffdf3d26ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  token: 0
 --- !u!114 &965791851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +516,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &965791852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965791846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765d1ccee7524b84bbaa86eca0f7b22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
 --- !u!1 &1224082639
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,9 +25,18 @@ namespace Escapa.Core.Managers
         /// <summary>
         /// Increase difficulty level.
         /// </summary>
-        public static void AddLevel()
+        public static void Increase()
         {
             _currentDifficulty = Current.difficulty == Difficulties.Insane ? 0 : _currentDifficulty + 1;
+            DifficultyChanged?.Invoke();
+        }
+
+        /// <summary>
+        /// Decrease difficulty level.
+        /// </summary>
+        public static void Decrease()
+        {
+            _currentDifficulty = Current.difficulty == Difficulties.Easy ? 3 : _currentDifficulty - 1;
             DifficultyChanged?.Invoke();
         }
 

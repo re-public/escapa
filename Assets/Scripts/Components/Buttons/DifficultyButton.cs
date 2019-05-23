@@ -1,43 +1,37 @@
-﻿using System;
-using Escapa.Core.Managers;
+﻿using Escapa.Core.Managers;
 using Escapa.Utility;
 
 namespace Escapa.Components.Buttons
 {
     public sealed class DifficultyButton : TextButtonBase
     {
-        public override void Action()
+        public override void Action() => DifficultyManager.Increase();
+
+        protected override void OnDifficultyChanged()
         {
-            DifficultyManager.AddLevel();
-            SetToken(DifficultyManager.Current.difficulty);
-            TextMesh.SetText(LanguageManager.GetString(token));
+            base.OnDifficultyChanged();
+            TextMesh.SetText(GetString(DifficultyManager.Current.difficulty));
         }
 
         private new void Start()
         {
             base.Start();
-            SetToken(DifficultyManager.Current.difficulty);
-            TextMesh.SetText(LanguageManager.GetString(token));
-        }
+            TextMesh.SetText(GetString(DifficultyManager.Current.difficulty));
+        }        
         
-        private void SetToken(Difficulties difficulty)
+        private string GetString(Difficulties difficulty)
         {
             switch (difficulty)
             {
-                case Difficulties.Easy:
-                    token = LanguageTokens.DifficultyEasy;
-                    break;
-                case Difficulties.Medium:
-                    token = LanguageTokens.DifficultyMedium;
-                    break;
-                case Difficulties.Hard:
-                    token = LanguageTokens.DifficultyHard;
-                    break;
-                case Difficulties.Insane:
-                    token = LanguageTokens.DifficultyInsane;
-                    break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(difficulty));
+                case Difficulties.Easy:
+                    return LanguageManager.GetString(LanguageTokens.DifficultyEasy);
+                case Difficulties.Medium:
+                    return LanguageManager.GetString(LanguageTokens.DifficultyMedium);
+                case Difficulties.Hard:
+                    return LanguageManager.GetString(LanguageTokens.DifficultyHard);
+                case Difficulties.Insane:
+                    return LanguageManager.GetString(LanguageTokens.DifficultyInsane);
             }
         }
     }
