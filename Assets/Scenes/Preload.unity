@@ -566,8 +566,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: <color=red>re::</color>public
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f9c5cab9929d7e640ab49c5e6065c0c5, type: 2}
-  m_sharedMaterial: {fileID: 21169485055634228, guid: f9c5cab9929d7e640ab49c5e6065c0c5,
+  m_fontAsset: {fileID: 11400000, guid: 94235e6a328e0974f9fb599315a936ec, type: 2}
+  m_sharedMaterial: {fileID: 21926598604111520, guid: 94235e6a328e0974f9fb599315a936ec,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
