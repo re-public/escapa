@@ -23,6 +23,8 @@ namespace Escapa.Core.Controllers
 
         private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
+        private void Start() => SocialManager.Auth(OnAuthenticated);
+
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -44,6 +46,7 @@ namespace Escapa.Core.Controllers
         {
             DifficultyManager.Save();
             ScoreManager.Save();
+            SocialManager.SignOut();
         }
 
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -56,12 +59,7 @@ namespace Escapa.Core.Controllers
                 SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            _current = (GameScenes) scene.buildIndex;
-            if (_current == GameScenes.Preload)
-                SocialManager.Auth(OnAuthenticated);
-        }
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => _current = (GameScenes) scene.buildIndex;
         
         private void OnAuthenticated() => SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
     }

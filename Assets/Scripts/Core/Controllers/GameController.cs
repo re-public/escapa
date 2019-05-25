@@ -10,7 +10,7 @@ namespace Escapa.Core.Controllers
     public sealed class GameController : MonoBehaviour, IGameController
     {
         public event GameEvent GameStarted;
-        
+
         private IPlayer _player;
 
         private float? _idleTime;
@@ -60,10 +60,11 @@ namespace Escapa.Core.Controllers
 
         private void OnPlayerDie()
         {
+            _player.Died -= OnPlayerDie;
             ScoreManager.StopCount();
             SocialManager.SendScore();
 
-            SceneManager.LoadSceneAsync((int) GameScenes.End);
+            SceneManager.LoadSceneAsync((int)GameScenes.End);
         }
 
         private void OnPlayerMoved()

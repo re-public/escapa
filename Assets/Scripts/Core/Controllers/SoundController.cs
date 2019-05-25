@@ -25,9 +25,12 @@ namespace Escapa.Core.Controllers
             _audioSource.mute = IsMuted;
         }
 
-        private void OnApplicationQuit()
+        private void OnApplicationPause(bool pause)
         {
-            PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundMuted, IsMuted ? 1 : 0);
+            if (pause)
+                PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundMuted, IsMuted ? 1 : 0);
         }
+
+        private void OnApplicationQuit() => PlayerPrefs.SetInt(PlayerPrefKeys.IsSoundMuted, IsMuted ? 1 : 0);
     }
 }
