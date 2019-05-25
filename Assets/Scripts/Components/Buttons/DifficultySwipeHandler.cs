@@ -32,10 +32,10 @@ namespace Escapa.Components.Buttons
                         {
                             // If swipe was directed from right to left
                             if (Vector2.Dot(Vector2.left, _endPoint - _startPoint) > 0)
-                                DifficultyManager.Decrease();
+                                DifficultyManager.Increase();
                             // If swipe was directed from left to right
                             else if (Vector2.Dot(_endPoint - _startPoint, Vector2.right) > 0)
-                                DifficultyManager.Increase();
+                                DifficultyManager.Decrease();
                         }
                         _startPoint = Vector2.zero;
                         _endPoint = Vector2.zero;
