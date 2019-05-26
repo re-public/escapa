@@ -1,11 +1,13 @@
 ﻿using Escapa.Core.Managers;
 using Escapa.Utility;
+using UnityEngine;
 
 namespace Escapa.Components.UI
 {
     public sealed class SimpleLabel : Label
     {
-        public LanguageTokens token;
+        [SerializeField]
+        private LanguageTokens token;
 
         private new void Start()
         {

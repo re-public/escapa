@@ -7,7 +7,8 @@ namespace Escapa.Components.Buttons
 {
     public sealed class DifficultySwipeHandler : MonoBehaviour
     {
-        public float distance;
+        [SerializeField]
+        private float distance;
 
         private new IMainCamera camera;
         private Vector2 startPoint;

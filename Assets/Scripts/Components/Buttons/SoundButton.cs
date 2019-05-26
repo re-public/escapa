@@ -6,8 +6,10 @@ namespace Escapa.Components.Buttons
 {
     public sealed class SoundButton : ImageButtonBase
     {
-        public Sprite spriteOn;
-        public Sprite spriteOff;
+        [SerializeField]
+        private Sprite spriteOn;
+        [SerializeField]
+        private Sprite spriteOff;
 
         private ISoundController soundController;
 

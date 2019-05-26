@@ -7,7 +7,8 @@ namespace Escapa.Components.Game
     [RequireComponent(typeof(EdgeCollider2D))]
     public sealed class Edge : MonoBehaviour
     {
-        public Edges edgeType;
+        [SerializeField]
+        private Edges edgeType;
         
         private new IMainCamera camera;
 

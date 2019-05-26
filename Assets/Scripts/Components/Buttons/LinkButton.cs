@@ -6,8 +6,10 @@ namespace Escapa.Components.Buttons
 {
     public sealed class LinkButton : TextButtonBase
     {
-        public LanguageTokens token;
-        public string url;
+        [SerializeField]
+        private LanguageTokens token;
+        [SerializeField]
+        private string url;
 
         public override void Action() => Application.OpenURL(url);
 

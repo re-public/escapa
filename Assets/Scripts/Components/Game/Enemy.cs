@@ -8,7 +8,8 @@ namespace Escapa.Components.Game
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D), typeof(SpriteRenderer))]
     public sealed class Enemy : MonoBehaviour
     {
-        public Difficulties difficulty;
+        [SerializeField]
+        private Difficulties difficulty;
 
         private float minSpeed;
         private float maxSpeed;
