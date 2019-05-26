@@ -11,7 +11,6 @@
         HighScoreTitle,
         Logo,
         NewHighScore,
-        Play,
         SoundCredit,
         SoundCopyright,
         SoundLink,

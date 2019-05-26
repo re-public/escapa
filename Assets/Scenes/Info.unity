@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6fdcbdf7e54941aa22c9969e5aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  token: 12
+  token: 11
   url: http://foolboymedia.co.uk
 --- !u!114 &109936025
 MonoBehaviour:
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  token: 10
+  token: 9
 --- !u!1 &813402172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,4 +1518,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  token: 11
+  token: 10
