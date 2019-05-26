@@ -13,10 +13,10 @@ namespace Escapa.Components.UI
 
         protected void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;
 
-        protected void Start() => TextMesh.color = StyleManager.Current.text;
+        protected void Start() => TextMesh.color = StyleManager.Colors.Text;
 
         protected void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => TextMesh.color = StyleManager.Current.text;
+        private void OnDifficultyChanged() => TextMesh.color = StyleManager.Colors.Text;
     }
 }

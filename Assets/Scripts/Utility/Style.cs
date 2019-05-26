@@ -6,16 +6,16 @@ namespace Escapa.Utility
     [Serializable]
     public class Style
     {
-        public Theme[] themes;
+        public Colors[] Colors;
     }
 
     [Serializable]
-    public class Theme
+    public class Colors
     {
-        public Color background;
-        public Color enemy;
-        public Color player;
-        public Color text;
-        public Color textAlfa;
+        public Color Background;
+        public Color Enemy;
+        public Color Player;
+        public Color Text;
+        public Color TextAlfa;
     }
 }

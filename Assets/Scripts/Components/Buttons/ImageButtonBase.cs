@@ -13,10 +13,10 @@ namespace Escapa.Components.Buttons
 
         protected void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;
 
-        protected void Start() => Image.color = StyleManager.Current.text;
+        protected void Start() => Image.color = StyleManager.Colors.Text;
 
         protected void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => Image.color = StyleManager.Current.text;
+        private void OnDifficultyChanged() => Image.color = StyleManager.Colors.Text;
     }
 }

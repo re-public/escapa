@@ -5,14 +5,14 @@ namespace Escapa.Core.Managers
 {
     public static class StyleManager
     {
-        private static readonly Theme[] themes = Load();
+        private static readonly Colors[] colors = Load();
 
-        public static Theme Current => themes[(int)DifficultyManager.Current.difficulty];
+        public static Colors Colors => colors[(int)DifficultyManager.Current.difficulty];
 
-        private static Theme[] Load()
+        private static Colors[] Load()
         {
             var json = Resources.Load<TextAsset>(ResourceKeys.Style).text;
-            return JsonUtility.FromJson<Style>(json).themes;
+            return JsonUtility.FromJson<Style>(json).Colors;
         }
     }
 }

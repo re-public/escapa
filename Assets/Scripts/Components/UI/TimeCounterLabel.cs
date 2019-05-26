@@ -6,7 +6,7 @@ namespace Escapa.Components.UI
     {
         private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '\0' };
 
-        private new void Start() => TextMesh.color = StyleManager.Current.textAlfa;
+        private new void Start() => TextMesh.color = StyleManager.Colors.TextAlfa;
 
         private void FixedUpdate()
         {

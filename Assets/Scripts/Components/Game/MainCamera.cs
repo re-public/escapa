@@ -34,12 +34,12 @@ namespace Escapa.Components.Game
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged() => camera.backgroundColor = StyleManager.Current.background;
+        private void OnDifficultyChanged() => camera.backgroundColor = StyleManager.Colors.Background;
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             if (scene.buildIndex != (int)GameScenes.Preload)
-                camera.backgroundColor = StyleManager.Current.background;
+                camera.backgroundColor = StyleManager.Colors.Background;
         }
     }
 }

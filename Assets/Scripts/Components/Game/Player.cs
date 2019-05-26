@@ -27,7 +27,7 @@ namespace Escapa.Components.Game
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start() => spriteRenderer.color = StyleManager.Current.player;
+        private void Start() => spriteRenderer.color = StyleManager.Colors.Player;
 
         private void Update()
         {

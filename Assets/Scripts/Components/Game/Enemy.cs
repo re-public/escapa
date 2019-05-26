@@ -35,7 +35,7 @@ namespace Escapa.Components.Game
             {
                 minSpeed = DifficultyManager.Current.minSpeed;
                 maxSpeed = DifficultyManager.Current.maxSpeed;
-                spriteRenderer.color = StyleManager.Current.enemy;
+                spriteRenderer.color = StyleManager.Colors.Enemy;
             }
         }
 
