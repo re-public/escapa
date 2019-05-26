@@ -21,6 +21,8 @@ namespace Escapa.Components.Game
         private Vector2 oldPosition;
         private Vector2 targetPosition;
 
+        private const float Width = 0.75f;
+
         private void Awake()
         {
             camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
@@ -61,9 +63,9 @@ namespace Escapa.Components.Game
             }
         }
 
-        private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - 0.75f < touchPosition.x
-                                                                               && touchPosition.x < position.x + 0.75f
-                                                                               && position.y - 0.75f < touchPosition.y
-                                                                               && touchPosition.y < position.y + 0.75f;
+        private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - Width < touchPosition.x
+                                                                               && touchPosition.x < position.x + Width
+                                                                               && position.y - Width < touchPosition.y
+                                                                               && touchPosition.y < position.y + Width;
     }
 }
