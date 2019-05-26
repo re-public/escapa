@@ -10,22 +10,22 @@ namespace Escapa.Components.Game
     {
         public Difficulties difficulty;
 
-        private float _minSpeed;
-        private float _maxSpeed;
-        
-        private Rigidbody2D _rigidbody2D;
-        private SpriteRenderer _spriteRenderer;
-        private IGameController _gameController;
+        private float minSpeed;
+        private float maxSpeed;
+
+        private new Rigidbody2D rigidbody2D;
+        private SpriteRenderer spriteRenderer;
+        private IGameController gameController;
 
         private void Awake()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            
-            _gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
+            rigidbody2D = GetComponent<Rigidbody2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
         }
-        
-        private void OnEnable() => _gameController.GameStarted += OnGameStarted;
+
+        private void OnEnable() => gameController.GameStarted += OnGameStarted;
 
         private void Start()
         {
@@ -33,19 +33,19 @@ namespace Escapa.Components.Game
                 gameObject.SetActive(false);
             else
             {
-                _minSpeed = DifficultyManager.Current.minSpeed;
-                _maxSpeed = DifficultyManager.Current.maxSpeed;
-                _spriteRenderer.color = StyleManager.Current.enemy;
+                minSpeed = DifficultyManager.Current.minSpeed;
+                maxSpeed = DifficultyManager.Current.maxSpeed;
+                spriteRenderer.color = StyleManager.Current.enemy;
             }
         }
 
-        private void OnDisable() => _gameController.GameStarted -= OnGameStarted;
+        private void OnDisable() => gameController.GameStarted -= OnGameStarted;
 
         private void OnGameStarted()
         {
-            var xForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(_minSpeed, _maxSpeed);
-            var yForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(_minSpeed, _maxSpeed);
-            _rigidbody2D.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
+            var xForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);
+            var yForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);
+            rigidbody2D.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
         }
     }
 }

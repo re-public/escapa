@@ -9,17 +9,17 @@ namespace Escapa.Components.Game
     [RequireComponent(typeof(Camera))]
     public sealed class MainCamera : MonoBehaviour, IMainCamera
     {
-        public float UnitsPerPixel => _camera.orthographicSize * 2.0f / Screen.height;
+        public float UnitsPerPixel => camera.orthographicSize * 2.0f / Screen.height;
 
-        public Vector2 ScreenToWorldPoint(Vector2 point) => _camera.ScreenToWorldPoint(point);
-        
-        private Camera _camera;
+        public Vector2 ScreenToWorldPoint(Vector2 point) => camera.ScreenToWorldPoint(point);
+
+        private new Camera camera;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            
-            _camera = GetComponent<Camera>();
+
+            camera = GetComponent<Camera>();
         }
 
         private void OnEnable()
@@ -34,12 +34,12 @@ namespace Escapa.Components.Game
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged() => _camera.backgroundColor = StyleManager.Current.background;
+        private void OnDifficultyChanged() => camera.backgroundColor = StyleManager.Current.background;
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (scene.buildIndex != (int) GameScenes.Preload)
-                _camera.backgroundColor = StyleManager.Current.background;
+            if (scene.buildIndex != (int)GameScenes.Preload)
+                camera.backgroundColor = StyleManager.Current.background;
         }
     }
 }

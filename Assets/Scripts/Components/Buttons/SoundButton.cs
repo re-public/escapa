@@ -9,24 +9,24 @@ namespace Escapa.Components.Buttons
         public Sprite spriteOn;
         public Sprite spriteOff;
 
-        private ISoundController _soundController;
+        private ISoundController soundController;
 
         public override void Action()
         {
-            _soundController.Mute();
-            Image.overrideSprite = _soundController.IsMuted ? spriteOff : spriteOn;
+            soundController.Mute();
+            Image.overrideSprite = soundController.IsMuted ? spriteOff : spriteOn;
         }
 
         private new void Awake()
         {
             base.Awake();
-            _soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
+            soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
         }
 
         private new void Start()
         {
             base.Start();
-            Image.overrideSprite = _soundController.IsMuted ? spriteOff : spriteOn;
+            Image.overrideSprite = soundController.IsMuted ? spriteOff : spriteOn;
         }
     }
 }

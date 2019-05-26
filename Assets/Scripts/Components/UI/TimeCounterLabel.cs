@@ -4,14 +4,14 @@ namespace Escapa.Components.UI
 {
     public sealed class TimeCounterLabel : Label
     {
-        private readonly char[] _currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '\0' };
+        private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '\0' };
 
         private new void Start() => TextMesh.color = StyleManager.Current.textAlfa;
 
         private void FixedUpdate()
         {
             UpdateCurrentRecordBuffer(ScoreManager.CurrentTime);
-            TextMesh.SetText(new string(_currentRecordBuffer));
+            TextMesh.SetText(new string(currentRecordBuffer));
         }
 
         private void UpdateCurrentRecordBuffer(float value)
@@ -19,41 +19,41 @@ namespace Escapa.Components.UI
             int firstPart = (int)value;
             int secondPart = (int)((value - firstPart) * 10);
 
-            int i = _currentRecordBuffer.Length - 1;
+            int i = currentRecordBuffer.Length - 1;
 
-            _currentRecordBuffer[i] = '\0';
+            currentRecordBuffer[i] = '\0';
             --i;
 
             if (secondPart == 0)
             {
-                _currentRecordBuffer[i] = '0';
-                _currentRecordBuffer[i - 1] = '.';
+                currentRecordBuffer[i] = '0';
+                currentRecordBuffer[i - 1] = '.';
                 i -= 2;
             }
             else
             {
                 do
                 {
-                    _currentRecordBuffer[i] = (char)(secondPart % 10 + '0');
+                    currentRecordBuffer[i] = (char)(secondPart % 10 + '0');
                     secondPart /= 10;
                     --i;
                 }
                 while (secondPart > 0);
 
-                _currentRecordBuffer[i] = '.';
+                currentRecordBuffer[i] = '.';
                 --i;
             }
 
             do
             {
-                _currentRecordBuffer[i] = (char)(firstPart % 10 + '0');
+                currentRecordBuffer[i] = (char)(firstPart % 10 + '0');
                 firstPart /= 10;
                 --i;
             }
             while (firstPart > 0);
 
-            for (int j = 0; j < _currentRecordBuffer.Length - i - 1; ++j)
-                _currentRecordBuffer[j] = _currentRecordBuffer[i + j + 1];
+            for (int j = 0; j < currentRecordBuffer.Length - i - 1; ++j)
+                currentRecordBuffer[j] = currentRecordBuffer[i + j + 1];
         }
     }
 }

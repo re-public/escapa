@@ -14,49 +14,49 @@ namespace Escapa.Components.Game
         public event GameEvent Pressed;
         public event GameEvent Stopped;
 
-        private IMainCamera _camera;
-        private SpriteRenderer _spriteRenderer;
+        private new IMainCamera camera;
+        private SpriteRenderer spriteRenderer;
 
-        private bool _isTouched;
-        private Vector2 _oldPosition;
-        private Vector2 _targetPosition;
+        private bool isTouched;
+        private Vector2 oldPosition;
+        private Vector2 targetPosition;
 
         private void Awake()
         {
-            _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start() => _spriteRenderer.color = StyleManager.Current.player;
+        private void Start() => spriteRenderer.color = StyleManager.Current.player;
 
         private void Update()
         {
             if (Input.touchCount > 0)
             {
                 var touch = Input.GetTouch(0);
-                var position = _camera.ScreenToWorldPoint(touch.position);
+                var position = camera.ScreenToWorldPoint(touch.position);
                 OnTouch(position);
             }
 
-            if (_isTouched)
-                transform.position = _targetPosition;
+            if (isTouched)
+                transform.position = targetPosition;
 
-            if (Vector2.Distance(_targetPosition, _oldPosition) > float.Epsilon)
+            if (Vector2.Distance(targetPosition, oldPosition) > float.Epsilon)
                 Moved?.Invoke();
             else
                 Stopped?.Invoke();
-            _oldPosition = _targetPosition;
+            oldPosition = targetPosition;
         }
 
         private void OnCollisionEnter2D() => Died?.Invoke();
 
         private void OnTouch(Vector2 position)
         {
-            _isTouched = IsTouched(position, _targetPosition);
+            isTouched = IsTouched(position, targetPosition);
 
-            if (_isTouched)
+            if (isTouched)
             {
-                _targetPosition = position;
+                targetPosition = position;
                 Pressed?.Invoke();
             }
         }
@@ -65,6 +65,5 @@ namespace Escapa.Components.Game
                                                                                && touchPosition.x < position.x + 0.75f
                                                                                && position.y - 0.75f < touchPosition.y
                                                                                && touchPosition.y < position.y + 0.75f;
-
     }
 }

@@ -9,7 +9,7 @@ namespace Escapa.Core.Controllers
     [RequireComponent(typeof(ISoundController))]
     public sealed class SystemController : MonoBehaviour
     {
-        private GameScenes _current;
+        private GameScenes current;
 
         private void Awake()
         {
@@ -53,14 +53,14 @@ namespace Escapa.Core.Controllers
 
         private void GoBack()
         {
-            if(_current == GameScenes.Menu)
+            if (current == GameScenes.Menu)
                 Application.Quit();
             else
-                SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+                SceneManager.LoadSceneAsync((int)GameScenes.Menu, LoadSceneMode.Single);
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => _current = (GameScenes) scene.buildIndex;
-        
-        private void OnAuthenticated() => SceneManager.LoadSceneAsync((int) GameScenes.Menu, LoadSceneMode.Single);
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => current = (GameScenes)scene.buildIndex;
+
+        private void OnAuthenticated() => SceneManager.LoadSceneAsync((int)GameScenes.Menu, LoadSceneMode.Single);
     }
 }

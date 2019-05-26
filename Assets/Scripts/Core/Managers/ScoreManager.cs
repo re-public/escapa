@@ -5,10 +5,10 @@ namespace Escapa.Core.Managers
 {
     public static class ScoreManager
     {
-        private static float _startTime;
-        private static readonly float[] _highScores = Load();
+        private static float startTime;
+        private static readonly float[] highScores = Load();
 
-        public static float CurrentTime => _startTime > float.Epsilon ? Time.realtimeSinceStartup - _startTime : 0f;
+        public static float CurrentTime => startTime > float.Epsilon ? Time.realtimeSinceStartup - startTime : 0f;
 
         public static float LastTime { get; private set; }
 
@@ -17,13 +17,13 @@ namespace Escapa.Core.Managers
         public static void StartCount()
         {
             IsHighScore = false;
-            _startTime = Time.realtimeSinceStartup;
+            startTime = Time.realtimeSinceStartup;
         }
 
         public static void StopCount()
         {
             LastTime = CurrentTime;
-            _startTime = 0f;
+            startTime = 0f;
 
             if (LastTime > CurrentHigh)
             {
@@ -34,16 +34,16 @@ namespace Escapa.Core.Managers
 
         public static float CurrentHigh
         {
-            get => _highScores[(int)DifficultyManager.Current.difficulty];
-            private set => _highScores[(int)DifficultyManager.Current.difficulty] = value;
+            get => highScores[(int)DifficultyManager.Current.difficulty];
+            private set => highScores[(int)DifficultyManager.Current.difficulty] = value;
         }
 
         public static void Save()
         {
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, _highScores[0]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, _highScores[1]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, _highScores[2]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, _highScores[3]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, highScores[0]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, highScores[1]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, highScores[2]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, highScores[3]);
         }
 
         private static float[] Load()

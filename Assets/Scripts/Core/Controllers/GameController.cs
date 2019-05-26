@@ -11,19 +11,19 @@ namespace Escapa.Core.Controllers
     {
         public event GameEvent GameStarted;
 
-        private IPlayer _player;
+        private IPlayer player;
 
-        private float? _idleTime;
-        private float? _movingTime;
+        private float? idleTime;
+        private float? movingTime;
 
-        private void Awake() => _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+        private void Awake() => player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
 
         private void OnEnable()
         {
-            _player.Died += OnPlayerDie;
-            _player.Moved += OnPlayerMoved;
-            _player.Pressed += OnPlayerPressed;
-            _player.Stopped += OnPlayerStopped;
+            player.Died += OnPlayerDie;
+            player.Moved += OnPlayerMoved;
+            player.Pressed += OnPlayerPressed;
+            player.Stopped += OnPlayerStopped;
         }
 
         private void FixedUpdate()
@@ -34,9 +34,9 @@ namespace Escapa.Core.Controllers
             if (ScoreManager.CurrentTime > 18f && DifficultyManager.Current.difficulty == Difficulties.Insane)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
 
-            if (_idleTime.HasValue && ScoreManager.CurrentTime - _idleTime.Value > 5f)
+            if (idleTime.HasValue && ScoreManager.CurrentTime - idleTime.Value > 5f)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_zen);
-            else if (_movingTime.HasValue && ScoreManager.CurrentTime - _movingTime > 10f)
+            else if (movingTime.HasValue && ScoreManager.CurrentTime - movingTime > 10f)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
         }
 
@@ -52,15 +52,15 @@ namespace Escapa.Core.Controllers
 
         private void OnDisable()
         {
-            _player.Died -= OnPlayerDie;
-            _player.Moved -= OnPlayerMoved;
-            _player.Pressed -= OnPlayerPressed;
-            _player.Stopped -= OnPlayerStopped;
+            player.Died -= OnPlayerDie;
+            player.Moved -= OnPlayerMoved;
+            player.Pressed -= OnPlayerPressed;
+            player.Stopped -= OnPlayerStopped;
         }
 
         private void OnPlayerDie()
         {
-            _player.Died -= OnPlayerDie;
+            player.Died -= OnPlayerDie;
             ScoreManager.StopCount();
             SocialManager.SendScore();
 
@@ -69,16 +69,16 @@ namespace Escapa.Core.Controllers
 
         private void OnPlayerMoved()
         {
-            if (!_movingTime.HasValue)
+            if (!movingTime.HasValue)
             {
-                _movingTime = ScoreManager.CurrentTime;
-                _idleTime = null;
+                movingTime = ScoreManager.CurrentTime;
+                idleTime = null;
             }
         }
 
         private void OnPlayerPressed()
         {
-            _player.Pressed -= OnPlayerPressed;
+            player.Pressed -= OnPlayerPressed;
 
             ScoreManager.StartCount();
             GameStarted?.Invoke();
@@ -86,10 +86,10 @@ namespace Escapa.Core.Controllers
 
         private void OnPlayerStopped()
         {
-            if (!_idleTime.HasValue)
+            if (!idleTime.HasValue)
             {
-                _idleTime = ScoreManager.CurrentTime;
-                _movingTime = null;
+                idleTime = ScoreManager.CurrentTime;
+                movingTime = null;
             }
         }
     }

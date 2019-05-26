@@ -5,9 +5,9 @@ namespace Escapa.Core.Managers
 {
     public static class StyleManager
     {
-        private static readonly Theme[] _themes = Load();
+        private static readonly Theme[] themes = Load();
 
-        public static Theme Current => _themes[(int)DifficultyManager.Current.difficulty];
+        public static Theme Current => themes[(int)DifficultyManager.Current.difficulty];
 
         private static Theme[] Load()
         {

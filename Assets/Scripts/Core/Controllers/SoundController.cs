@@ -7,22 +7,22 @@ namespace Escapa.Core.Controllers
     [RequireComponent(typeof(AudioSource))]
     public sealed class SoundController : MonoBehaviour, ISoundController
     {
-        private AudioSource _audioSource;
+        private AudioSource audioSource;
 
         public bool IsMuted { get; private set; }
 
         public void Mute()
         {
             IsMuted = !IsMuted;
-            _audioSource.mute = IsMuted;
+            audioSource.mute = IsMuted;
         }
-        
+
         private void Awake()
         {
             IsMuted = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundMuted, 0) == 1;
-            
-            _audioSource = GetComponent<AudioSource>();
-            _audioSource.mute = IsMuted;
+
+            audioSource = GetComponent<AudioSource>();
+            audioSource.mute = IsMuted;
         }
 
         private void OnApplicationPause(bool pause)
