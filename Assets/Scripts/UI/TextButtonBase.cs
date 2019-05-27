@@ -2,12 +2,14 @@
 using TMPro;
 using UnityEngine;
 
-namespace Escapa.Components.UI
+namespace Escapa.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public abstract class Label : MonoBehaviour
-    {        
+    public abstract class TextButtonBase : ButtonBase
+    {
         protected TextMeshProUGUI TextMesh;
+
+        protected virtual void OnDifficultyChanged() => TextMesh.color = StyleManager.Colors.Text;
 
         protected void Awake() => TextMesh = GetComponent<TextMeshProUGUI>();
 
@@ -16,7 +18,5 @@ namespace Escapa.Components.UI
         protected void Start() => TextMesh.color = StyleManager.Colors.Text;
 
         protected void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
-
-        private void OnDifficultyChanged() => TextMesh.color = StyleManager.Colors.Text;
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Escapa.Components.Buttons
+namespace Escapa.UI
 {
     public sealed class LoadSceneButton : ImageButtonBase
     {

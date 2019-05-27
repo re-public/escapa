@@ -1,6 +1,6 @@
 ﻿using Escapa.Core.Managers;
 
-namespace Escapa.Components.UI
+namespace Escapa.UI
 {
     public sealed class TimeCounterLabel : Label
     {

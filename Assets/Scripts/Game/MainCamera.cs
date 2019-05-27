@@ -4,7 +4,7 @@ using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Escapa.Components.Game
+namespace Escapa.Game
 {
     [RequireComponent(typeof(Camera))]
     public sealed class MainCamera : MonoBehaviour, IMainCamera

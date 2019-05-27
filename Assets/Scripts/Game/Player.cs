@@ -4,7 +4,7 @@ using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Components.Game
+namespace Escapa.Game
 {
     [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer

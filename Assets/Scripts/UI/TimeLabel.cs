@@ -1,7 +1,7 @@
 ﻿using Escapa.Core.Managers;
 using Escapa.Utility;
 
-namespace Escapa.Components.UI
+namespace Escapa.UI
 {
     public sealed class TimeLabel : Label
     {

@@ -2,7 +2,7 @@
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Components.UI
+namespace Escapa.UI
 {
     public sealed class SimpleLabel : Label
     {

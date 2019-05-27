@@ -1,7 +1,7 @@
 ﻿using Escapa.Core.Managers;
 using Escapa.Utility;
 
-namespace Escapa.Components.Buttons
+namespace Escapa.UI
 {
     public sealed class DifficultyButton : TextButtonBase
     {

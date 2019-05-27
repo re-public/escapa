@@ -3,7 +3,7 @@ using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Components.Buttons
+namespace Escapa.UI
 {
     public sealed class DifficultySwipeHandler : MonoBehaviour
     {

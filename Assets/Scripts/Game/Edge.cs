@@ -2,7 +2,7 @@
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Components.Game
+namespace Escapa.Game
 {
     [RequireComponent(typeof(EdgeCollider2D))]
     public sealed class Edge : MonoBehaviour
