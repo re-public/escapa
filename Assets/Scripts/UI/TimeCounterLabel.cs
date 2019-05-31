@@ -4,7 +4,7 @@ namespace Escapa.UI
 {
     public sealed class TimeCounterLabel : Label
     {
-        private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', '.', '0', '\0' };
+        private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', ',', '0', '\0' };
 
         private new void Start() => TextMesh.color = StyleManager.Colors.TextAlfa;
 

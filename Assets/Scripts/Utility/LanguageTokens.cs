@@ -13,7 +13,6 @@
         NewHighScore,
         SoundCredit,
         SoundCopyright,
-        SoundLink,
-        Time
+        SoundLink
     }
 }
