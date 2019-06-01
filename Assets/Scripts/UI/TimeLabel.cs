@@ -9,8 +9,15 @@ namespace Escapa.UI
         [SerializeField]
         private bool showHighScore;
 
-        private string newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
-        private string highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
+        private string newHighScoreTitle;
+        private string highScoreTitle;
+
+        private new void Awake()
+        {
+            base.Awake();
+            newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
+            highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
+    }
 
         private new void Start()
         {
