@@ -8,6 +8,7 @@ TagManager:
   - SoundPlayer
   - SoundButton
   - SystemController
+  - DifficultyButton
   layers:
   - Default
   - TransparentFX

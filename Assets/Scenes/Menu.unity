@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 965791850}
   m_Layer: 0
   m_Name: DifficultyText
-  m_TagString: Untagged
+  m_TagString: DifficultyButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,9 +459,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 965791846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c1710f332a48643bf70dffdf3d26ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 3950debb0a37ccd439059cddd2894a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  token: 0
 --- !u!114 &965791851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,8 +503,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 965791850}
-        m_MethodName: Action
+      - m_Target: {fileID: 1059027401}
+        m_MethodName: AddDifficulty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
