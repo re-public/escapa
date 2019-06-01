@@ -5,9 +5,11 @@ using UnityEngine;
 namespace Escapa.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public abstract class TextButtonBase : ButtonBase
+    public abstract class TextButtonBase : MonoBehaviour
     {
         protected TextMeshProUGUI TextMesh;
+
+        public abstract void Action();
 
         protected virtual void OnDifficultyChanged() => TextMesh.color = StyleManager.Colors.Text;
 

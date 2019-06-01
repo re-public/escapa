@@ -56,5 +56,19 @@ namespace Escapa.Core.Managers
 
             PlayGamesPlatform.Instance.SignOut();
         }
+
+        public static void ShowAchievements()
+        {
+            if (!Social.localUser.authenticated) return;
+
+            Social.ShowAchievementsUI();
+        }
+
+        public static void ShowLeaderboards()
+        {
+            if (!Social.localUser.authenticated) return;
+
+            Social.ShowLeaderboardUI();
+        }
     }
 }
