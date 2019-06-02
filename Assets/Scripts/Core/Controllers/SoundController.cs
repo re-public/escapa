@@ -11,7 +11,7 @@ namespace Escapa.Core.Controllers
 
         public bool IsMuted { get; private set; }
 
-        public void Mute()
+        public void ToggleSound()
         {
             IsMuted = !IsMuted;
             audioSource.mute = IsMuted;

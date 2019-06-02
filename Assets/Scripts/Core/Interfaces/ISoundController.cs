@@ -4,6 +4,6 @@
     {
         bool IsMuted { get; }
 
-        void Mute();
+        void ToggleSound();
     }
 }
