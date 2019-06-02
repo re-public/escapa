@@ -6,7 +6,7 @@ namespace Escapa.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public abstract class Label : MonoBehaviour
-    {        
+    {
         protected TextMeshProUGUI TextMesh;
 
         protected void Awake() => TextMesh = GetComponent<TextMeshProUGUI>();

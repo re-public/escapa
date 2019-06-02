@@ -1,13 +1,9 @@
-﻿using Escapa.Core.Events;
-
-namespace Escapa.Core.Interfaces
+﻿namespace Escapa.Core.Interfaces
 {
     public interface ISoundController
     {
-        event GameEvent MuteChanged;
-
         bool IsMuted { get; }
 
-        void Mute();
+        void ToggleSound();
     }
 }

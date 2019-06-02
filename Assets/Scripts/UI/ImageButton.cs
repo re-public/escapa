@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Escapa.UI
 {
     [RequireComponent(typeof(Image))]
-    public class ImageButton : MonoBehaviour
+    public sealed class ImageButton : MonoBehaviour
     {
         [SerializeField]
         private bool isSocialButton;

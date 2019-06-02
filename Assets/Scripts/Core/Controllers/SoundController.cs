@@ -1,5 +1,4 @@
-﻿using Escapa.Core.Events;
-using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -10,15 +9,12 @@ namespace Escapa.Core.Controllers
     {
         private AudioSource audioSource;
 
-        public event GameEvent MuteChanged;
-
         public bool IsMuted { get; private set; }
 
-        public void Mute()
+        public void ToggleSound()
         {
             IsMuted = !IsMuted;
             audioSource.mute = IsMuted;
-            MuteChanged?.Invoke();
         }
 
         private void Awake()

@@ -192,8 +192,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1091884637}
-        m_MethodName: GoToScene
-        m_Mode: 5
+        m_MethodName: Restart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81649e9bece0434fa4565af1e737b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSocialButton: 0
 --- !u!1 &874307125
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +334,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1091884637}
-        m_MethodName: GoToScene
-        m_Mode: 5
+        m_MethodName: GoToMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -394,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81649e9bece0434fa4565af1e737b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSocialButton: 0
 --- !u!1 &1091884636
 GameObject:
   m_ObjectHideFlags: 0

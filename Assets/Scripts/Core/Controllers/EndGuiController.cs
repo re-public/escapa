@@ -1,10 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Escapa.Utility;
 
 namespace Escapa.Core.Controllers
 {
-    public class EndGuiController : MonoBehaviour
+    public class EndGuiController : GuiControllerBase
     {
-        public void GoToScene(string scene) => SceneManager.LoadScene(scene);
+        public void Restart() => LoadScene(GameScenes.Game);
+
+        public void GoToMenu() => LoadScene(GameScenes.Menu);
     }
 }

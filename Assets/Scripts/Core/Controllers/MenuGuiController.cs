@@ -3,12 +3,11 @@ using Escapa.Core.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Escapa.Core.Controllers
 {
-    public sealed class MenuGuiController : MonoBehaviour
+    public sealed class MenuGuiController : GuiControllerBase
     {
         [SerializeField]
         private Sprite soundOn;
@@ -25,11 +24,15 @@ namespace Escapa.Core.Controllers
             difficultyButton.SetText(GetString(DifficultyManager.Current.difficulty));
         }
 
-        public void GoToScene(string scene) => SceneManager.LoadScene(scene);
+        public void GoToInfo() => LoadScene(GameScenes.Info);
 
-        public void Mute()
+        public void GoToSocial() => LoadScene(GameScenes.Social);
+
+        public void StartGame() => LoadScene(GameScenes.Game);
+
+        public void ToggleSound()
         {
-            soundController.Mute();
+            soundController.ToggleSound();
             soundButton.overrideSprite = soundController.IsMuted ? soundOff : soundOn;
         }
 
