@@ -64,7 +64,7 @@ namespace Escapa.Core.Controllers
             ScoreManager.StopCount();
             SocialManager.SendScore();
 
-            SceneManager.LoadSceneAsync((int)GameScenes.End);
+            SceneManager.LoadScene((int)GameScenes.End);
         }
 
         private void OnPlayerMoved()

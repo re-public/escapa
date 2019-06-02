@@ -56,11 +56,11 @@ namespace Escapa.Core.Controllers
             if (current == GameScenes.Menu)
                 Application.Quit();
             else
-                SceneManager.LoadSceneAsync((int)GameScenes.Menu, LoadSceneMode.Single);
+                SceneManager.LoadScene((int)GameScenes.Menu, LoadSceneMode.Single);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => current = (GameScenes)scene.buildIndex;
 
-        private void OnAuthenticated() => SceneManager.LoadSceneAsync((int)GameScenes.Menu, LoadSceneMode.Single);
+        private void OnAuthenticated() => SceneManager.LoadScene((int)GameScenes.Menu, LoadSceneMode.Single);
     }
 }
