@@ -1,17 +1,20 @@
 ﻿using Escapa.Core.Managers;
+using UnityEngine;
 
 namespace Escapa.UI
 {
-    public sealed class TimeCounterLabel : Label
+    [RequireComponent(typeof(Label))]
+    public sealed class TimeCounterLabel : MonoBehaviour
     {
         private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', ',', '0', '\0' };
+        private Label label;
 
-        private new void Start() => TextMesh.color = StyleManager.Colors.TextAlfa;
+        private void Awake() => label = GetComponent<Label>();
 
         private void FixedUpdate()
         {
             UpdateCurrentRecordBuffer(ScoreManager.CurrentTime);
-            TextMesh.SetText(new string(currentRecordBuffer));
+            label.SetText(new string(currentRecordBuffer));
         }
 
         private void UpdateCurrentRecordBuffer(float value)

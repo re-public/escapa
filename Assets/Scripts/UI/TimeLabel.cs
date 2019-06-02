@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace Escapa.UI
 {
-    public sealed class TimeLabel : Label
+    [RequireComponent(typeof(Label))]
+    public sealed class TimeLabel : MonoBehaviour
     {
         [SerializeField]
         private bool showHighScore;
 
+        private Label label;
         private string newHighScoreTitle;
         private string highScoreTitle;
 
-        private new void Awake()
+        private void Awake()
         {
-            base.Awake();
+            label = GetComponent<Label>();
             newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
             highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
     }
 
-        private new void Start()
+        private void Start()
         {
-            base.Start();
-
             string title;
             if (showHighScore)
                 title = highScoreTitle;
@@ -31,7 +31,7 @@ namespace Escapa.UI
 
             var time = showHighScore ? ScoreManager.CurrentHigh : ScoreManager.LastTime;
 
-            TextMesh.SetText($"{title}\n{time.ToString("0.0")}");
+            label.SetText($"{title}\n{time.ToString("0.0")}");
         }
     }
 }

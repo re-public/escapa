@@ -1,22 +1,35 @@
 ﻿using Escapa.Core.Managers;
+using Escapa.Utility;
 using TMPro;
 using UnityEngine;
 
 namespace Escapa.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public abstract class Label : MonoBehaviour
+    public sealed class Label : MonoBehaviour
     {
-        protected TextMeshProUGUI TextMesh;
+        [SerializeField]
+        private bool isAlfa;
+        [SerializeField]
+        private LanguageTokens token;
 
-        protected void Awake() => TextMesh = GetComponent<TextMeshProUGUI>();
+        private TextMeshProUGUI textMesh;
 
-        protected void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+        public void SetText(string text) => textMesh.SetText(text);
 
-        protected void Start() => TextMesh.color = StyleManager.Colors.Text;
+        private void Awake() => textMesh = GetComponent<TextMeshProUGUI>();
 
-        protected void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+        private void OnEnable() => DifficultyManager.DifficultyChanged += OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => TextMesh.color = StyleManager.Colors.Text;
+        private void Start()
+        {
+            textMesh.color = isAlfa ? StyleManager.Colors.TextAlfa : StyleManager.Colors.Text;
+            if(token != LanguageTokens.None)
+                textMesh.SetText(LanguageManager.GetString(token));
+        }
+
+        private void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+
+        private void OnDifficultyChanged() => textMesh.color = StyleManager.Colors.Text;
     }
 }
