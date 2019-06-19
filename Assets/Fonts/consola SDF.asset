@@ -15,7 +15,218 @@ MonoBehaviour:
   hashCode: -1522362110
   material: {fileID: 21926598604111520}
   materialHashCode: -172003511
-  fontAssetType: 1
+  m_Version: 1.1.0
+  m_SourceFontFileGUID: 40584b5a5361d9648b620a7fcb94e966
+  m_SourceFontFile_EditorRef: {fileID: 0}
+  m_SourceFontFile: {fileID: 0}
+  m_AtlasPopulationMode: 0
+  m_FaceInfo:
+    m_FamilyName: Consolas
+    m_StyleName: 
+    m_PointSize: 54
+    m_Scale: 1
+    m_LineHeight: 63.25
+    m_AscentLine: 40.125
+    m_CapLine: 0
+    m_MeanLine: 0
+    m_Baseline: 0
+    m_DescentLine: -13.875
+    m_SuperscriptOffset: 40.125
+    m_SuperscriptSize: 0.5
+    m_SubscriptOffset: -8.912109
+    m_SubscriptSize: 0.5
+    m_UnderlineOffset: -8.912109
+    m_UnderlineThickness: 3.796875
+    m_StrikethroughOffset: 9.545455
+    m_StrikethroughThickness: 3.796875
+    m_TabWidth: 0
+  m_GlyphTable:
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 8.0625
+      m_Height: 27.4375
+      m_HorizontalBearingX: 10.75
+      m_HorizontalBearingY: 27
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 72
+      m_Y: 95
+      m_Width: 8
+      m_Height: 27
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 2
+    m_Metrics:
+      m_Width: 22.5625
+      m_Height: 37.5625
+      m_HorizontalBearingX: 4.1875
+      m_HorizontalBearingY: 37.3125
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 6
+      m_Y: 55
+      m_Width: 23
+      m_Height: 38
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 20.625
+      m_Height: 27.1875
+      m_HorizontalBearingX: 4.125
+      m_HorizontalBearingY: 26.875
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 40
+      m_Y: 95
+      m_Width: 21
+      m_Height: 27
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 23.5
+      m_Height: 27.4375
+      m_HorizontalBearingX: 3.0625
+      m_HorizontalBearingY: 27
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 40
+      m_Y: 7
+      m_Width: 24
+      m_Height: 27
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 21.1875
+      m_Height: 37.5625
+      m_HorizontalBearingX: 4.5
+      m_HorizontalBearingY: 37.625
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 40
+      m_Y: 45
+      m_Width: 21
+      m_Height: 38
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 6
+    m_Metrics:
+      m_Width: 21.1875
+      m_Height: 37.25
+      m_HorizontalBearingX: 4.5
+      m_HorizontalBearingY: 37.3125
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 75
+      m_Y: 7
+      m_Width: 21
+      m_Height: 37
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 7
+    m_Metrics:
+      m_Width: 22.5625
+      m_Height: 37.75
+      m_HorizontalBearingX: 4.1875
+      m_HorizontalBearingY: 27
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 6
+      m_Y: 6
+      m_Width: 23
+      m_Height: 38
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 8
+    m_Metrics:
+      m_Width: 21.875
+      m_Height: 26.9375
+      m_HorizontalBearingX: 5.25
+      m_HorizontalBearingY: 27
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 73
+      m_Y: 55
+      m_Width: 22
+      m_Height: 27
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 9
+    m_Metrics:
+      m_Width: 21.25
+      m_Height: 27
+      m_HorizontalBearingX: 4.1875
+      m_HorizontalBearingY: 26.5
+      m_HorizontalAdvance: 29.6875
+    m_GlyphRect:
+      m_X: 92
+      m_Y: 93
+      m_Width: 21
+      m_Height: 27
+    m_Scale: 1
+    m_AtlasIndex: 0
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 8.025
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
+  m_CharacterTable:
+  - m_ElementType: 1
+    m_Unicode: 58
+    m_GlyphIndex: 1
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 98
+    m_GlyphIndex: 2
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 99
+    m_GlyphIndex: 3
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 101
+    m_GlyphIndex: 4
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 105
+    m_GlyphIndex: 5
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 108
+    m_GlyphIndex: 6
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 112
+    m_GlyphIndex: 7
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 114
+    m_GlyphIndex: 8
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 117
+    m_GlyphIndex: 9
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 32
+    m_GlyphIndex: 0
+    m_Scale: 1
+  m_AtlasTextures:
+  - {fileID: 28840111348220186}
+  m_AtlasTextureIndex: 0
+  m_UsedGlyphRects: []
+  m_FreeGlyphRects: []
   m_fontInfo:
     Name: Consolas
     PointSize: 54
@@ -39,6 +250,10 @@ MonoBehaviour:
     AtlasWidth: 128
     AtlasHeight: 128
   atlas: {fileID: 28840111348220186}
+  m_AtlasWidth: 128
+  m_AtlasHeight: 128
+  m_AtlasPadding: 5
+  m_AtlasRenderMode: 16426
   m_glyphInfoList:
   - id: 58
     x: 72
@@ -121,23 +336,12 @@ MonoBehaviour:
     yOffset: 26.5
     xAdvance: 29.6875
     scale: 1
-  m_kerningInfo:
+  m_KerningTable:
     kerningPairs: []
-  m_kerningPair:
-    m_FirstGlyph: 0
-    m_FirstGlyphAdjustments:
-      xPlacement: 0
-      yPlacement: 0
-      xAdvance: 0
-      yAdvance: 0
-    m_SecondGlyph: 0
-    m_SecondGlyphAdjustments:
-      xPlacement: 0
-      yPlacement: 0
-      xAdvance: 0
-      yAdvance: 0
-    xOffset: 0
+  m_FontFeatureTable:
+    m_GlyphPairAdjustmentRecords: []
   fallbackFontAssets: []
+  m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
     sourceFontFileGUID: 40584b5a5361d9648b620a7fcb94e966
@@ -155,6 +359,27 @@ MonoBehaviour:
     fontStyleModifier: 2
     renderMode: 6
     includeFontFeatures: 0
+  m_FontWeightTable:
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 0}
+    italicTypeface: {fileID: 0}
   fontWeights:
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
