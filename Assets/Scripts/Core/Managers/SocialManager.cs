@@ -35,26 +35,23 @@ namespace Escapa.Core.Managers
 
         public static void Auth(System.Action callback)
         {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.Activate();
-
-            if (Social.localUser.authenticated) return;
-
-            Social.localUser.Authenticate(success =>
+            // Check if GPGS is installed
+            if (GooglePlayGames.OurUtils.PlatformUtils.Supported)
             {
-                if (success)
-                    ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
-            });
+                PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+                PlayGamesPlatform.InitializeInstance(config);
+                PlayGamesPlatform.Activate();
+
+                if (Social.localUser.authenticated) return;
+
+                Social.localUser.Authenticate(success =>
+                {
+                    if (success)
+                        ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
+                });
+            }
 
             callback?.Invoke();
-        }
-
-        public static void SignOut()
-        {
-            if (!Social.localUser.authenticated) return;
-
-            PlayGamesPlatform.Instance.SignOut();
         }
 
         public static void ShowAchievements()
