@@ -1,18 +1,31 @@
-﻿using Escapa.Utility;
+﻿using Escapa.Assets.Scripts.Utility;
+using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.Core.Managers
 {
     public static class ScoreManager
     {
-        private static float startTime;
-        private static readonly float[] highScores = Load();
-
         public static float CurrentTime => startTime > float.Epsilon ? Time.realtimeSinceStartup - startTime : 0f;
 
         public static float LastTime { get; private set; }
 
         public static bool IsHighScore { get; private set; }
+
+        /// <summary>
+        /// The time after which we give the achievement "Black hawk"
+        /// </summary>
+        public static float BlackHawkTime => times.BlackHawk;
+
+        /// <summary>
+        /// The time after which we give the achievement "Zen"
+        /// </summary>
+        public static float ZenTime => times.Zen;
+
+        /// <summary>
+        /// The time after which we give the achievement "Moves Like Jagger"
+        /// </summary>
+        public static float JaggerTime => times.Jagger;
 
         public static void StartCount()
         {
@@ -46,6 +59,10 @@ namespace Escapa.Core.Managers
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, highScores[3]);
         }
 
+        private static float startTime;
+        private static readonly float[] highScores = Load();
+        private static readonly TimeConfig times = LoadConfig();
+
         private static float[] Load()
         {
             return new[]
@@ -55,6 +72,12 @@ namespace Escapa.Core.Managers
                 PlayerPrefs.GetFloat(PlayerPrefKeys.Score2, 0f),
                 PlayerPrefs.GetFloat(PlayerPrefKeys.Score3, 0f)
             };
+        }
+
+        private static TimeConfig LoadConfig()
+        {
+            var json = Resources.Load<TextAsset>($"{ResourceKeys.Achievements}").text;
+            return JsonUtility.FromJson<AchievementsConfig>(json).Time;
         }
     }
 }

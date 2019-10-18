@@ -31,12 +31,12 @@ namespace Escapa.Core.Controllers
             if (Input.GetKey(KeyCode.Escape))
                 ScoreManager.StopCount();
 
-            if (ScoreManager.CurrentTime > 18f && DifficultyManager.Current.difficulty == Difficulties.Insane)
+            if (ScoreManager.CurrentTime > ScoreManager.BlackHawkTime && DifficultyManager.Current.difficulty == Difficulties.Insane)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
 
-            if (idleTime.HasValue && ScoreManager.CurrentTime - idleTime.Value > 5f)
+            if (idleTime.HasValue && ScoreManager.CurrentTime - idleTime.Value > ScoreManager.ZenTime)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_zen);
-            else if (movingTime.HasValue && ScoreManager.CurrentTime - movingTime > 10f)
+            else if (movingTime.HasValue && ScoreManager.CurrentTime - movingTime > ScoreManager.JaggerTime)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
         }
 
