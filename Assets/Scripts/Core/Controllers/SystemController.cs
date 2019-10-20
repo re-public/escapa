@@ -46,7 +46,6 @@ namespace Escapa.Core.Controllers
         {
             DifficultyManager.Save();
             ScoreManager.Save();
-            SocialManager.SignOut();
         }
 
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
