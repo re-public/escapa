@@ -16,6 +16,7 @@ namespace Escapa.UI
 
         private TextMeshProUGUI textMesh;
         private IDifficultyController _difficulty;
+        private IStyleController _style;
 
         public void SetText(string text) => textMesh.SetText(text);
 
@@ -23,21 +24,20 @@ namespace Escapa.UI
         {
             textMesh = GetComponent<TextMeshProUGUI>();
             _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
 
         private void OnEnable() => _difficulty.Changed += OnDifficultyChanged;
 
         private void Start()
         {
-            textMesh.color = isAlfa
-                ? StyleManager.Colors[(int)_difficulty.Current.Difficulty].TextAlfa
-                : StyleManager.Colors[(int)_difficulty.Current.Difficulty].Text;
+            textMesh.color = isAlfa ? _style.Current.TextAlfa : _style.Current.Text;
             if(token != LanguageTokens.None)
                 textMesh.SetText(LanguageManager.GetString(token));
         }
 
         private void OnDisable() => _difficulty.Changed -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => textMesh.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Text;
+        private void OnDifficultyChanged() => textMesh.color = _style.Current.Text;
     }
 }

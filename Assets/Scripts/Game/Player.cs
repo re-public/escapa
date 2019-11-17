@@ -1,6 +1,5 @@
 ﻿using Escapa.Core.Events;
 using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Escapa.Game
         public event GameEvent Stopped;
 
         private new IMainCamera camera;
-        private IDifficultyController _difficulty;
+        private IStyleController _style;
         private SpriteRenderer spriteRenderer;
 
         private bool isTouched;
@@ -27,11 +26,11 @@ namespace Escapa.Game
         private void Awake()
         {
             camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start() => spriteRenderer.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Player;
+        private void Start() => spriteRenderer.color = _style.Current.Player;
 
         private void Update()
         {
@@ -52,7 +51,7 @@ namespace Escapa.Game
             oldPosition = targetPosition;
         }
 
-        private void OnCollisionEnter2D() => Died?.Invoke();
+        private void OnCollisionEnter2D(Collision2D _) => Died?.Invoke();
 
         private void OnTouch(Vector2 position)
         {

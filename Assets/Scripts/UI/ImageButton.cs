@@ -1,5 +1,4 @@
 ﻿using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,11 +13,13 @@ namespace Escapa.UI
 
         private Image image;
         private IDifficultyController _difficulty;
+        private IStyleController _style;
 
         private void Awake()
         {
             image = GetComponent<Image>();
             _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
         }
 
         private void OnEnable() => _difficulty.Changed += OnDifficultyChanged;
@@ -27,11 +28,11 @@ namespace Escapa.UI
         {
             if (isSocialButton)
                 gameObject.SetActive(Social.localUser.authenticated);
-            image.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Text;
+            image.color = _style.Current.Text;
         }
 
         private void OnDisable() => _difficulty.Changed -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => image.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Text;
+        private void OnDifficultyChanged() => image.color = _style.Current.Text;
     }
 }
