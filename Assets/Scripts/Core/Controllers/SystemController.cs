@@ -11,9 +11,6 @@ namespace Escapa.Core.Controllers
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.FindWithTag(Tags.EventSystem));
-
             Input.multiTouchEnabled = false;
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
@@ -28,18 +25,6 @@ namespace Escapa.Core.Controllers
             if (Input.GetKey(KeyCode.Escape))
                 GoBack();
         }
-
-        // If user wants to quit using Task Manager.
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause)
-            {
-                ScoreManager.Save();
-            }
-        }
-
-        // If user wants to quit the usual way.
-        private void OnApplicationQuit() => ScoreManager.Save();
 
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 

@@ -15,11 +15,10 @@ namespace Escapa.Core.Managers
                 Social.ReportProgress(achievementGuid, 100d, success => { });
         }
 
-        public static void SendScore(Difficulties difficulty)
+        public static void SendScore(Difficulties difficulty, long time)
         {
             if (!Social.localUser.authenticated) return;
 
-            var time = (long)(ScoreManager.LastTime * 1000);
             var leaderboardGuid = string.Empty;
 
             switch (difficulty)

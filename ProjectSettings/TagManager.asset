@@ -11,6 +11,7 @@ TagManager:
   - StyleController
   - DifficultyController
   - SoundController
+  - ScoreController
   layers:
   - Default
   - TransparentFX

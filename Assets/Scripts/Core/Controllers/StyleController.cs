@@ -13,10 +13,6 @@ namespace Escapa.Core.Controllers
 
         private IDifficultyController _difficulty;
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-        }
+        private void Awake() => _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
     }
 }

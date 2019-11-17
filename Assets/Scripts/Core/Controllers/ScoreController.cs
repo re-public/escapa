@@ -1,39 +1,39 @@
-﻿using Escapa.Assets.Scripts.Utility;
+﻿using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
-namespace Escapa.Core.Managers
+namespace Escapa.Core.Controllers
 {
-    public static class ScoreManager
+    public class ScoreController : MonoBehaviour, IScoreController
     {
-        public static float CurrentTime => startTime > float.Epsilon ? Time.realtimeSinceStartup - startTime : 0f;
+        public float CurrentTime => startTime > float.Epsilon ? Time.realtimeSinceStartup - startTime : 0f;
 
-        public static float LastTime { get; private set; }
+        public float LastTime { get; private set; }
 
-        public static bool IsHighScore { get; private set; }
+        public bool IsHighScore { get; private set; }
 
         /// <summary>
         /// The time after which we give the achievement "Black hawk"
         /// </summary>
-        public static float BlackHawkTime => times.BlackHawk;
+        public float BlackHawkTime => Achievements.BlackHawk;
 
         /// <summary>
         /// The time after which we give the achievement "Zen"
         /// </summary>
-        public static float ZenTime => times.Zen;
+        public float ZenTime => Achievements.Zen;
 
         /// <summary>
         /// The time after which we give the achievement "Moves Like Jagger"
         /// </summary>
-        public static float JaggerTime => times.Jagger;
+        public float JaggerTime => Achievements.Jagger;
 
-        public static void StartCount()
+        public void StartCount()
         {
             IsHighScore = false;
             startTime = Time.realtimeSinceStartup;
         }
 
-        public static void StopCount(Difficulties difficulty)
+        public void StopCount(Difficulties difficulty)
         {
             LastTime = CurrentTime;
             startTime = 0f;
@@ -45,9 +45,9 @@ namespace Escapa.Core.Managers
             }
         }
 
-        public static float GetHigh(Difficulties difficulty) => highScores[(int)difficulty];
+        public float GetHigh(Difficulties difficulty) => highScores[(int)difficulty];
 
-        public static void Save()
+        public void Save()
         {
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, highScores[0]);
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, highScores[1]);
@@ -55,13 +55,29 @@ namespace Escapa.Core.Managers
             PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, highScores[3]);
         }
 
-        private static float startTime;
-        private static readonly float[] highScores = Load();
-        private static readonly TimeConfig times = LoadConfig();
+        [SerializeField]
+        private AchievementsConfig Achievements;
 
-        private static float SetHigh(Difficulties difficulty, float score) => highScores[(int)difficulty] = score;
+        private float startTime;
+        private float[] highScores;
 
-        private static float[] Load()
+        private void Awake() => highScores = Load();
+
+        // If user wants to quit using Task Manager.
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause)
+            {
+                Save();
+            }
+        }
+
+        // If user wants to quit the usual way.
+        private void OnApplicationQuit() => Save();
+
+        private float SetHigh(Difficulties difficulty, float score) => highScores[(int)difficulty] = score;
+
+        private float[] Load()
         {
             return new[]
             {
@@ -70,12 +86,6 @@ namespace Escapa.Core.Managers
                 PlayerPrefs.GetFloat(PlayerPrefKeys.Score2, 0f),
                 PlayerPrefs.GetFloat(PlayerPrefKeys.Score3, 0f)
             };
-        }
-
-        private static TimeConfig LoadConfig()
-        {
-            var json = Resources.Load<TextAsset>($"{ResourceKeys.Achievements}").text;
-            return JsonUtility.FromJson<AchievementsConfig>(json).Time;
         }
     }
 }

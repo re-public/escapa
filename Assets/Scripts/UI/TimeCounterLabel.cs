@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Managers;
+﻿using Escapa.Core.Interfaces;
+using Escapa.Utility;
 using UnityEngine;
 
 namespace Escapa.UI
@@ -8,12 +9,17 @@ namespace Escapa.UI
     {
         private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', ',', '0', '\0' };
         private Label label;
+        private IScoreController _score;
 
-        private void Awake() => label = GetComponent<Label>();
+        private void Awake()
+        {
+            label = GetComponent<Label>();
+            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+        }
 
         private void FixedUpdate()
         {
-            UpdateCurrentRecordBuffer(ScoreManager.CurrentTime);
+            UpdateCurrentRecordBuffer(_score.CurrentTime);
             label.SetText(new string(currentRecordBuffer));
         }
 

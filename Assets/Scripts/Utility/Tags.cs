@@ -12,5 +12,6 @@
         public const string StyleController = "StyleController";
         public const string DifficultyController = "DifficultyController";
         public const string SoundController = "SoundController";
+        public const string ScoreController = "ScoreController";
     }
 }

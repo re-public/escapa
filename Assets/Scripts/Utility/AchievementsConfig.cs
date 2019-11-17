@@ -1,15 +1,9 @@
-﻿using System;
+﻿using UnityEngine;
 
-namespace Escapa.Assets.Scripts.Utility
+namespace Escapa.Utility
 {
-    [Serializable]
-    public sealed class AchievementsConfig
-    {
-        public TimeConfig Time;
-    }
-
-    [Serializable]
-    public sealed class TimeConfig
+    [CreateAssetMenu(fileName = "Achievements", menuName = "Scriptable Objects/Achievements config")]
+    public sealed class AchievementsConfig: ScriptableObject
     {
         public float BlackHawk;
         public float Zen;
