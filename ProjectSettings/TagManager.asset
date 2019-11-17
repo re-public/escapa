@@ -9,6 +9,7 @@ TagManager:
   - SoundButton
   - SystemController
   - DifficultyButton
+  - StyleController
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,7 @@ namespace Escapa.Game
 
             camera = GetComponent<Camera>();
             _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()

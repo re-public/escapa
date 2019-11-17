@@ -26,7 +26,7 @@ namespace Escapa.Game
         private void Awake()
         {
             camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 

@@ -19,7 +19,7 @@ namespace Escapa.UI
         {
             image = GetComponent<Image>();
             _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable() => _difficulty.Changed += OnDifficultyChanged;

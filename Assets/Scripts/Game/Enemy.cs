@@ -26,7 +26,7 @@ namespace Escapa.Game
 
             gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
             _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.SystemController).GetComponent<IStyleController>();
+            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable() => gameController.GameStarted += OnGameStarted;
