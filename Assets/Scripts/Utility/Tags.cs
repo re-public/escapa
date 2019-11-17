@@ -10,5 +10,6 @@
         public const string SoundButton = "SoundButton";
         public const string SystemController = "SystemController";
         public const string StyleController = "StyleController";
+        public const string DifficultyController = "DifficultyController";
     }
 }

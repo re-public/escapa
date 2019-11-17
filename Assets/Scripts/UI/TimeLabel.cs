@@ -19,7 +19,7 @@ namespace Escapa.UI
         private void Awake()
         {
             label = GetComponent<Label>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
             newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
             highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
     }

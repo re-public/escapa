@@ -18,7 +18,7 @@ namespace Escapa.UI
         private void Awake()
         {
             image = GetComponent<Image>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
             _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 

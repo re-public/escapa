@@ -25,7 +25,7 @@ namespace Escapa.Game
             spriteRenderer = GetComponent<SpriteRenderer>();
 
             gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
             _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 

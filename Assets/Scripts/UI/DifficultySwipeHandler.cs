@@ -19,7 +19,7 @@ namespace Escapa.UI
         private void Awake()
         {
             camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
         }
 
         private void FixedUpdate()

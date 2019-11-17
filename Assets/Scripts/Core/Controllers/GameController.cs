@@ -20,7 +20,7 @@ namespace Escapa.Core.Controllers
         private void Awake()
         {
             player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
         }
 
         private void OnEnable()

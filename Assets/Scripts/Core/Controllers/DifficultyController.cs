@@ -27,7 +27,11 @@ namespace Escapa.Core.Controllers
             Changed?.Invoke();
         }
 
-        private void Awake() => _currentDifficulty = PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+            _currentDifficulty = PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
+        }
 
         // If user wants to quit using Task Manager.
         private void OnApplicationPause(bool pause)
