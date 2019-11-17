@@ -12,11 +12,16 @@ namespace Escapa.Core.Controllers
         public event GameEvent GameStarted;
 
         private IPlayer player;
+        private IDifficultyController _difficulty;
 
         private float? idleTime;
         private float? movingTime;
 
-        private void Awake() => player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+        private void Awake()
+        {
+            player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+        }
 
         private void OnEnable()
         {
@@ -29,9 +34,9 @@ namespace Escapa.Core.Controllers
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
-                ScoreManager.StopCount();
+                ScoreManager.StopCount(_difficulty.Current.Difficulty);
 
-            if (ScoreManager.CurrentTime > ScoreManager.BlackHawkTime && DifficultyManager.Current.difficulty == Difficulties.Insane)
+            if (ScoreManager.CurrentTime > ScoreManager.BlackHawkTime && _difficulty.Current.Difficulty == Difficulties.Insane)
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
 
             if (idleTime.HasValue && ScoreManager.CurrentTime - idleTime.Value > ScoreManager.ZenTime)
@@ -61,8 +66,8 @@ namespace Escapa.Core.Controllers
         private void OnPlayerDie()
         {
             player.Died -= OnPlayerDie;
-            ScoreManager.StopCount();
-            SocialManager.SendScore();
+            ScoreManager.StopCount(_difficulty.Current.Difficulty);
+            SocialManager.SendScore(_difficulty.Current.Difficulty);
 
             SceneManager.LoadScene((int)GameScenes.End);
         }

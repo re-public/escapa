@@ -17,6 +17,7 @@ namespace Escapa.Game
         private new Rigidbody2D rigidbody2D;
         private SpriteRenderer spriteRenderer;
         private IGameController gameController;
+        private IDifficultyController _difficulty;
 
         private void Awake()
         {
@@ -24,19 +25,20 @@ namespace Escapa.Game
             spriteRenderer = GetComponent<SpriteRenderer>();
 
             gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
+            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
         }
 
         private void OnEnable() => gameController.GameStarted += OnGameStarted;
 
         private void Start()
         {
-            if (DifficultyManager.Current.difficulty < difficulty)
+            if (_difficulty.Current.Difficulty < difficulty)
                 gameObject.SetActive(false);
             else
             {
-                minSpeed = DifficultyManager.Current.minSpeed;
-                maxSpeed = DifficultyManager.Current.maxSpeed;
-                spriteRenderer.color = StyleManager.Colors.Enemy;
+                minSpeed = _difficulty.Current.MinSpeed;
+                maxSpeed = _difficulty.Current.MaxSpeed;
+                spriteRenderer.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Enemy;
             }
         }
 

@@ -5,9 +5,7 @@ namespace Escapa.Core.Managers
 {
     public static class StyleManager
     {
-        private static readonly Colors[] colors = Load();
-
-        public static Colors Colors => colors[(int)DifficultyManager.Current.difficulty];
+        public static Colors[] Colors { get; } = Load();
 
         private static Colors[] Load()
         {

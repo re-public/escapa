@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Managers;
+﻿using Escapa.Core.Interfaces;
+using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Escapa.UI
         [SerializeField]
         private bool showHighScore;
 
+        private IDifficultyController _difficulty;
         private Label label;
         private string newHighScoreTitle;
         private string highScoreTitle;
@@ -17,6 +19,7 @@ namespace Escapa.UI
         private void Awake()
         {
             label = GetComponent<Label>();
+            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
             newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
             highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
     }
@@ -29,7 +32,9 @@ namespace Escapa.UI
             else
                 title = ScoreManager.IsHighScore ? newHighScoreTitle : string.Empty;
 
-            var time = showHighScore ? ScoreManager.CurrentHigh : ScoreManager.LastTime;
+            var time = showHighScore
+                ? ScoreManager.GetHigh(_difficulty.Current.Difficulty)
+                : ScoreManager.LastTime;
 
             label.SetText($"{title}\n{time.ToString("0.0")}");
         }

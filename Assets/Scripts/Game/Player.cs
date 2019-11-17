@@ -15,6 +15,7 @@ namespace Escapa.Game
         public event GameEvent Stopped;
 
         private new IMainCamera camera;
+        private IDifficultyController _difficulty;
         private SpriteRenderer spriteRenderer;
 
         private bool isTouched;
@@ -26,10 +27,11 @@ namespace Escapa.Game
         private void Awake()
         {
             camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start() => spriteRenderer.color = StyleManager.Colors.Player;
+        private void Start() => spriteRenderer.color = StyleManager.Colors[(int)_difficulty.Current.Difficulty].Player;
 
         private void Update()
         {

@@ -11,10 +11,16 @@ namespace Escapa.UI
         private float distance;
 
         private new IMainCamera camera;
+        private IDifficultyController _difficulty;
+
         private Vector2 startPoint;
         private Vector2 endPoint;
 
-        private void Awake() => camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+        private void Awake()
+        {
+            camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+            _difficulty = GameObject.FindWithTag(Tags.SystemController).GetComponent<IDifficultyController>();
+        }
 
         private void FixedUpdate()
         {
@@ -33,10 +39,10 @@ namespace Escapa.UI
                         {
                             // If swipe was directed from right to left
                             if (Vector2.Dot(Vector2.left, endPoint - startPoint) > 0)
-                                DifficultyManager.Increase();
+                                _difficulty.Increase();
                             // If swipe was directed from left to right
                             else if (Vector2.Dot(endPoint - startPoint, Vector2.right) > 0)
-                                DifficultyManager.Decrease();
+                                _difficulty.Decrease();
                         }
                         startPoint = Vector2.zero;
                         endPoint = Vector2.zero;

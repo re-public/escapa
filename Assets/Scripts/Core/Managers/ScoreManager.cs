@@ -33,23 +33,19 @@ namespace Escapa.Core.Managers
             startTime = Time.realtimeSinceStartup;
         }
 
-        public static void StopCount()
+        public static void StopCount(Difficulties difficulty)
         {
             LastTime = CurrentTime;
             startTime = 0f;
 
-            if (LastTime > CurrentHigh)
+            if (LastTime > GetHigh(difficulty))
             {
                 IsHighScore = true;
-                CurrentHigh = LastTime;
+                SetHigh(difficulty, LastTime);
             }
         }
 
-        public static float CurrentHigh
-        {
-            get => highScores[(int)DifficultyManager.Current.difficulty];
-            private set => highScores[(int)DifficultyManager.Current.difficulty] = value;
-        }
+        public static float GetHigh(Difficulties difficulty) => highScores[(int)difficulty];
 
         public static void Save()
         {
@@ -62,6 +58,8 @@ namespace Escapa.Core.Managers
         private static float startTime;
         private static readonly float[] highScores = Load();
         private static readonly TimeConfig times = LoadConfig();
+
+        private static float SetHigh(Difficulties difficulty, float score) => highScores[(int)difficulty] = score;
 
         private static float[] Load()
         {

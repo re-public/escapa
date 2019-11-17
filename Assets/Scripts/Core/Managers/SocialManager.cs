@@ -15,14 +15,14 @@ namespace Escapa.Core.Managers
                 Social.ReportProgress(achievementGuid, 100d, success => { });
         }
 
-        public static void SendScore()
+        public static void SendScore(Difficulties difficulty)
         {
             if (!Social.localUser.authenticated) return;
 
             var time = (long)(ScoreManager.LastTime * 1000);
             var leaderboardGuid = string.Empty;
 
-            switch (DifficultyManager.Current.difficulty)
+            switch (difficulty)
             {
                 case Difficulties.Easy:   leaderboardGuid = GooglePlayIds.leaderboard_easy;        break;
                 case Difficulties.Medium: leaderboardGuid = GooglePlayIds.leaderboard_medium;      break;

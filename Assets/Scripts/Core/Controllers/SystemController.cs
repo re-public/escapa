@@ -36,17 +36,12 @@ namespace Escapa.Core.Controllers
         {
             if (pause)
             {
-                DifficultyManager.Save();
                 ScoreManager.Save();
             }
         }
 
         // If user wants to quit the usual way.
-        private void OnApplicationQuit()
-        {
-            DifficultyManager.Save();
-            ScoreManager.Save();
-        }
+        private void OnApplicationQuit() => ScoreManager.Save();
 
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
