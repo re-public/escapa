@@ -16,7 +16,7 @@ namespace Escapa.Core.Controllers
 
         private TextMeshProUGUI difficultyButton;
         private IDifficultyController _difficulty;
-        private ISoundController soundController;
+        private ISoundController _sound;
         private Image soundButton;
 
         public void AddDifficulty()
@@ -33,22 +33,22 @@ namespace Escapa.Core.Controllers
 
         public void ToggleSound()
         {
-            soundController.ToggleSound();
-            soundButton.overrideSprite = soundController.IsMuted ? soundOff : soundOn;
+            _sound.ToggleSound();
+            soundButton.overrideSprite = _sound.IsMuted ? soundOff : soundOn;
         }
 
         private void Awake()
         {
             difficultyButton = GameObject.FindWithTag(Tags.DifficultyButton).GetComponent<TextMeshProUGUI>();
             _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
+            _sound = GameObject.FindWithTag(Tags.SoundController).GetComponent<ISoundController>();
             soundButton = GameObject.FindWithTag(Tags.SoundButton).GetComponent<Image>();
         }
 
         private void Start()
         {
             difficultyButton.SetText(GetString(_difficulty.Current.Difficulty));
-            soundButton.overrideSprite = soundController.IsMuted ? soundOff : soundOn;
+            soundButton.overrideSprite = _sound.IsMuted ? soundOff : soundOn;
         }
 
         private string GetString(Difficulties difficulty)

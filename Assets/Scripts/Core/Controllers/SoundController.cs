@@ -19,6 +19,7 @@ namespace Escapa.Core.Controllers
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             IsMuted = PlayerPrefs.GetInt(PlayerPrefKeys.IsSoundMuted, 0) == 1;
 
             audioSource = GetComponent<AudioSource>();
