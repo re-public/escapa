@@ -1,5 +1,4 @@
 ﻿using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ namespace Escapa.UI
 
         private IDifficultyController _difficulty;
         private IScoreController _score;
+        private ITranslationController _translation;
         private Label label;
         private string newHighScoreTitle;
         private string highScoreTitle;
@@ -22,8 +22,9 @@ namespace Escapa.UI
             label = GetComponent<Label>();
             _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
             _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
-            newHighScoreTitle = LanguageManager.GetString(LanguageTokens.NewHighScore);
-            highScoreTitle = LanguageManager.GetString(LanguageTokens.HighScoreTitle);
+            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
+            newHighScoreTitle = _translation.Current.GetString(LanguageTokens.NewHighScore);
+            highScoreTitle = _translation.Current.GetString(LanguageTokens.HighScoreTitle);
     }
 
         private void Start()

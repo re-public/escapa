@@ -13,5 +13,6 @@
         public const string DifficultyController = "DifficultyController";
         public const string SoundController = "SoundController";
         public const string ScoreController = "ScoreController";
+        public const string TranslationController = "TranslationController";
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Escapa.Core.Controllers
         private TextMeshProUGUI difficultyButton;
         private IDifficultyController _difficulty;
         private ISoundController _sound;
+        private ITranslationController _translation;
         private Image soundButton;
 
         public void AddDifficulty()
@@ -41,6 +41,7 @@ namespace Escapa.Core.Controllers
         {
             difficultyButton = GameObject.FindWithTag(Tags.DifficultyButton).GetComponent<TextMeshProUGUI>();
             _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
             _sound = GameObject.FindWithTag(Tags.SoundController).GetComponent<ISoundController>();
             soundButton = GameObject.FindWithTag(Tags.SoundButton).GetComponent<Image>();
         }
@@ -57,13 +58,13 @@ namespace Escapa.Core.Controllers
             {
                 default:
                 case Difficulties.Easy:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyEasy);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyEasy);
                 case Difficulties.Medium:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyMedium);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyMedium);
                 case Difficulties.Hard:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyHard);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyHard);
                 case Difficulties.Insane:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyInsane);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyInsane);
             }
         }
     }

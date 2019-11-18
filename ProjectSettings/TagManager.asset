@@ -12,6 +12,7 @@ TagManager:
   - DifficultyController
   - SoundController
   - ScoreController
+  - TranslationController
   layers:
   - Default
   - TransparentFX
