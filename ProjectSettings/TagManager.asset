@@ -13,6 +13,7 @@ TagManager:
   - SoundController
   - ScoreController
   - TranslationController
+  - SocialController
   layers:
   - Default
   - TransparentFX

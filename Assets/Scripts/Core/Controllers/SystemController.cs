@@ -1,5 +1,4 @@
-﻿using Escapa.Core.Managers;
-using Escapa.Utility;
+﻿using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,8 +17,6 @@ namespace Escapa.Core.Controllers
 
         private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
-        private void Start() => SocialManager.Auth(OnAuthenticated);
-
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -37,7 +34,5 @@ namespace Escapa.Core.Controllers
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => current = (GameScenes)scene.buildIndex;
-
-        private void OnAuthenticated() => SceneManager.LoadScene((int)GameScenes.Menu, LoadSceneMode.Single);
     }
 }

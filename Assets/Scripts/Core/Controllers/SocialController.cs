@@ -2,12 +2,13 @@
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Escapa.Core.Managers
+namespace Escapa.Core.Controllers
 {
-    public static class SocialManager
+    public class SocialController : MonoBehaviour, ISocialController
     {
-        public static void CompleteAchievement(string achievementGuid)
+        public void CompleteAchievement(string achievementGuid)
         {
             if (!Social.localUser.authenticated) return;
 
@@ -15,7 +16,7 @@ namespace Escapa.Core.Managers
                 Social.ReportProgress(achievementGuid, 100d, success => { });
         }
 
-        public static void SendScore(Difficulties difficulty, long time)
+        public void SendScore(Difficulties difficulty, long time)
         {
             if (!Social.localUser.authenticated) return;
 
@@ -23,16 +24,32 @@ namespace Escapa.Core.Managers
 
             switch (difficulty)
             {
-                case Difficulties.Easy:   leaderboardGuid = GooglePlayIds.leaderboard_easy;        break;
-                case Difficulties.Medium: leaderboardGuid = GooglePlayIds.leaderboard_medium;      break;
-                case Difficulties.Hard:   leaderboardGuid = GooglePlayIds.leaderboard_hard;        break;
+                case Difficulties.Easy: leaderboardGuid = GooglePlayIds.leaderboard_easy; break;
+                case Difficulties.Medium: leaderboardGuid = GooglePlayIds.leaderboard_medium; break;
+                case Difficulties.Hard: leaderboardGuid = GooglePlayIds.leaderboard_hard; break;
                 case Difficulties.Insane: leaderboardGuid = GooglePlayIds.leaderboard_i_n_s_a_n_e; break;
             }
 
             Social.ReportScore(time, leaderboardGuid, success => { });
         }
 
-        public static void Auth(System.Action callback)
+        public void ShowAchievements()
+        {
+            if (!Social.localUser.authenticated) return;
+
+            Social.ShowAchievementsUI();
+        }
+
+        public void ShowLeaderboards()
+        {
+            if (!Social.localUser.authenticated) return;
+
+            Social.ShowLeaderboardUI();
+        }
+
+        private void Start() => Auth(OnAuthenticated);
+
+        private void Auth(System.Action callback)
         {
             // Check if GPGS is installed
             if (GooglePlayGames.OurUtils.PlatformUtils.Supported)
@@ -53,18 +70,6 @@ namespace Escapa.Core.Managers
             callback?.Invoke();
         }
 
-        public static void ShowAchievements()
-        {
-            if (!Social.localUser.authenticated) return;
-
-            Social.ShowAchievementsUI();
-        }
-
-        public static void ShowLeaderboards()
-        {
-            if (!Social.localUser.authenticated) return;
-
-            Social.ShowLeaderboardUI();
-        }
+        private void OnAuthenticated() => SceneManager.LoadScene((int)GameScenes.Menu, LoadSceneMode.Single);
     }
 }

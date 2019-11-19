@@ -14,5 +14,6 @@
         public const string SoundController = "SoundController";
         public const string ScoreController = "ScoreController";
         public const string TranslationController = "TranslationController";
+        public const string SocialController = "SocialController";
     }
 }
