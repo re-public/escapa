@@ -1,16 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Escapa.Utility
 {
-    [Serializable]
-    public class Style
-    {
-        public Colors[] Colors;
-    }
-
-    [Serializable]
-    public class Colors
+    [CreateAssetMenu(fileName = "Style", menuName = "Scriptable Objects/Style")]
+    public sealed class Style: ScriptableObject
     {
         public Color Background;
         public Color Enemy;

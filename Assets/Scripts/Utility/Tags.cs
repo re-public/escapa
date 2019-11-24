@@ -9,5 +9,11 @@
         public const string EventSystem = "EventSystem";
         public const string SoundButton = "SoundButton";
         public const string SystemController = "SystemController";
+        public const string StyleController = "StyleController";
+        public const string DifficultyController = "DifficultyController";
+        public const string SoundController = "SoundController";
+        public const string ScoreController = "ScoreController";
+        public const string TranslationController = "TranslationController";
+        public const string SocialController = "SocialController";
     }
 }

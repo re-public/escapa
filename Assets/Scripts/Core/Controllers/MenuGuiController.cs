@@ -1,5 +1,4 @@
 ﻿using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using TMPro;
 using UnityEngine;
@@ -15,13 +14,15 @@ namespace Escapa.Core.Controllers
         private Sprite soundOff;
 
         private TextMeshProUGUI difficultyButton;
-        private ISoundController soundController;
+        private IDifficultyController _difficulty;
+        private ISoundController _sound;
+        private ITranslationController _translation;
         private Image soundButton;
 
         public void AddDifficulty()
         {
-            DifficultyManager.Increase();
-            difficultyButton.SetText(GetString(DifficultyManager.Current.difficulty));
+            _difficulty.Increase();
+            difficultyButton.SetText(GetString(_difficulty.Current.Difficulty));
         }
 
         public void GoToInfo() => LoadScene(GameScenes.Info);
@@ -32,21 +33,23 @@ namespace Escapa.Core.Controllers
 
         public void ToggleSound()
         {
-            soundController.ToggleSound();
-            soundButton.overrideSprite = soundController.IsMuted ? soundOff : soundOn;
+            _sound.ToggleSound();
+            soundButton.overrideSprite = _sound.IsMuted ? soundOff : soundOn;
         }
 
         private void Awake()
         {
             difficultyButton = GameObject.FindWithTag(Tags.DifficultyButton).GetComponent<TextMeshProUGUI>();
-            soundController = GameObject.FindWithTag(Tags.SystemController).GetComponent<ISoundController>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
+            _sound = GameObject.FindWithTag(Tags.SoundController).GetComponent<ISoundController>();
             soundButton = GameObject.FindWithTag(Tags.SoundButton).GetComponent<Image>();
         }
 
         private void Start()
         {
-            difficultyButton.SetText(GetString(DifficultyManager.Current.difficulty));
-            soundButton.overrideSprite = soundController.IsMuted ? soundOff : soundOn;
+            difficultyButton.SetText(GetString(_difficulty.Current.Difficulty));
+            soundButton.overrideSprite = _sound.IsMuted ? soundOff : soundOn;
         }
 
         private string GetString(Difficulties difficulty)
@@ -55,13 +58,13 @@ namespace Escapa.Core.Controllers
             {
                 default:
                 case Difficulties.Easy:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyEasy);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyEasy);
                 case Difficulties.Medium:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyMedium);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyMedium);
                 case Difficulties.Hard:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyHard);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyHard);
                 case Difficulties.Insane:
-                    return LanguageManager.GetString(LanguageTokens.DifficultyInsane);
+                    return _translation.Current.GetString(LanguageTokens.DifficultyInsane);
             }
         }
     }

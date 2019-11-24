@@ -1,5 +1,5 @@
-﻿using Escapa.Core.Managers;
-using Escapa.Utility;
+﻿using Escapa.Utility;
+using UnityEngine;
 
 namespace Escapa.Core.Controllers
 {
@@ -7,8 +7,15 @@ namespace Escapa.Core.Controllers
     {
         public void GoToMenu() => LoadScene(GameScenes.Menu);
 
-        public void ShowAchievements() => SocialManager.ShowAchievements();
+        public void ShowAchievements() => _social.ShowAchievements();
 
-        public void ShowLeaderboards() => SocialManager.ShowLeaderboards();
+        public void ShowLeaderboards() => _social.ShowLeaderboards();
+
+        private ISocialController _social;
+
+        private void Awake()
+        {
+            _social = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
+        }
     }
 }

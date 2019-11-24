@@ -1,5 +1,4 @@
 ﻿using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,32 +13,34 @@ namespace Escapa.Game
         public Vector2 ScreenToWorldPoint(Vector2 point) => camera.ScreenToWorldPoint(point);
 
         private new Camera camera;
+        private IDifficultyController _difficulty;
+        private IStyleController _style;
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-
             camera = GetComponent<Camera>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()
         {
-            DifficultyManager.DifficultyChanged += OnDifficultyChanged;
+            _difficulty.Changed += OnDifficultyChanged;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-            DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
+            _difficulty.Changed -= OnDifficultyChanged;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged() => camera.backgroundColor = StyleManager.Colors.Background;
+        private void OnDifficultyChanged() => camera.backgroundColor = _style.Current.Background;
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             if (scene.buildIndex != (int)GameScenes.Preload)
-                camera.backgroundColor = StyleManager.Colors.Background;
+                camera.backgroundColor = _style.Current.Background;
         }
     }
 }

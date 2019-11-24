@@ -1,6 +1,5 @@
 ﻿using Escapa.Core.Events;
 using Escapa.Core.Interfaces;
-using Escapa.Core.Managers;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,11 +11,20 @@ namespace Escapa.Core.Controllers
         public event GameEvent GameStarted;
 
         private IPlayer player;
+        private IDifficultyController _difficulty;
+        private ISocialController _social;
+        private IScoreController _score;
 
         private float? idleTime;
         private float? movingTime;
 
-        private void Awake() => player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+        private void Awake()
+        {
+            player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+            _social = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
+        }
 
         private void OnEnable()
         {
@@ -29,22 +37,22 @@ namespace Escapa.Core.Controllers
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
-                ScoreManager.StopCount();
+                _score.StopCount(_difficulty.Current.Difficulty);
 
-            if (ScoreManager.CurrentTime > ScoreManager.BlackHawkTime && DifficultyManager.Current.difficulty == Difficulties.Insane)
-                SocialManager.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
+            if (_score.CurrentTime > _score.BlackHawkTime && _difficulty.Current.Difficulty == Difficulties.Insane)
+                _social.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
 
-            if (idleTime.HasValue && ScoreManager.CurrentTime - idleTime.Value > ScoreManager.ZenTime)
-                SocialManager.CompleteAchievement(GooglePlayIds.achievement_zen);
-            else if (movingTime.HasValue && ScoreManager.CurrentTime - movingTime > ScoreManager.JaggerTime)
-                SocialManager.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
+            if (idleTime.HasValue && _score.CurrentTime - idleTime.Value > _score.ZenTime)
+                _social.CompleteAchievement(GooglePlayIds.achievement_zen);
+            else if (movingTime.HasValue && _score.CurrentTime - movingTime > _score.JaggerTime)
+                _social.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
         }
 
         private void OnApplicationPause(bool pauseStatus)
         {
             if (pauseStatus)
             {
-                SocialManager.CompleteAchievement(GooglePlayIds.achievement_panic_button);
+                _social.CompleteAchievement(GooglePlayIds.achievement_panic_button);
 
                 OnPlayerDie();
             }
@@ -61,8 +69,8 @@ namespace Escapa.Core.Controllers
         private void OnPlayerDie()
         {
             player.Died -= OnPlayerDie;
-            ScoreManager.StopCount();
-            SocialManager.SendScore();
+            _score.StopCount(_difficulty.Current.Difficulty);
+            _social.SendScore(_difficulty.Current.Difficulty, (long)_score.LastTime * 1000);
 
             SceneManager.LoadScene((int)GameScenes.End);
         }
@@ -71,7 +79,7 @@ namespace Escapa.Core.Controllers
         {
             if (!movingTime.HasValue)
             {
-                movingTime = ScoreManager.CurrentTime;
+                movingTime = _score.CurrentTime;
                 idleTime = null;
             }
         }
@@ -80,7 +88,7 @@ namespace Escapa.Core.Controllers
         {
             player.Pressed -= OnPlayerPressed;
 
-            ScoreManager.StartCount();
+            _score.StartCount();
             GameStarted?.Invoke();
         }
 
@@ -88,7 +96,7 @@ namespace Escapa.Core.Controllers
         {
             if (!idleTime.HasValue)
             {
-                idleTime = ScoreManager.CurrentTime;
+                idleTime = _score.CurrentTime;
                 movingTime = null;
             }
         }

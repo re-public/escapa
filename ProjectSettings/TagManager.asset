@@ -5,10 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - EventSystem
-  - SoundPlayer
   - SoundButton
   - SystemController
   - DifficultyButton
+  - StyleController
+  - DifficultyController
+  - SoundController
+  - ScoreController
+  - TranslationController
+  - SocialController
   layers:
   - Default
   - TransparentFX
