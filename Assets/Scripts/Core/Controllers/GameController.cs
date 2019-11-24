@@ -10,49 +10,52 @@ namespace Escapa.Core.Controllers
     {
         public event GameEvent GameStarted;
 
-        private IPlayer player;
-        private IDifficultyController _difficulty;
-        private ISocialController _social;
-        private IScoreController _score;
+        private IPlayer _player;
+        private IDifficultyController _difficultyController;
+        private ISocialController _socialController;
+        private IScoreController _scoreController;
 
-        private float? idleTime;
-        private float? movingTime;
+        private Level _currentLevel;
+        private float? _idleTime;
+        private float? _movingTime;
 
         private void Awake()
         {
-            player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
-            _social = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
+            _player = GameObject.FindWithTag(Tags.Player).GetComponent<IPlayer>();
+            _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _scoreController = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+            _socialController = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
         }
 
         private void OnEnable()
         {
-            player.Died += OnPlayerDie;
-            player.Moved += OnPlayerMoved;
-            player.Pressed += OnPlayerPressed;
-            player.Stopped += OnPlayerStopped;
+            _difficultyController.Changed += OnDifficultyChanged;
+
+            _player.Died += OnPlayerDie;
+            _player.Moved += OnPlayerMoved;
+            _player.Pressed += OnPlayerPressed;
+            _player.Stopped += OnPlayerStopped;
         }
 
         private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.Escape))
-                _score.StopCount(_difficulty.Current.Difficulty);
+                _scoreController.StopCount(_currentLevel.Difficulty);
 
-            if (_score.CurrentTime > _score.BlackHawkTime && _difficulty.Current.Difficulty == Difficulties.Insane)
-                _social.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
+            if (_scoreController.CurrentTime > _scoreController.BlackHawkTime && _currentLevel.Difficulty == Difficulties.Insane)
+                _socialController.CompleteAchievement(GooglePlayIds.achievement_black_hawk);
 
-            if (idleTime.HasValue && _score.CurrentTime - idleTime.Value > _score.ZenTime)
-                _social.CompleteAchievement(GooglePlayIds.achievement_zen);
-            else if (movingTime.HasValue && _score.CurrentTime - movingTime > _score.JaggerTime)
-                _social.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
+            if (_idleTime.HasValue && _scoreController.CurrentTime - _idleTime.Value > _scoreController.ZenTime)
+                _socialController.CompleteAchievement(GooglePlayIds.achievement_zen);
+            else if (_movingTime.HasValue && _scoreController.CurrentTime - _movingTime > _scoreController.JaggerTime)
+                _socialController.CompleteAchievement(GooglePlayIds.achievement_moves_like_jagger);
         }
 
         private void OnApplicationPause(bool pauseStatus)
         {
             if (pauseStatus)
             {
-                _social.CompleteAchievement(GooglePlayIds.achievement_panic_button);
+                _socialController.CompleteAchievement(GooglePlayIds.achievement_panic_button);
 
                 OnPlayerDie();
             }
@@ -60,44 +63,51 @@ namespace Escapa.Core.Controllers
 
         private void OnDisable()
         {
-            player.Died -= OnPlayerDie;
-            player.Moved -= OnPlayerMoved;
-            player.Pressed -= OnPlayerPressed;
-            player.Stopped -= OnPlayerStopped;
+            _difficultyController.Changed -= OnDifficultyChanged;
+
+            _player.Died -= OnPlayerDie;
+            _player.Moved -= OnPlayerMoved;
+            _player.Pressed -= OnPlayerPressed;
+            _player.Stopped -= OnPlayerStopped;
+        }
+
+        private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
+        {
+            _currentLevel = e.Level;
         }
 
         private void OnPlayerDie()
         {
-            player.Died -= OnPlayerDie;
-            _score.StopCount(_difficulty.Current.Difficulty);
-            _social.SendScore(_difficulty.Current.Difficulty, (long)_score.LastTime * 1000);
+            _player.Died -= OnPlayerDie;
+            _scoreController.StopCount(_currentLevel.Difficulty);
+            _socialController.SendScore(_currentLevel.Difficulty, (long)_scoreController.LastTime * 1000);
 
             SceneManager.LoadScene((int)GameScenes.End);
         }
 
         private void OnPlayerMoved()
         {
-            if (!movingTime.HasValue)
+            if (!_movingTime.HasValue)
             {
-                movingTime = _score.CurrentTime;
-                idleTime = null;
+                _movingTime = _scoreController.CurrentTime;
+                _idleTime = null;
             }
         }
 
         private void OnPlayerPressed()
         {
-            player.Pressed -= OnPlayerPressed;
+            _player.Pressed -= OnPlayerPressed;
 
-            _score.StartCount();
+            _scoreController.StartCount();
             GameStarted?.Invoke();
         }
 
         private void OnPlayerStopped()
         {
-            if (!idleTime.HasValue)
+            if (!_idleTime.HasValue)
             {
-                idleTime = _score.CurrentTime;
-                movingTime = null;
+                _idleTime = _scoreController.CurrentTime;
+                _movingTime = null;
             }
         }
     }

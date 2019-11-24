@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -10,36 +11,44 @@ namespace Escapa.UI
         [SerializeField]
         private bool showHighScore;
 
-        private IDifficultyController _difficulty;
-        private IScoreController _score;
-        private ITranslationController _translation;
-        private Label label;
-        private string newHighScoreTitle;
-        private string highScoreTitle;
+        private IDifficultyController _difficultyController;
+        private IScoreController _scoreController;
+        private ITranslationController _translationController;
+        private Label _label;
+        private string _newHighScore;
+        private string _highScore;
 
         private void Awake()
         {
-            label = GetComponent<Label>();
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
-            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
-            newHighScoreTitle = _translation.Current.GetString(LanguageTokens.NewHighScore);
-            highScoreTitle = _translation.Current.GetString(LanguageTokens.HighScoreTitle);
-    }
+            _label = GetComponent<Label>();
+            _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _scoreController = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+            _translationController = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
 
-        private void Start()
+            _newHighScore = _translationController.Current.GetString(LanguageTokens.NewHighScore);
+            _highScore = _translationController.Current.GetString(LanguageTokens.HighScoreTitle);
+        }
+
+        private void OnEnable()
         {
-            string title;
-            if (showHighScore)
-                title = highScoreTitle;
-            else
-                title = _score.IsHighScore ? newHighScoreTitle : string.Empty;
+            _difficultyController.Changed += OnDifficultyChanged;
+        }
+
+        private void OnDisable()
+        {
+            _difficultyController.Changed -= OnDifficultyChanged;
+        }
+
+        private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
+        {
+            string title = showHighScore ? _highScore
+                : _scoreController.IsHighScore ? _newHighScore : string.Empty;
 
             var time = showHighScore
-                ? _score.GetHigh(_difficulty.Current.Difficulty)
-                : _score.LastTime;
+                ? _scoreController.GetHigh(e.Level.Difficulty)
+                : _scoreController.LastTime;
 
-            label.SetText($"{title}\n{time.ToString("0.0")}");
+            _label.SetText($"{title}\n{time.ToString("0.0")}");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,28 +12,34 @@ namespace Escapa.UI
         [SerializeField]
         private bool isSocialButton;
 
-        private Image image;
-        private IDifficultyController _difficulty;
-        private IStyleController _style;
+        private Image _image;
+        private IStyleController _styleController;
 
         private void Awake()
         {
-            image = GetComponent<Image>();
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
+            _image = GetComponent<Image>();
+            _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
-        private void OnEnable() => _difficulty.Changed += OnDifficultyChanged;
+        private void OnEnable()
+        {
+            _styleController.Changed += OnStyleChanged;
+        }
 
         private void Start()
         {
             if (isSocialButton)
                 gameObject.SetActive(Social.localUser.authenticated);
-            image.color = _style.Current.Text;
         }
 
-        private void OnDisable() => _difficulty.Changed -= OnDifficultyChanged;
+        private void OnDisable()
+        {
+            _styleController.Changed -= OnStyleChanged;
+        }
 
-        private void OnDifficultyChanged() => image.color = _style.Current.Text;
+        private void OnStyleChanged(object sender, StyleEventArgs e)
+        {
+            _image.color = e.Style.Text;
+        }
     }
 }

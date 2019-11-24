@@ -2,32 +2,32 @@
 using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escapa.Core.Controllers
 {
     public sealed class DifficultyController : MonoBehaviour, IDifficultyController
     {
-        public event GameEvent Changed;
-
-        public Level Current => Levels[_currentDifficulty];
+        public event DifficultyEvent Changed;
 
         public void Increase()
         {
-            _currentDifficulty = Current.Difficulty == Difficulties.Insane
-                ? (int)Difficulties.Easy
-                : _currentDifficulty + 1;
-            Changed?.Invoke();
+            _current = _current == Difficulties.Insane ? Difficulties.Easy : _current + 1;
+            Changed?.Invoke(gameObject, new DifficultyEventArgs(Levels[(int)_current]));
         }
 
         public void Decrease()
         {
-            _currentDifficulty = Current.Difficulty == Difficulties.Easy
-                ? (int)Difficulties.Insane
-                : _currentDifficulty - 1;
-            Changed?.Invoke();
+            _current = _current == Difficulties.Easy ? Difficulties.Insane : _current - 1;
+            Changed?.Invoke(gameObject, new DifficultyEventArgs(Levels[(int)_current]));
         }
 
-        private void Awake() => _currentDifficulty = PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
+        private void Awake() => _current = (Difficulties)PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
 
         // If user wants to quit using Task Manager.
         private void OnApplicationPause(bool pause)
@@ -41,11 +41,21 @@ namespace Escapa.Core.Controllers
         // If user wants to quit the usual way.
         private void OnApplicationQuit() => Save();
 
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
         [SerializeField]
         private Level[] Levels;
 
-        private int _currentDifficulty;
+        private Difficulties _current;
 
-        private void Save() => PlayerPrefs.SetInt(PlayerPrefKeys.Difficulty, _currentDifficulty);
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            Changed?.Invoke(null, new DifficultyEventArgs(Levels[(int)_current]));
+        }
+
+        private void Save() => PlayerPrefs.SetInt(PlayerPrefKeys.Difficulty, (int)_current);
     }
 }

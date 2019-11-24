@@ -10,9 +10,9 @@ namespace Escapa.Game
         [SerializeField]
         private Edges edgeType;
         
-        private new IMainCamera camera;
+        private IMainCamera _camera;
 
-        private void Awake() => camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+        private void Awake() => _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
 
         private void Start()
         {
@@ -20,10 +20,10 @@ namespace Escapa.Game
             
             switch (edgeType)
             {
-                case Edges.Left:   position.x = -Screen.width * camera.UnitsPerPixel / 2f;  break;
-                case Edges.Top:    position.y =  Screen.height * camera.UnitsPerPixel / 2f; break;
-                case Edges.Right:  position.x =  Screen.width * camera.UnitsPerPixel / 2f;  break;
-                case Edges.Bottom: position.y = -Screen.height * camera.UnitsPerPixel / 2f; break;
+                case Edges.Left:   position.x = -Screen.width * _camera.UnitsPerPixel / 2f;  break;
+                case Edges.Top:    position.y =  Screen.height * _camera.UnitsPerPixel / 2f; break;
+                case Edges.Right:  position.x =  Screen.width * _camera.UnitsPerPixel / 2f;  break;
+                case Edges.Bottom: position.y = -Screen.height * _camera.UnitsPerPixel / 2f; break;
             }
 
             transform.position = position;

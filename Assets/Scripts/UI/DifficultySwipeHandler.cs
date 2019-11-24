@@ -9,16 +9,16 @@ namespace Escapa.UI
         [SerializeField]
         private float distance;
 
-        private new IMainCamera camera;
-        private IDifficultyController _difficulty;
+        private IMainCamera _camera;
+        private IDifficultyController _difficultyController;
 
-        private Vector2 startPoint;
-        private Vector2 endPoint;
+        private Vector2 _startPoint;
+        private Vector2 _endPoint;
 
         private void Awake()
         {
-            camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+            _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+            _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
         }
 
         private void FixedUpdate()
@@ -30,25 +30,25 @@ namespace Escapa.UI
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
-                        startPoint = camera.ScreenToWorldPoint(touch.position);
+                        _startPoint = _camera.ScreenToWorldPoint(touch.position);
                         break;
                     case TouchPhase.Ended:
-                        endPoint = camera.ScreenToWorldPoint(touch.position);
-                        if (Vector2.Distance(startPoint, endPoint) > distance)
+                        _endPoint = _camera.ScreenToWorldPoint(touch.position);
+                        if (Vector2.Distance(_startPoint, _endPoint) > distance)
                         {
                             // If swipe was directed from right to left
-                            if (Vector2.Dot(Vector2.left, endPoint - startPoint) > 0)
-                                _difficulty.Increase();
+                            if (Vector2.Dot(Vector2.left, _endPoint - _startPoint) > 0)
+                                _difficultyController.Increase();
                             // If swipe was directed from left to right
-                            else if (Vector2.Dot(endPoint - startPoint, Vector2.right) > 0)
-                                _difficulty.Decrease();
+                            else if (Vector2.Dot(_endPoint - _startPoint, Vector2.right) > 0)
+                                _difficultyController.Decrease();
                         }
-                        startPoint = Vector2.zero;
-                        endPoint = Vector2.zero;
+                        _startPoint = Vector2.zero;
+                        _endPoint = Vector2.zero;
                         break;
                     case TouchPhase.Canceled:
-                        startPoint = Vector2.zero;
-                        endPoint = Vector2.zero;
+                        _startPoint = Vector2.zero;
+                        _endPoint = Vector2.zero;
                         break;
                 }
             }

@@ -1,46 +1,39 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escapa.Game
 {
     [RequireComponent(typeof(Camera))]
     public sealed class MainCamera : MonoBehaviour, IMainCamera
     {
-        public float UnitsPerPixel => camera.orthographicSize * 2.0f / Screen.height;
+        public float UnitsPerPixel => _camera.orthographicSize * 2.0f / Screen.height;
 
-        public Vector2 ScreenToWorldPoint(Vector2 point) => camera.ScreenToWorldPoint(point);
+        public Vector2 ScreenToWorldPoint(Vector2 point) => _camera.ScreenToWorldPoint(point);
 
-        private new Camera camera;
-        private IDifficultyController _difficulty;
-        private IStyleController _style;
+        private Camera _camera;
+        private IStyleController _styleController;
 
         private void Awake()
         {
-            camera = GetComponent<Camera>();
-            _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
+            _camera = GetComponent<Camera>();
+            _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()
         {
-            _difficulty.Changed += OnDifficultyChanged;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            _styleController.Changed += OnStyleChanged;
         }
 
         private void OnDisable()
         {
-            _difficulty.Changed -= OnDifficultyChanged;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            _styleController.Changed -= OnStyleChanged;
         }
 
-        private void OnDifficultyChanged() => camera.backgroundColor = _style.Current.Background;
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        private void OnStyleChanged(object sender, StyleEventArgs e)
         {
-            if (scene.buildIndex != (int)GameScenes.Preload)
-                camera.backgroundColor = _style.Current.Background;
+            _camera.backgroundColor = e.Style.Background;
         }
     }
 }
