@@ -1,9 +1,9 @@
-﻿using Escapa.Utility;
+﻿using Escapa.Core.Events;
 
 namespace Escapa.Core.Interfaces
 {
     public interface IStyleController
     {
-        Style Current { get; }
+        event StyleEvent Changed;
     }
 }

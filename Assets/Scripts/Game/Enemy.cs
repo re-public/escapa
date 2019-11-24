@@ -11,42 +11,44 @@ namespace Escapa.Game
         [SerializeField]
         private Difficulties difficulty;
 
-        private float minSpeed;
-        private float maxSpeed;
+        private float _minSpeed;
+        private float _maxSpeed;
 
-        private new Rigidbody2D rigidbody2D;
-        private SpriteRenderer spriteRenderer;
-        private IGameController gameController;
+        private Rigidbody2D _rigidbody2D;
+        private SpriteRenderer _sprite;
+        private IGameController _gameController;
         private IDifficultyController _difficultyController;
-        private IStyleController _style;
+        private IStyleController _styleController;
 
         private void Awake()
         {
-            rigidbody2D = GetComponent<Rigidbody2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _sprite = GetComponent<SpriteRenderer>();
 
-            gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
+            _gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<IGameController>();
             _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
+            _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
         }
 
         private void OnEnable()
         {
+            _gameController.GameStarted += OnGameStarted;
             _difficultyController.Changed += OnDifficultyChanged;
-            gameController.GameStarted += OnGameStarted;
+            _styleController.Changed += OnStyleChanged;
         }
 
         private void OnDisable()
         {
+            _gameController.GameStarted -= OnGameStarted;
             _difficultyController.Changed -= OnDifficultyChanged;
-            gameController.GameStarted -= OnGameStarted;
+            _styleController.Changed -= OnStyleChanged;
         }
 
         private void OnGameStarted()
         {
-            var xForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);
-            var yForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);
-            rigidbody2D.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
+            var xForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(_minSpeed, _maxSpeed);
+            var yForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(_minSpeed, _maxSpeed);
+            _rigidbody2D.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
         }
 
         private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
@@ -55,10 +57,14 @@ namespace Escapa.Game
                 gameObject.SetActive(false);
             else
             {
-                minSpeed = e.Level.MinSpeed;
-                maxSpeed = e.Level.MaxSpeed;
-                spriteRenderer.color = _style.Current.Enemy;
+                _minSpeed = e.Level.MinSpeed;
+                _maxSpeed = e.Level.MaxSpeed;
             }
+        }
+
+        private void OnStyleChanged(object sender, StyleEventArgs e)
+        {
+            _sprite.color = e.Style.Enemy;
         }
     }
 }

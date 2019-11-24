@@ -13,9 +13,9 @@ namespace Escapa.Game
         public event GameEvent Pressed;
         public event GameEvent Stopped;
 
-        private new IMainCamera camera;
-        private IStyleController _style;
-        private SpriteRenderer spriteRenderer;
+        private IMainCamera _camera;
+        private IStyleController _styleController;
+        private SpriteRenderer _sprite;
 
         private bool isTouched;
         private Vector2 oldPosition;
@@ -25,19 +25,22 @@ namespace Escapa.Game
 
         private void Awake()
         {
-            camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
-            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            _camera = GameObject.FindWithTag(Tags.MainCamera).GetComponent<IMainCamera>();
+            _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
+            _sprite = GetComponent<SpriteRenderer>();
         }
 
-        private void Start() => spriteRenderer.color = _style.Current.Player;
+        private void OnEnable()
+        {
+            _styleController.Changed += OnStyleChanged;
+        }
 
         private void Update()
         {
             if (Input.touchCount > 0)
             {
                 var touch = Input.GetTouch(0);
-                var position = camera.ScreenToWorldPoint(touch.position);
+                var position = _camera.ScreenToWorldPoint(touch.position);
                 OnTouch(position);
             }
 
@@ -53,6 +56,11 @@ namespace Escapa.Game
 
         private void OnCollisionEnter2D(Collision2D _) => Died?.Invoke();
 
+        private void OnDisable()
+        {
+            _styleController.Changed -= OnStyleChanged;
+        }
+
         private void OnTouch(Vector2 position)
         {
             isTouched = IsTouched(position, targetPosition);
@@ -62,6 +70,11 @@ namespace Escapa.Game
                 targetPosition = position;
                 Pressed?.Invoke();
             }
+        }
+
+        private void OnStyleChanged(object sender, StyleEventArgs e)
+        {
+            _sprite.color = e.Style.Player;
         }
 
         private static bool IsTouched(Vector2 position, Vector2 touchPosition) => position.x - Width < touchPosition.x

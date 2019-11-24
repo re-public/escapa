@@ -29,32 +29,35 @@ namespace Escapa.UI
         private LanguageTokens token;
 
         private TextMeshProUGUI textMesh;
-        private IDifficultyController _difficultyController;
-        private IStyleController _style;
+        private IStyleController _styleController;
         private ITranslationController _translation;
 
         private void Awake()
         {
             textMesh = GetComponent<TextMeshProUGUI>();
-            _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _style = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
+            _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
             _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
         }
 
-        private void OnEnable() => _difficultyController.Changed += OnDifficultyChanged;
+        private void OnEnable()
+        {
+            _styleController.Changed += OnStyleChanged;
+        }
 
         private void Start()
         {
-            textMesh.color = isAlfa ? _style.Current.TextAlfa : _style.Current.Text;
             if(Token != LanguageTokens.None)
                 textMesh.SetText(_translation.Current.GetString(Token));
         }
 
-        private void OnDisable() => _difficultyController.Changed -= OnDifficultyChanged;
-
-        private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
+        private void OnDisable()
         {
-            textMesh.color = _style.Current.Text;
+            _styleController.Changed -= OnStyleChanged;
+        }
+
+        private void OnStyleChanged(object sender, StyleEventArgs e)
+        {
+            textMesh.color = isAlfa ? e.Style.TextAlfa : e.Style.Text;
         }
     }
 }

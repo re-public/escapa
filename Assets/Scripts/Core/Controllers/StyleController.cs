@@ -7,7 +7,7 @@ namespace Escapa.Core.Controllers
 {
     public class StyleController : MonoBehaviour, IStyleController
     {
-        public Style Current { get; private set; }
+        public event StyleEvent Changed;
 
         [SerializeField]
         private Style[] Styles;
@@ -31,7 +31,7 @@ namespace Escapa.Core.Controllers
 
         private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
         {
-            Current = Styles[(int)e.Level.Difficulty];
+            Changed?.Invoke(_difficultyController, new StyleEventArgs(Styles[(int)e.Level.Difficulty]));
         }
     }
 }
