@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -28,24 +29,25 @@ namespace Escapa.UI
             _difficultyController.Changed -= OnDifficultyChanged;
         }
 
-        private void OnDifficultyChanged()
+        private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
         {
-            switch (_difficultyController.Current.Difficulty)
+            switch (e.Level.Difficulty)
             {
                 default:
                 case Difficulties.Easy:
-                    _label.SetText(_translationController.Current.GetString(LanguageTokens.DifficultyEasy));
+                    _label.Token = LanguageTokens.DifficultyEasy;
                     break;
                 case Difficulties.Medium:
-                    _label.SetText(_translationController.Current.GetString(LanguageTokens.DifficultyMedium));
+                    _label.Token = LanguageTokens.DifficultyMedium;
                     break;
                 case Difficulties.Hard:
-                    _label.SetText(_translationController.Current.GetString(LanguageTokens.DifficultyHard));
+                    _label.Token = LanguageTokens.DifficultyHard;
                     break;
                 case Difficulties.Insane:
-                    _label.SetText(_translationController.Current.GetString(LanguageTokens.DifficultyInsane));
+                    _label.Token = LanguageTokens.DifficultyInsane;
                     break;
             }
+            _label.SetText(_translationController.Current.GetString(_label.Token));
         }
     }
 }

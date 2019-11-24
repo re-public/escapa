@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Interfaces;
+﻿using Escapa.Core.Events;
+using Escapa.Core.Interfaces;
 using Escapa.Utility;
 using UnityEngine;
 
@@ -6,13 +7,31 @@ namespace Escapa.Core.Controllers
 {
     public class StyleController : MonoBehaviour, IStyleController
     {
-        public Style Current => Styles[(int)_difficulty.Current.Difficulty];
+        public Style Current { get; private set; }
 
         [SerializeField]
         private Style[] Styles;
 
-        private IDifficultyController _difficulty;
+        private IDifficultyController _difficultyController;
 
-        private void Awake() => _difficulty = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+        private void Awake()
+        {
+            _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
+        }
+
+        private void OnEnable()
+        {
+            _difficultyController.Changed += OnDifficultyChanged;
+        }
+
+        private void OnDisable()
+        {
+            _difficultyController.Changed += OnDifficultyChanged;
+        }
+
+        private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
+        {
+            Current = Styles[(int)e.Level.Difficulty];
+        }
     }
 }
