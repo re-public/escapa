@@ -6,8 +6,16 @@ using UnityEngine;
 namespace Escapa.UI
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public sealed class Label : MonoBehaviour
+    public sealed class Label : MonoBehaviour, ILabel
     {
+        public void SetText(string text)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+                textMesh.SetText(text);
+            else
+                textMesh.SetText(_translation.Current.GetString(token));
+        }
+
         [SerializeField]
         private bool isAlfa;
         [SerializeField]
@@ -17,8 +25,6 @@ namespace Escapa.UI
         private IDifficultyController _difficulty;
         private IStyleController _style;
         private ITranslationController _translation;
-
-        public void SetText(string text) => textMesh.SetText(text);
 
         private void Awake()
         {
