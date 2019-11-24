@@ -6,7 +6,7 @@ namespace Escapa.Core.Controllers
 {
     public sealed class SystemController : MonoBehaviour
     {
-        private GameScenes current;
+        private GameScenes _current;
 
         private void Awake()
         {
@@ -27,12 +27,12 @@ namespace Escapa.Core.Controllers
 
         private void GoBack()
         {
-            if (current == GameScenes.Menu)
+            if (_current == GameScenes.Menu)
                 Application.Quit();
             else
                 SceneManager.LoadScene((int)GameScenes.Menu, LoadSceneMode.Single);
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => current = (GameScenes)scene.buildIndex;
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode) => _current = (GameScenes)scene.buildIndex;
     }
 }

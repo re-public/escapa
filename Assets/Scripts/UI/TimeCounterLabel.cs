@@ -8,19 +8,19 @@ namespace Escapa.UI
     public sealed class TimeCounterLabel : MonoBehaviour
     {
         private readonly char[] currentRecordBuffer = { '0', '0', '0', '0', ',', '0', '\0' };
-        private Label label;
-        private IScoreController _score;
+        private Label _label;
+        private IScoreController _scoreController;
 
         private void Awake()
         {
-            label = GetComponent<Label>();
-            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+            _label = GetComponent<Label>();
+            _scoreController = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
         }
 
         private void FixedUpdate()
         {
-            UpdateCurrentRecordBuffer(_score.CurrentTime);
-            label.SetText(new string(currentRecordBuffer));
+            UpdateCurrentRecordBuffer(_scoreController.CurrentTime);
+            _label.SetText(new string(currentRecordBuffer));
         }
 
         private void UpdateCurrentRecordBuffer(float value)

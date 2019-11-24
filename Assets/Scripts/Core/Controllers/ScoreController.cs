@@ -6,7 +6,7 @@ namespace Escapa.Core.Controllers
 {
     public class ScoreController : MonoBehaviour, IScoreController
     {
-        public float CurrentTime => startTime > float.Epsilon ? Time.realtimeSinceStartup - startTime : 0f;
+        public float CurrentTime => _startTime > float.Epsilon ? Time.realtimeSinceStartup - _startTime : 0f;
 
         public float LastTime { get; private set; }
 
@@ -30,13 +30,13 @@ namespace Escapa.Core.Controllers
         public void StartCount()
         {
             IsHighScore = false;
-            startTime = Time.realtimeSinceStartup;
+            _startTime = Time.realtimeSinceStartup;
         }
 
         public void StopCount(Difficulties difficulty)
         {
             LastTime = CurrentTime;
-            startTime = 0f;
+            _startTime = 0f;
 
             if (LastTime > GetHigh(difficulty))
             {
@@ -45,23 +45,23 @@ namespace Escapa.Core.Controllers
             }
         }
 
-        public float GetHigh(Difficulties difficulty) => highScores[(int)difficulty];
+        public float GetHigh(Difficulties difficulty) => _highScores[(int)difficulty];
 
         public void Save()
         {
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, highScores[0]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, highScores[1]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, highScores[2]);
-            PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, highScores[3]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score0, _highScores[0]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score1, _highScores[1]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score2, _highScores[2]);
+            PlayerPrefs.SetFloat(PlayerPrefKeys.Score3, _highScores[3]);
         }
 
         [SerializeField]
         private AchievementsConfig Achievements;
 
-        private float startTime;
-        private float[] highScores;
+        private float _startTime;
+        private float[] _highScores;
 
-        private void Awake() => highScores = Load();
+        private void Awake() => _highScores = Load();
 
         // If user wants to quit using Task Manager.
         private void OnApplicationPause(bool pause)
@@ -75,7 +75,7 @@ namespace Escapa.Core.Controllers
         // If user wants to quit the usual way.
         private void OnApplicationQuit() => Save();
 
-        private float SetHigh(Difficulties difficulty, float score) => highScores[(int)difficulty] = score;
+        private float SetHigh(Difficulties difficulty, float score) => _highScores[(int)difficulty] = score;
 
         private float[] Load()
         {

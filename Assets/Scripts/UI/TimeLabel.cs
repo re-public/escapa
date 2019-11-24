@@ -12,20 +12,21 @@ namespace Escapa.UI
         private bool showHighScore;
 
         private IDifficultyController _difficultyController;
-        private IScoreController _score;
-        private ITranslationController _translation;
-        private Label label;
-        private string newHighScoreTitle;
-        private string highScoreTitle;
+        private IScoreController _scoreController;
+        private ITranslationController _translationController;
+        private Label _label;
+        private string _newHighScore;
+        private string _highScore;
 
         private void Awake()
         {
-            label = GetComponent<Label>();
+            _label = GetComponent<Label>();
             _difficultyController = GameObject.FindWithTag(Tags.DifficultyController).GetComponent<IDifficultyController>();
-            _score = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
-            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
-            newHighScoreTitle = _translation.Current.GetString(LanguageTokens.NewHighScore);
-            highScoreTitle = _translation.Current.GetString(LanguageTokens.HighScoreTitle);
+            _scoreController = GameObject.FindWithTag(Tags.ScoreController).GetComponent<IScoreController>();
+            _translationController = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
+
+            _newHighScore = _translationController.Current.GetString(LanguageTokens.NewHighScore);
+            _highScore = _translationController.Current.GetString(LanguageTokens.HighScoreTitle);
         }
 
         private void OnEnable()
@@ -40,14 +41,14 @@ namespace Escapa.UI
 
         private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
         {
-            string title = showHighScore ? highScoreTitle
-                : _score.IsHighScore ? newHighScoreTitle : string.Empty;
+            string title = showHighScore ? _highScore
+                : _scoreController.IsHighScore ? _newHighScore : string.Empty;
 
             var time = showHighScore
-                ? _score.GetHigh(e.Level.Difficulty)
-                : _score.LastTime;
+                ? _scoreController.GetHigh(e.Level.Difficulty)
+                : _scoreController.LastTime;
 
-            label.SetText($"{title}\n{time.ToString("0.0")}");
+            _label.SetText($"{title}\n{time.ToString("0.0")}");
         }
     }
 }

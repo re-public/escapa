@@ -17,9 +17,9 @@ namespace Escapa.Game
         private IStyleController _styleController;
         private SpriteRenderer _sprite;
 
-        private bool isTouched;
-        private Vector2 oldPosition;
-        private Vector2 targetPosition;
+        private bool _isTouched;
+        private Vector2 _oldPosition;
+        private Vector2 _targetPosition;
 
         private const float Width = 0.75f;
 
@@ -44,14 +44,14 @@ namespace Escapa.Game
                 OnTouch(position);
             }
 
-            if (isTouched)
-                transform.position = targetPosition;
+            if (_isTouched)
+                transform.position = _targetPosition;
 
-            if (Vector2.Distance(targetPosition, oldPosition) > float.Epsilon)
+            if (Vector2.Distance(_targetPosition, _oldPosition) > float.Epsilon)
                 Moved?.Invoke();
             else
                 Stopped?.Invoke();
-            oldPosition = targetPosition;
+            _oldPosition = _targetPosition;
         }
 
         private void OnCollisionEnter2D(Collision2D _) => Died?.Invoke();
@@ -63,11 +63,11 @@ namespace Escapa.Game
 
         private void OnTouch(Vector2 position)
         {
-            isTouched = IsTouched(position, targetPosition);
+            _isTouched = IsTouched(position, _targetPosition);
 
-            if (isTouched)
+            if (_isTouched)
             {
-                targetPosition = position;
+                _targetPosition = position;
                 Pressed?.Invoke();
             }
         }

@@ -7,15 +7,15 @@ namespace Escapa.Core.Controllers
     {
         public void GoToMenu() => LoadScene(GameScenes.Menu);
 
-        public void ShowAchievements() => _social.ShowAchievements();
+        public void ShowAchievements() => _socialController.ShowAchievements();
 
-        public void ShowLeaderboards() => _social.ShowLeaderboards();
+        public void ShowLeaderboards() => _socialController.ShowLeaderboards();
 
-        private ISocialController _social;
+        private ISocialController _socialController;
 
         private void Awake()
         {
-            _social = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
+            _socialController = GameObject.FindWithTag(Tags.SocialController).GetComponent<ISocialController>();
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Escapa.UI
         public void SetText(string text)
         {
             if (!string.IsNullOrWhiteSpace(text))
-                textMesh.SetText(text);
+                _textMesh.SetText(text);
             else
-                textMesh.SetText(_translation.Current.GetString(Token));
+                _textMesh.SetText(_translationController.Current.GetString(Token));
         }
 
         [SerializeField]
@@ -28,15 +28,15 @@ namespace Escapa.UI
         [SerializeField]
         private LanguageTokens token;
 
-        private TextMeshProUGUI textMesh;
+        private TextMeshProUGUI _textMesh;
         private IStyleController _styleController;
-        private ITranslationController _translation;
+        private ITranslationController _translationController;
 
         private void Awake()
         {
-            textMesh = GetComponent<TextMeshProUGUI>();
+            _textMesh = GetComponent<TextMeshProUGUI>();
             _styleController = GameObject.FindWithTag(Tags.StyleController).GetComponent<IStyleController>();
-            _translation = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
+            _translationController = GameObject.FindWithTag(Tags.TranslationController).GetComponent<ITranslationController>();
         }
 
         private void OnEnable()
@@ -47,7 +47,7 @@ namespace Escapa.UI
         private void Start()
         {
             if(Token != LanguageTokens.None)
-                textMesh.SetText(_translation.Current.GetString(Token));
+                _textMesh.SetText(_translationController.Current.GetString(Token));
         }
 
         private void OnDisable()
@@ -57,7 +57,7 @@ namespace Escapa.UI
 
         private void OnStyleChanged(object sender, StyleEventArgs e)
         {
-            textMesh.color = isAlfa ? e.Style.TextAlfa : e.Style.Text;
+            _textMesh.color = isAlfa ? e.Style.TextAlfa : e.Style.Text;
         }
     }
 }

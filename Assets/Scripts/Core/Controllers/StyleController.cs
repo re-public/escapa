@@ -26,7 +26,7 @@ namespace Escapa.Core.Controllers
 
         private void OnDisable()
         {
-            _difficultyController.Changed += OnDifficultyChanged;
+            _difficultyController.Changed -= OnDifficultyChanged;
         }
 
         private void OnDifficultyChanged(object sender, DifficultyEventArgs e)
