@@ -1,6 +1,8 @@
-﻿using Escapa.Utility;
+using Escapa.Utility;
+#if GPGS_ENABLED
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+#endif
 using UnityEngine;
 
 namespace Escapa.Core.Managers
@@ -35,7 +37,7 @@ namespace Escapa.Core.Managers
 
         public static void Auth(System.Action callback)
         {
-            // Check if GPGS is installed
+#if GPGS_ENABLED
             if (GooglePlayGames.OurUtils.PlatformUtils.Supported)
             {
                 PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
@@ -50,7 +52,7 @@ namespace Escapa.Core.Managers
                         ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
                 });
             }
-
+#endif
             callback?.Invoke();
         }
 
