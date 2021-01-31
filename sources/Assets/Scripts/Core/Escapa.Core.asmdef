@@ -1,0 +1,17 @@
+{
+    "name": "Escapa.Core",
+    "rootNamespace": "Escapa.Core",
+    "references": [
+        "GUID:62a1ca2bae9b0c040a88739653b69b33",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
