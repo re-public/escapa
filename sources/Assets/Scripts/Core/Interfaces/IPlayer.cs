@@ -1,12 +1,12 @@
-﻿using Escapa.Core.Events;
+using System;
 
 namespace Escapa.Core.Interfaces
 {
     public interface IPlayer
     {
-        event GameEvent Died;
-        event GameEvent Moved;
-        event GameEvent Pressed;
-        event GameEvent Stopped;
+        event EventHandler Died;
+        event EventHandler Moved;
+        event EventHandler Pressed;
+        event EventHandler Stopped;
     }
 }

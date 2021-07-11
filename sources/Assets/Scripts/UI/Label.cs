@@ -1,5 +1,6 @@
-﻿using Escapa.Core.Managers;
+using Escapa.Core.Managers;
 using Escapa.Utility;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -30,6 +31,6 @@ namespace Escapa.UI
 
         private void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => textMesh.color = StyleManager.Colors.Text;
+        private void OnDifficultyChanged(object sender, EventArgs e) => textMesh.color = StyleManager.Colors.Text;
     }
 }

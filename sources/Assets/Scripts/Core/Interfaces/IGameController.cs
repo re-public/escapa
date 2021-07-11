@@ -1,9 +1,9 @@
-﻿using Escapa.Core.Events;
+using System;
 
 namespace Escapa.Core.Interfaces
 {
     public interface IGameController
     {
-        event GameEvent GameStarted;
+        event EventHandler GameStarted;
     }
 }

@@ -1,7 +1,9 @@
-﻿using Escapa.Core.Interfaces;
+using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
 using Escapa.Utility;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Escapa.Game
 {
@@ -42,7 +44,7 @@ namespace Escapa.Game
 
         private void OnDisable() => gameController.GameStarted -= OnGameStarted;
 
-        private void OnGameStarted()
+        private void OnGameStarted(object sender, EventArgs e)
         {
             var xForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);
             var yForce = (Random.Range(0, 2) == 0 ? -1 : 1) * Random.Range(minSpeed, maxSpeed);

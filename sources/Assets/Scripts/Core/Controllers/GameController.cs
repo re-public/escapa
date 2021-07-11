@@ -1,7 +1,7 @@
-﻿using Escapa.Core.Events;
 using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
 using Escapa.Utility;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +9,7 @@ namespace Escapa.Core.Controllers
 {
     public sealed class GameController : MonoBehaviour, IGameController
     {
-        public event GameEvent GameStarted;
+        public event EventHandler GameStarted;
 
         private IPlayer player;
 
@@ -46,7 +46,7 @@ namespace Escapa.Core.Controllers
             {
                 SocialManager.CompleteAchievement(GooglePlayIds.achievement_panic_button);
 
-                OnPlayerDie();
+                OnPlayerDie(gameObject, null);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Escapa.Core.Controllers
             player.Stopped -= OnPlayerStopped;
         }
 
-        private void OnPlayerDie()
+        private void OnPlayerDie(object sender, EventArgs e)
         {
             player.Died -= OnPlayerDie;
             ScoreManager.StopCount();
@@ -67,7 +67,7 @@ namespace Escapa.Core.Controllers
             SceneManager.LoadScene((int)GameScenes.End);
         }
 
-        private void OnPlayerMoved()
+        private void OnPlayerMoved(object sender, EventArgs e)
         {
             if (!movingTime.HasValue)
             {
@@ -76,15 +76,15 @@ namespace Escapa.Core.Controllers
             }
         }
 
-        private void OnPlayerPressed()
+        private void OnPlayerPressed(object sender, EventArgs e)
         {
             player.Pressed -= OnPlayerPressed;
 
             ScoreManager.StartCount();
-            GameStarted?.Invoke();
+            GameStarted?.Invoke(gameObject, null);
         }
 
-        private void OnPlayerStopped()
+        private void OnPlayerStopped(object sender, EventArgs e)
         {
             if (!idleTime.HasValue)
             {

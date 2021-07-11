@@ -1,4 +1,5 @@
-﻿using Escapa.Core.Managers;
+using Escapa.Core.Managers;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,6 @@ namespace Escapa.UI
 
         private void OnDisable() => DifficultyManager.DifficultyChanged -= OnDifficultyChanged;
 
-        private void OnDifficultyChanged() => image.color = StyleManager.Colors.Text;
+        private void OnDifficultyChanged(object sender, EventArgs e) => image.color = StyleManager.Colors.Text;
     }
 }

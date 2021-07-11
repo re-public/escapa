@@ -1,5 +1,5 @@
-﻿using Escapa.Core.Events;
 using Escapa.Utility;
+using System;
 using UnityEngine;
 
 namespace Escapa.Core.Managers
@@ -9,7 +9,7 @@ namespace Escapa.Core.Managers
         private static readonly Level[] levels = Load();
         private static int currentDifficulty = PlayerPrefs.GetInt(PlayerPrefKeys.Difficulty, 0);
 
-        public static event GameEvent DifficultyChanged;
+        public static event EventHandler DifficultyChanged;
 
         public static Level Current => levels[currentDifficulty];
 
@@ -18,7 +18,7 @@ namespace Escapa.Core.Managers
             currentDifficulty = Current.difficulty == Difficulties.Insane
                 ? (int)Difficulties.Easy
                 : currentDifficulty + 1;
-            DifficultyChanged?.Invoke();
+            DifficultyChanged?.Invoke(null, null);
         }
 
         public static void Decrease()
@@ -26,7 +26,7 @@ namespace Escapa.Core.Managers
             currentDifficulty = Current.difficulty == Difficulties.Easy
                 ? (int)Difficulties.Insane
                 : currentDifficulty - 1;
-            DifficultyChanged?.Invoke();
+            DifficultyChanged?.Invoke(null, null);
         }
 
         public static void Save() => PlayerPrefs.SetInt(PlayerPrefKeys.Difficulty, currentDifficulty);

@@ -1,6 +1,7 @@
-﻿using Escapa.Core.Interfaces;
+using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
 using Escapa.Utility;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ namespace Escapa.Game
         public float UnitsPerPixel => camera.orthographicSize * 2.0f / Screen.height;
 
         public Vector2 ScreenToWorldPoint(Vector2 point) => camera.ScreenToWorldPoint(point);
-
+            
         private new Camera camera;
 
         private void Awake()
@@ -34,7 +35,7 @@ namespace Escapa.Game
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        private void OnDifficultyChanged() => camera.backgroundColor = StyleManager.Colors.Background;
+        private void OnDifficultyChanged(object sender, EventArgs e) => camera.backgroundColor = StyleManager.Colors.Background;
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {

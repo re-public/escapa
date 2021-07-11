@@ -1,7 +1,7 @@
-﻿using Escapa.Core.Events;
 using Escapa.Core.Interfaces;
 using Escapa.Core.Managers;
 using Escapa.Utility;
+using System;
 using UnityEngine;
 
 namespace Escapa.Game
@@ -9,10 +9,10 @@ namespace Escapa.Game
     [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
     public sealed class Player : MonoBehaviour, IPlayer
     {
-        public event GameEvent Died;
-        public event GameEvent Moved;
-        public event GameEvent Pressed;
-        public event GameEvent Stopped;
+        public event EventHandler Died;
+        public event EventHandler Moved;
+        public event EventHandler Pressed;
+        public event EventHandler Stopped;
 
         private new IMainCamera camera;
         private SpriteRenderer spriteRenderer;
@@ -44,13 +44,13 @@ namespace Escapa.Game
                 transform.position = targetPosition;
 
             if (Vector2.Distance(targetPosition, oldPosition) > float.Epsilon)
-                Moved?.Invoke();
+                Moved?.Invoke(gameObject, null);
             else
-                Stopped?.Invoke();
+                Stopped?.Invoke(gameObject, null);
             oldPosition = targetPosition;
         }
 
-        private void OnCollisionEnter2D() => Died?.Invoke();
+        private void OnCollisionEnter2D() => Died?.Invoke(gameObject, null);
 
         private void OnTouch(Vector2 position)
         {
@@ -59,7 +59,7 @@ namespace Escapa.Game
             if (isTouched)
             {
                 targetPosition = position;
-                Pressed?.Invoke();
+                Pressed?.Invoke(gameObject, null);
             }
         }
 
